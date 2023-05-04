@@ -8,7 +8,7 @@
         <div>
           <p class="uppercase text-xs text-gray-700 font-semibold">overview</p>
           <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
-            Dashboard111
+            Dashboard111111111112323232323
           </h1>
         </div>
         <div class="flex gap-2">
