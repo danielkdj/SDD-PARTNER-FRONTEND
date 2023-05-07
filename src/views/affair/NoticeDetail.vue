@@ -8,19 +8,21 @@
             </div>
             <div class="space-y-5">
                 <div class="grid grid-cols-12 gap-4">
+                    <label for="notice_no" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                        공지글 번호
+                    </label>
+                    <div class="col-span-10">
+                        <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        >{{notice_no}}</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4">
                     <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                         작성자
                     </label>
                     <div class="col-span-10">
-                        <input
-                                type="text"
-                                name="writer"
-                                id="writer"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                                placeholder=""
-                                v-model="writer"
-                                required
-                        />
+                        <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        >{{writer}}</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
@@ -28,15 +30,8 @@
                         작성일시
                     </label>
                     <div class="col-span-10">
-                        <input
-                                type="text"
-                                name="created_at"
-                                id="created_at"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                                placeholder=""
-                                v-model="created_at"
-                                required
-                        />
+                        <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        >{{created_at}}</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
@@ -44,15 +39,8 @@
                         제목
                     </label>
                     <div class="col-span-10">
-                        <input
-                                type="text"
-                                name="title"
-                                id="title"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                                placeholder=""
-                                v-model="title"
-                                required
-                        />
+                        <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        >{{title}}</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
@@ -60,7 +48,7 @@
                         내용
                     </label>
                     <div class="col-span-10">
-                        <textarea id="contents" name="contents" v-model="contents" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"></textarea>
+                        <textarea rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"> {{contents}} </textarea>
                     </div>
                 </div>
             </div>
@@ -73,57 +61,58 @@ export default {
     data() { //변수생성
         return {
             requestBody: this.$route.query,
-            idx: this.$route.query.idx,
+            notice_no: this.$route.query.notice_no,
             title: '제목',
             writer: '작성자',
-            contents: '내용',
+            contents: '내용작성',
             created_at: '작성일시',
         }
     },
-    //   mounted() { //document.ready = window.upload역할과 동일
-    //       this.fnGetView()
-    //   },
-    //   fnGetView() {
-    //     this.$axios.get(this.$serverUrl + '/board/' + this.idx, { //비동기 방식으로 요청한다.= ajax
-    //       params: this.requestBody
-    //     }).then((res) => {
-    //       this.title = res.data.title
-    //       this.author = res.data.author
-    //       this.contents = res.data.contents
-    //       this.created_at = res.data.created_at
-    //     }).catch((err) => {
-    //       if (err.message.indexOf('Network Error') > -1) {
-    //           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-    //       }
-    //     })
-    //   },
-    //   methods: {
-    //     fnList() {
-    //       delete this.requestBody.idx
-    //       this.$router.push({
-    //           path: './list',
-    //           query: this.requestBody
-    //       })
-    //     },
-    //     fnUpdate() {
-    //       //글 수정이므로 idx를 전송함 : requestBody에 idx가 담겨있음. 이걸 query로 보냄
-    //       this.$router.push({
-    //           path: './write',
-    //           query: this.requestBody
-    //       })
-    //     },
-    //     fnDelete() {
-    //       if (!confirm("삭제하시겠습니까?")) return //취소 클릭시
-    //
-    //       this.$axios.delete(this.$serverUrl + '/board/' + this.idx, {}) //확인 클릭시
-    //           .then(() => {
-    //               alert('삭제되었습니다.')
-    //               this.fnList();
-    //           }).catch((err) => {
-    //           console.log(err);
-    //       })
-    //     }
-    //
-    //   }
+      // mounted() { //document.ready = window.upload역할과 동일
+      //     this.fnGetView()
+      // },
+      methods: {
+        // fnGetView() {
+        //   this.$axios.get(this.$serverUrl + '/notice/' + this.notice_no, { //비동기 방식으로 요청한다.= ajax
+        //       params: this.requestBody
+        //   }).then((res) => {
+        //       this.title = res.data.title
+        //       this.writer = res.data.writer
+        //       this.contents = res.data.contents
+        //       this.created_at = res.data.created_at
+        //   }).catch((err) => {
+        //       if (err.message.indexOf('Network Error') > -1) {
+        //           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        //       }
+        //   })
+        // },
+        fnList() {
+          delete this.requestBody.notice_no
+          this.$router.push({
+              path: './NoticeList',
+              query: this.requestBody
+          })
+        },
+        fnUpdate() {
+          //글 수정페이지로 이동: requestBody에 notice_no가 담겨있음.
+          this.$router.push({
+              path: './NoticeWrite',
+              query: this.requestBody
+          })
+        },
+        fnDelete() {
+          if (!confirm("삭제하시겠습니까?")) return //취소 클릭시
+
+          this.$axios.delete(this.$serverUrl + '/notice/' + this.notice_no, {}) //확인 클릭시
+              .then(() => {
+                  alert('삭제되었습니다.')
+                  this.fnList();
+              }).catch((err) => {
+              console.log(err);
+              this.fnList(); //test용
+          })
+        }
+
+      }
 };
 </script>

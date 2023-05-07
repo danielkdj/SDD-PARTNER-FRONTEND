@@ -15,6 +15,15 @@
             <option value="5">퇴직연금교육</option>
         </select>
         <select
+            name="dept_name"
+            id="dept_name"
+            class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+        >
+        <option disabled value="">-소속-</option>
+        <option value="D1">1팀</option>
+        <option value="D2">2팀</option>
+        </select>
+        <select
             name=""
             id=""
             class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
@@ -23,7 +32,8 @@
         <option value="Y">Y</option>
         <option value="N">N</option>
         </select>
-        <button type="submit" v-on:click="fnUpdate" class="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300-600">수정</button>
+        <button type="submit" v-on:click="fnSearch" class="rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300">검색</button>
+        <button type="submit" v-on:click="fnUpdate" class="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300">수정</button>
     </div>
     <div class="wrapping-table mt-10">
       <table
@@ -43,7 +53,13 @@
             scope="col"
             class="uppercase px-6 py-3"
           >
-            항목구분
+            귀속연도
+          </th>
+          <th
+            scope="col"
+            class="uppercase px-6 py-3"
+          >
+              항목구분
           </th>
           <th
             scope="col"
@@ -55,19 +71,13 @@
             scope="col"
             class="uppercase px-6 py-3"
           >
-            신청자
+              신청자
           </th>
           <th
             scope="col"
             class="uppercase px-6 py-3"
           >
-            이수여부
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            선택<input type="checkbox" id="selectAllCheckbox" @click="allSelected"/>
+              이수여부<input type="checkbox" id="selectAllCheckbox" @click="allSelected"/>
           </th>
 
         </tr>
@@ -79,46 +89,23 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.idx }}
+              {{ items.com_id }}
           </td>
           <td class="px-6 py-4">
-              {{ items.sub_category }}
+              {{ items.imputed_year }}
           </td>
           <td class="px-6 py-4">
-              {{ items.title }}
+              {{ items.category }}
           </td>
           <td class="px-6 py-4">
-              {{ items.writer }}
+              {{ items.emp_id }}
           </td>
           <td class="px-6 py-4">
               {{ items.dept_name }}
           </td>
           <td class="px-6 py-4">
-              {{ items.created_at }}
+              {{ items.tr1_completed }}
           </td>
-            <td class="px-6 py-4">
-              {{ items.start_date }} ~ {{ items.end_date }}
-          </td>
-          <td class="px-6 py-4">
-        <span
-          class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-          v-if="items.status == '승인'"
-        >
-          {{ items.status }}
-        </span>
-          <span
-                  class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status == '승인전'"
-          >
-          {{ items.status }}
-        </span>
-          <span
-            class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
-            v-else
-          >
-          {{ items.status }}
-        </span>
-            </td>
         </tr>
         </tbody>
       </table>
@@ -134,27 +121,34 @@ export default {
       requestBody: this.$route.query,
       tableTransaction: [
         {
-        idx: 1,
-        sub_category: '항목구분',
-        title: '제목',
-        writer: '작성자',
+        com_id: 1,
+        category: '항목구분',
+        emp_id: '작성자',
         dept_name: '소속부서',
-        created_at:'2023-05-04 23:24:00',
-        start_date:'2023-05-05 23:24:00',
-        end_date:'2023-05-05 23:24:00',
-        status: '승인전',
+        imputed_year: 2023,
+        tr1_completed:'N',
+        tr2_completed:'N',
+        tr3_completed:'N',
+        tr4_completed:'N',
+        tr5_completed:'N',
+        tr6_completed:'N',
+        tr7_completed:'N',
+        tr8_completed:'N',
         },
-
         {
-        idx: 2,
-        sub_category: '항목구분',
-        title: '제목',
-        writer: '작성자',
-        dept_name: '소속부서',
-        created_at: '2023-05-03 23:24:00',
-        start_date: '2023-05-03 23:24:00',
-        end_date: '2023-05-03 23:24:00',
-        status: '반려',
+            com_id: 1,
+            category: '항목구분',
+            emp_id: '작성자',
+            dept_name: '소속부서',
+            imputed_year: 2023,
+            tr1_completed:'N',
+            tr2_completed:'N',
+            tr3_completed:'N',
+            tr4_completed:'N',
+            tr5_completed:'N',
+            tr6_completed:'N',
+            tr7_completed:'N',
+            tr8_completed:'N',
         },
       ]
     }

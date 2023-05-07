@@ -3,52 +3,23 @@
   >
     <div class="mt-6 flex items-center justify-end gap-x-6">
         <select
-                name=""
-                id=""
+                v-model="s_category"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
-            <option value="">-선택-</option>
-            <option value="title">제목</option>
-            <option value="dept_name">소속</option>
-            <option value="status">상태</option>
+            <option value="">-항목선택-</option>
+            <option value="A회의실">A회의실</option>
+            <option value="B회의실">B회의실</option>
+            <option value="C회의실">C회의실</option>
         </select>
-        <div class="flex flex-no-shrink items-center">
-          <button
-              class="text-gray-500 lg:hidden ml-3 block"
-              @click="$emit('sidebarToggle', true)"
-          >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img"
-                width="2em"
-                height="2em"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"
-                />
-              </svg>
-            </button>
-            <div
-                class="input-box border dark:bg-gray-900 lg:ml-0 ml-5 dark:border-gray-700 rounded-md hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700"
-            >
-          <span class="text-3xl p-2 text-gray-400"
-          ><Icon icon="ei:search"
-          /></span>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  class="p-3 w-full bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-                />
-            </div>
-        </div>
+        <select
+                v-model="s_status"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+        >
+            <option default value="">-상태-</option>
+            <option value="1">처리 전</option>
+            <option value="2">반려</option>
+            <option value="3">승인</option>
+        </select>
         <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
     </div>
     <div class="wrapping-table mt-10">
@@ -116,13 +87,13 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.idx }}
+              {{ items.doc_no }}
           </td>
           <td class="px-6 py-4">
               {{ items.sub_category }}
           </td>
           <td class="px-6 py-4">
-              {{ items.title }}
+              <a v-on:click="fnView(`${items.doc_no}`)">{{ items.title }}</a>
           </td>
           <td class="px-6 py-4">
               {{ items.writer }}
@@ -171,9 +142,11 @@ export default {
   data() { //변수생성
     return {
       requestBody: this.$route.query,
+      s_category : '',
+      s_status : '',
       tableTransaction: [
         {
-        idx: 1,
+        doc_no : 123,
         sub_category: '항목구분',
         title: '제목',
         writer: '작성자',
@@ -185,7 +158,7 @@ export default {
         },
 
         {
-        idx: 2,
+        doc_no : 125,
         sub_category: '항목구분',
         title: '제목',
         writer: '작성자',
@@ -198,5 +171,34 @@ export default {
       ]
     }
   },
+    methods: {
+        fnView(doc_no) {
+            this.requestBody.doc_no = doc_no
+            this.$router.push({
+                path: './RoomApprove',
+                query: this.requestBody
+            })
+        },
+        fnSearch(){
+            this.requestBody = {
+                category : this.s_category,
+                status : this.s_status
+            }
+
+            this.$axios.get(this.$serverUrl + "/RoomList", {
+                params: this.requestBody,
+                headers: {}
+            }).then((res)=>{
+                if (res.data.result_code === "OK") {
+                    this.list = res.data.data
+                }
+
+            }).catch((err) => {
+                if (err.message.indexOf('Network Error') > -1) {
+                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                }
+            })
+        }
+    }
 }
 </script>

@@ -2,9 +2,7 @@
   <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
   >
     <div class="mt-3 flex items-center justify-end gap-x-2">
-        <select
-                name="sub_category"
-                id="sub_category"
+        <select v-model="s_category"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
             <option value="">-항목구분-</option>
@@ -13,6 +11,7 @@
         </select>
         <div class="flex min-h-full flex-col lg:px-7">
           <input
+                  v-model="s_start"
                   type="date"
                   class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
           />
@@ -20,6 +19,7 @@
         ~
         <div class="flex min-h-full flex-col lg:px-7">
           <input
+                  v-model="s_end"
                   type="date"
                   class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
           />
@@ -92,7 +92,7 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.idx }}
+              {{ items.doc_no }}
           </td>
           <td class="px-6 py-4">
               {{ items.sub_category }}
@@ -113,25 +113,25 @@
               {{ items.start_date }} ~ {{ items.end_date }}
           </td>
           <td class="px-6 py-4">
-        <span
-          class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-          v-if="items.status == '사용완료'"
-        >
-          {{ items.status }}
-        </span>
-          <span
-                  class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status == '사용중'"
-          >
-          {{ items.status }}
-        </span>
-          <span
-            class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
-            v-else
-          >
-          {{ items.status }}
-        </span>
-            </td>
+            <span
+              class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
+              v-if="items.status == '사용완료'"
+            >
+              {{ items.status }}
+            </span>
+              <span
+                      class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+                      v-else-if="items.status == '사용중'"
+              >
+              {{ items.status }}
+            </span>
+              <span
+                class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
+                v-else
+              >
+              {{ items.status }}
+            </span>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -145,9 +145,13 @@ export default {
   data() { //변수생성
     return {
       requestBody: this.$route.query,
+        //검색용 변수
+        s_category:'',
+        s_start:'',
+        s_end:'',
       tableTransaction: [
         {
-        idx: 1,
+        doc_no: 1,
         sub_category: '항목구분',
         title: '제목',
         writer: '작성자',
@@ -159,7 +163,7 @@ export default {
         },
 
         {
-        idx: 2,
+        doc_no: 2,
         sub_category: '항목구분',
         title: '제목',
         writer: '작성자',
@@ -189,6 +193,27 @@ export default {
             transaction.status = '사용완료';
         }
       }
+    },
+    fnSearch(){
+        this.requestBody = {
+            category : this.s_category,
+            start : this.s_start,
+            end : this.s_end,
+        }
+
+        this.$axios.get(this.$serverUrl + "/RoomSchedule", {
+            params: this.requestBody,
+            headers: {}
+        }).then((res)=>{
+            if (res.data.result_code === "OK") {
+                this.list = res.data.data
+            }
+
+        }).catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
+        })
     }
   },
   mounted() { //페이지로드시 함수 적용

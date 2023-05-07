@@ -62,7 +62,7 @@
             scope="col"
             class="uppercase px-6 py-3"
           >
-            소속
+            제목
           </th>
           <th
             scope="col"
@@ -74,13 +74,7 @@
             scope="col"
             class="uppercase px-6 py-3"
           >
-            운행사유
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            신청일시
+            소속부서
           </th>
           <th
             scope="col"
@@ -127,22 +121,19 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.drv_id }}
+              {{ items.drv_no }}
           </td>
           <td class="px-6 py-4">
               {{ items.category }}
           </td>
           <td class="px-6 py-4">
-              {{ items.dept_name }}
+              <a v-on:click="fnView(`${items.drv_no}`)">{{ items.reason }}</a>
           </td>
           <td class="px-6 py-4">
               {{ items.writer }}
           </td>
           <td class="px-6 py-4">
-              {{ items.reason }}
-          </td>
-          <td class="px-6 py-4">
-              {{ items.created_at }}
+              {{ items.dept_name }}
           </td>
           <td class="px-6 py-4">
               {{ items.drv_start }} ~ {{ items.drv_end }}
@@ -200,11 +191,10 @@ export default {
       requestBody: this.$route.query,
       tableTransaction: [
         {
-            drv_id: 1,
+            drv_no: 1,
             dept_name: '소속부서',
             writer: '신청자',
             category: 'A차량',
-            created_at: '2023-02-11 23:24:00',
             reason: '운행사유',
             drv_start: '2023-02-18 23:24:00',
             drv_end: '2023-02-19 23:24:00',
@@ -215,11 +205,10 @@ export default {
             status: '',
         },
         {
-            drv_id: 2,
+            drv_no: 2,
             dept_name: '소속부서',
             writer: '신청자',
             category: 'B차량',
-            created_at: '2023-02-11 23:24:00',
             reason: '운행사유',
             drv_start: '2023-02-18 23:24:00',
             drv_end: '2023-02-19 23:24:00',
@@ -230,11 +219,10 @@ export default {
             status: '',
         },
         {
-            drv_id: 3,
+            drv_no: 3,
             dept_name: '소속부서',
             writer: '신청자',
             category: 'B차량',
-            created_at: '2022-02-11 23:24:00',
             reason: '운행사유',
             drv_start: '2023-05-03 23:24:00',
             drv_end: '2023-05-04 12:44:00',
@@ -245,11 +233,10 @@ export default {
             status: '',
         },
         {
-            drv_id: 4,
+            drv_no: 4,
             dept_name: '소속부서',
             writer: '신청자',
             category: 'B차량',
-            created_at: '2022-02-11 23:24:00',
             reason: '운행사유',
             drv_start: '2023-05-04 23:24:00',
             drv_end: '2023-05-05 23:24:00',
@@ -263,6 +250,13 @@ export default {
     }
   },
   methods: {
+    fnView(drv_no) {
+        this.requestBody.drv_no = drv_no
+        this.$router.push({
+            path: './CarUseDetail',
+            query: this.requestBody
+        })
+    },
     setStatus(){
       let now = new Date();
       for (let i = 0; i < this.tableTransaction.length; i++) {

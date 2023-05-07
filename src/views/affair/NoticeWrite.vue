@@ -2,8 +2,8 @@
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
       <form>
           <div class="mt-6 flex items-center justify-end gap-x-6">
-              <button type="button" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300-600">작성취소</button>
-              <button type="submit" class="rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">저장</button>
+              <button type="button" v-on:click="fnlist" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300-600">작성취소</button>
+              <button type="button" v-on:click="fnSave" class="rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">저장</button>
           </div>
         <div class="space-y-5">
           <div class="grid grid-cols-12 gap-4">
@@ -68,16 +68,57 @@
 
 <script>
   export default {
-      data() { //변수생성
-          return {
-              requestBody: this.$route.query,
-              idx: this.$route.query.idx,
-              title: '제목',
-              writer: '작성자',
-              contents: '내용',
-              created_at: new Date().toLocaleString(),
-
+    data() { //변수생성
+      return {
+          requestBody: this.$route.query,
+          notice_no: this.$route.query.idx,
+          title: '',
+          writer: '작성자',
+          contents: '',
+          created_at: new Date().toLocaleString(),
       }
+    },
+    methods : {
+      fnlist(){
+          delete this.requestBody.notice_no
+          this.$router.push({
+              path: './NoticeList',
+              query: this.requestBody
+          })
       },
+      fnSave() {
+          let apiUrl = this.$serverUrl + '/notice'
+          this.form = {
+              "notice_no": this.notice_no,
+              "writer": this.author,
+              "title": this.title,
+              "contents": this.contents,
+          }
+
+          if (this.idx === undefined) {
+              //INSERT
+              this.$axios.post(apiUrl, this.form)
+                  .then((res) => {
+                      alert('글이 저장되었습니다.')
+                      this.fnView(res.data.idx)
+                  }).catch((err) => {
+                  if (err.message.indexOf('Network Error') > -1) {
+                      alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                  }
+              })
+          } else {
+              //UPDATE
+              this.$axios.patch(apiUrl, this.form)
+                  .then((res) => {
+                      alert('글이 저장되었습니다.')
+                      this.fnView(res.data.idx)
+                  }).catch((err) => {
+                  if (err.message.indexOf('Network Error') > -1) {
+                      alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                  }
+              })
+          }
+      }
+    }
   };
 </script>

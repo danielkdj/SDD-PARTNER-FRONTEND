@@ -28,6 +28,7 @@
         />
       </div>
         <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
+        <button type="button" v-on:click="fnWrite" class="rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">등록</button>
     </div>
     <div class="wrapping-table mt-10">
       <table
@@ -88,13 +89,13 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.edu_id }}
+              {{ items.edu_no }}
           </td>
           <td class="px-6 py-4">
               {{ items.leg_id }}
           </td>
           <td class="px-6 py-4">
-              {{ items.edu_title }}
+              <a v-on:click="fnView(`${items.edu_no}`)">{{ items.edu_title }}</a>
           </td>
           <td class="px-6 py-4">
               {{ items.presenter }}
@@ -121,9 +122,13 @@ export default {
   data() { //변수생성
     return {
       requestBody: this.$route.query,
+        s_category: '',
+        s_start: '',
+        s_end: '',
+
       tableTransaction: [
         {
-            edu_id: 1,
+            edu_no: 1,
             leg_id: '산업안전보건교육',
             edu_title: '교육제목',
             presenter: '교육진행자',
@@ -133,7 +138,7 @@ export default {
             edu_end: '2023-02-19 23:24:00',
         },
         {
-            edu_id: 2,
+            edu_no: 2,
             leg_id: '성희롱예방교육',
             edu_title: '교육제목',
             presenter: '교육진행자',
@@ -143,7 +148,7 @@ export default {
             edu_end: '2023-02-19 23:24:00',
         },
         {
-            edu_id: 3,
+            edu_no: 3,
             leg_id: '개인정보보호교육',
             edu_title: '교육제목',
             presenter: '교육진행자',
@@ -153,7 +158,7 @@ export default {
             edu_end: '2023-02-19 23:24:00',
         },
         {
-            edu_id: 4,
+            edu_no: 4,
             leg_id: '장애인인식개선교육',
             edu_title: '교육제목',
             presenter: '교육진행자',
@@ -163,7 +168,7 @@ export default {
             edu_end: '2023-02-19 23:24:00',
         },
         {
-            edu_id: 5,
+            edu_no: 5,
             leg_id: '퇴직연금교육',
             edu_title: '교육제목',
             presenter: '교육진행자',
@@ -175,5 +180,36 @@ export default {
       ]
     }
   },
+  methods: {
+    fnWrite() {
+        this.$router.push({
+            path: './EduWrite'
+        })
+    },
+    fnView(edu_no) {
+        this.requestBody.edu_no = edu_no
+        this.$router.push({
+            path: './EduDetail',
+            query: this.requestBody
+        })
+    },
+    fnSearch(){
+        this.requestBody = {
+            category: this.s_category,
+            start : this.s_start,
+            end : this.s_end,
+        }
+        this.$axios.get(this.$serverUrl + "/edu/list",{
+            params: this. requestBody,
+            headers: {}
+        }).then((res)=>{
+            this.list = res.data.data
+        }).catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
+        })
+    }
+  }
 }
 </script>
