@@ -6,7 +6,7 @@
                 v-model="s_category"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
-            <option default value="">-항목구분-</option>
+            <option value="">-항목구분-</option>
             <option value="A">A차량</option>
             <option value="B">B차량</option>
             <option value="C">C차량</option>
@@ -15,7 +15,7 @@
                 v-model="s_status"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
-            <option default value="">-상태-</option>
+            <option value="">-상태-</option>
             <option value="1">처리 전</option>
             <option value="2">반려</option>
             <option value="3">승인</option>
@@ -111,13 +111,13 @@
           <td class="px-6 py-4">
           <span
             class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-            v-if="items.status == 1"
+            v-if="items.status === 1"
           >
             처리 전
           </span>
           <span
                   class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status == 2"
+                  v-else-if="items.status === 2"
           >
             반려
           </span>
@@ -136,7 +136,6 @@
 </template>
 
 <script>
-import { Icon } from "@iconify/vue";
 
 export default {
   name: "RoomList",

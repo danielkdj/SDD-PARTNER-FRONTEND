@@ -115,13 +115,13 @@
           <td class="px-6 py-4">
             <span
               class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-              v-if="items.status == '사용완료'"
+              v-if="items.status === '사용완료'"
             >
               {{ items.status }}
             </span>
               <span
                       class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                      v-else-if="items.status == '사용중'"
+                      v-else-if="items.status === '사용중'"
               >
               {{ items.status }}
             </span>

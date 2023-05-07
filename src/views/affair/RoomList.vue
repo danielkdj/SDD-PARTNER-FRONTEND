@@ -15,7 +15,7 @@
                 v-model="s_status"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
-            <option default value="">-상태-</option>
+            <option value="">-상태-</option>
             <option value="1">처리 전</option>
             <option value="2">반려</option>
             <option value="3">승인</option>
@@ -110,21 +110,21 @@
           <td class="px-6 py-4">
         <span
           class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-          v-if="items.status == '승인'"
+          v-if="items.status === 1"
         >
-          {{ items.status }}
+          처리 전
         </span>
           <span
                   class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status == '승인전'"
+                  v-else-if="items.status === 2"
           >
-          {{ items.status }}
+          반려
         </span>
           <span
             class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
             v-else
           >
-          {{ items.status }}
+          승인
         </span>
             </td>
         </tr>
@@ -135,7 +135,6 @@
 </template>
 
 <script>
-import { Icon } from "@iconify/vue";
 
 export default {
   name: "RoomList",
@@ -154,7 +153,7 @@ export default {
         created_at:'2023-05-04 23:24:00',
         start_date:'2023-05-05 23:24:00',
         end_date:'2023-05-05 23:24:00',
-        status: '승인전',
+        status: 1
         },
 
         {
@@ -166,7 +165,7 @@ export default {
         created_at: '2023-05-03 23:24:00',
         start_date: '2023-05-03 23:24:00',
         end_date: '2023-05-03 23:24:00',
-        status: '반려',
+        status: 2,
         },
       ]
     }
