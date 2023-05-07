@@ -59,6 +59,12 @@
             scope="col"
             class="uppercase px-6 py-3"
           >
+            귀속분기
+          </th>
+          <th
+            scope="col"
+            class="uppercase px-6 py-3"
+          >
               항목구분
           </th>
           <th
@@ -95,7 +101,14 @@
               {{ items.imputed_year }}
           </td>
           <td class="px-6 py-4">
-              {{ items.category }}
+              {{ items.imputed_quarter }}
+          </td>
+          <td class="px-6 py-4">
+              <span v-if="items.category === '1'" >산업안전보건교육</span>
+              <span v-else-if="items.category === '2'" >성희롱예방교육</span>
+              <span v-else-if="items.category === '3'" >개인정보보호교육</span>
+              <span v-else-if="items.category === '4'" >장애인인식개선교육</span>
+              <span v-else-if="items.category === '5'" >퇴직연금교육</span>
           </td>
           <td class="px-6 py-4">
               {{ items.emp_id }}
@@ -104,7 +117,7 @@
               {{ items.dept_name }}
           </td>
           <td class="px-6 py-4">
-              {{ items.tr1_completed }}
+              {{ items.completed }}
           </td>
         </tr>
         </tbody>
@@ -122,33 +135,22 @@ export default {
       tableTransaction: [
         {
         com_id: 1,
-        category: '항목구분',
+        category: '1',
         emp_id: '작성자',
         dept_name: '소속부서',
         imputed_year: 2023,
-        tr1_completed:'N',
-        tr2_completed:'N',
-        tr3_completed:'N',
-        tr4_completed:'N',
-        tr5_completed:'N',
-        tr6_completed:'N',
-        tr7_completed:'N',
-        tr8_completed:'N',
+        imputed_quarter: 1,
+        completed:'N',
         },
         {
             com_id: 1,
-            category: '항목구분',
+            category:  '2',
             emp_id: '작성자',
             dept_name: '소속부서',
             imputed_year: 2023,
-            tr1_completed:'N',
-            tr2_completed:'N',
-            tr3_completed:'N',
-            tr4_completed:'N',
-            tr5_completed:'N',
-            tr6_completed:'N',
-            tr7_completed:'N',
-            tr8_completed:'N',
+            imputed_quarter: 1,
+            completed:'N',
+
         },
       ]
     }
