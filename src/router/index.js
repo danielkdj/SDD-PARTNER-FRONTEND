@@ -142,6 +142,46 @@ const routes = [
       title: "Tables" + appname,
     },
   },
+  {
+    path: "/HR/employee",
+    name: "Employee",
+    component: () => import("../views/HR/Employee.vue"),
+    meta: {
+        title: "Employee" + appname,
+    }
+  },
+  {
+    path: "/HR/counseling",
+    name: "Counseling",
+    component: () => import("../views/HR/Counseling.vue"),
+    meta: {
+        title: "Counseling" + appname,
+    }
+  },
+  {
+    path: "/HR/AD",
+    name: "AD",
+    component: () => import("../views/HR/AD.vue"),
+    meta: {
+        title: "AD" + appname,
+    }
+  },
+  {
+    path: "/HR/insurance",
+    name: "Insurance",
+    component: () => import("../views/HR/Insurance.vue"),
+    meta: {
+        title: "Insurance" + appname,
+    }
+  },
+  {
+    path: "/HR/dispatch",
+    name: "Dispatch",
+    component: () => import("../views/HR/Dispatch.vue"),
+    meta: {
+        title: "Dispatch" + appname,
+    }
+  },
 ];
 
 const router = createRouter({
