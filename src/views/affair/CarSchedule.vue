@@ -26,7 +26,7 @@
                 v-model ='s_end'
         />
       </div>
-      <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
+        <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">검색</button>
 
     </div>
     <div class="wrapping-table mt-10">
@@ -233,7 +233,7 @@ export default {
           end : this.s_end,
       }
 
-      this.$axios.get(this.$serverUrl + "/CarSchedule", {
+      this.$axios.get(this.$serverUrl + "/RoomSchedule", {
           params: this.requestBody,
           headers: {}
       }).then((res)=>{

@@ -2,7 +2,7 @@
   <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
   >
     <div class="mt-3 flex items-center justify-end gap-x-2">
-        <select v-model="s_category"
+        <select v-model="sCategory"
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         >
             <option value="">-항목구분-</option>
@@ -11,7 +11,7 @@
         </select>
         <div class="flex min-h-full flex-col lg:px-7">
           <input
-                  v-model="s_start"
+                  v-model="sStart"
                   type="date"
                   class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
           />
@@ -19,12 +19,12 @@
         ~
         <div class="flex min-h-full flex-col lg:px-7">
           <input
-                  v-model="s_end"
+                  v-model="sEnd"
                   type="date"
                   class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
           />
         </div>
-        <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
+        <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">검색</button>
 
     </div>
     <div class="wrapping-table mt-10">
@@ -92,10 +92,10 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.doc_no }}
+              {{ items.docNo }}
           </td>
           <td class="px-6 py-4">
-              {{ items.sub_category }}
+              {{ items.subCategory }}
           </td>
           <td class="px-6 py-4">
               {{ items.title }}
@@ -104,13 +104,13 @@
               {{ items.writer }}
           </td>
           <td class="px-6 py-4">
-              {{ items.dept_name }}
+              {{ items.deptName }}
           </td>
           <td class="px-6 py-4">
-              {{ items.created_at }}
+              {{ items.createdAt }}
           </td>
             <td class="px-6 py-4">
-              {{ items.start_date }} ~ {{ items.end_date }}
+              {{ items.startDate }} ~ {{ items.endDate }}
           </td>
           <td class="px-6 py-4">
             <span
@@ -146,31 +146,31 @@ export default {
     return {
       requestBody: this.$route.query,
         //검색용 변수
-        s_category:'',
-        s_start:'',
-        s_end:'',
+        sCategory:'',
+        sStart:'',
+        sEnd:'',
       tableTransaction: [
         {
-        doc_no: 1,
-        sub_category: '항목구분',
+        docNo: 1,
+        subCategory: '항목구분',
         title: '제목',
         writer: '작성자',
-        dept_name: '소속부서',
-        created_at: '2023-05-03 23:24:00',
-        start_date: '2023-05-03 23:24:00',
-        end_date: '2023-05-03 23:24:00',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
         status: '',
         },
 
         {
-        doc_no: 2,
-        sub_category: '항목구분',
+        docNo: 2,
+        subCategory: '항목구분',
         title: '제목',
         writer: '작성자',
-        dept_name: '소속부서',
-        created_at: '2023-05-03 23:24:00',
-        start_date: '2023-05-03 23:24:00',
-        end_date: '2023-05-03 23:24:00',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
         status: '',
         },
       ]
@@ -181,8 +181,8 @@ export default {
       let now = new Date();
       for (let i = 0; i < this.tableTransaction.length; i++) {
         let transaction = this.tableTransaction[i];
-        let startD = new Date(transaction.start_date);
-        let endD = new Date(transaction.end_date);
+        let startD = new Date(transaction.startDate);
+        let endD = new Date(transaction.endDate);
 
         if (startD > now) {
             transaction.status = '사용전';
@@ -196,16 +196,16 @@ export default {
     },
     fnSearch(){
         this.requestBody = {
-            category : this.s_category,
-            start : this.s_start,
-            end : this.s_end,
+            category : this.sCategory,
+            start : this.sStart,
+            end : this.sEnd,
         }
 
         this.$axios.get(this.$serverUrl + "/RoomSchedule", {
             params: this.requestBody,
             headers: {}
         }).then((res)=>{
-            if (res.data.result_code === "OK") {
+            if (res.data.resultCode === "OK") {
                 this.list = res.data.data
             }
 

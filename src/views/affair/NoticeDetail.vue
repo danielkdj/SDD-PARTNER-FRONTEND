@@ -2,18 +2,18 @@
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
         <form>
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="submit" v-on:click="fnUpdate" class="rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300-600">수정</button>
-                <button type="button" v-on:click="fnDelete" class="rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">삭제</button>
-                <button type="button" v-on:click="fnList" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">목록</button>
+                <button v-on:click="fnUpdate" class="bg-amber-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">수정</button>
+                <button v-on:click="fnDelete" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">삭제</button>
+                <button v-on:click="fnList" class="bg-gray-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
             </div>
             <div class="space-y-5">
                 <div class="grid grid-cols-12 gap-4">
-                    <label for="notice_no" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                    <label for="noticeNo" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                         공지글 번호
                     </label>
                     <div class="col-span-10">
                         <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                        >{{notice_no}}</p>
+                        >{{noticeNo}}</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
@@ -26,12 +26,12 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
-                    <label for="created_at" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                    <label for="createdAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                         작성일시
                     </label>
                     <div class="col-span-10">
                         <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                        >{{created_at}}</p>
+                        >{{createdAt}}</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
@@ -61,11 +61,11 @@ export default {
     data() { //변수생성
         return {
             requestBody: this.$route.query,
-            notice_no: this.$route.query.notice_no,
+            noticeNo: this.$route.query.noticeNo,
             title: '제목',
             writer: '작성자',
             contents: '내용작성',
-            created_at: '작성일시',
+            createdAt: '작성일시',
         }
     },
       // mounted() { //document.ready = window.upload역할과 동일
@@ -87,7 +87,7 @@ export default {
         //   })
         // },
         fnList() {
-          delete this.requestBody.notice_no
+          delete this.requestBody.noticeNo
           this.$router.push({
               path: './NoticeList',
               query: this.requestBody
@@ -103,7 +103,7 @@ export default {
         fnDelete() {
           if (!confirm("삭제하시겠습니까?")) return //취소 클릭시
 
-          this.$axios.delete(this.$serverUrl + '/notice/' + this.notice_no, {}) //확인 클릭시
+          this.$axios.delete(this.$serverUrl + '/notice/' + this.noticeNo, {}) //확인 클릭시
               .then(() => {
                   alert('삭제되었습니다.')
                   this.fnList();

@@ -4,7 +4,7 @@
     <!-- card  -->
     <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
       <div class="p-2 max-w-sm">
-        <div class="bg-orange-200 rounded-full w-14 h-14 text-lg p-3 text-orange-600 mx-auto">
+        <div class="bg-blue-200 rounded-full w-14 h-14 text-lg p-3 text-blue-600 mx-auto">
           <span class="">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -26,14 +26,14 @@
       <div class="block p-2 w-full">
         <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
             <a v-on:click="fnViewRoomList()">회의실 신청</a>
-        </p>{{room_count}}
-        <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(room_date) }}</h2>
+        </p>{{roomCount}}
+        <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(roomDate) }}</h2>
       </div>
     </div>
     <!-- end card -->
     <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
       <div class="p-2 max-w-sm">
-        <div class="bg-orange-200 rounded-full w-14 h-14 text-lg p-3 text-orange-600 mx-auto">
+          <div class="bg-blue-200 rounded-full w-14 h-14 text-lg p-3 text-blue-600 mx-auto">
           <span class="">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,14 +55,14 @@
       <div class="block p-2 w-full">
           <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
               <a v-on:click="fnViewCarList()">차량 신청</a>
-          </p>{{car_count}}
-          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(car_date) }}</h2>
+          </p>{{carCount}}
+          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(carDate) }}</h2>
       </div>
     </div>
     <!-- end card -->
     <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
         <div class="p-2 max-w-sm">
-            <div class="bg-orange-200 rounded-full w-14 h-14 text-lg p-3 text-orange-600 mx-auto">
+            <div class="bg-blue-200 rounded-full w-14 h-14 text-lg p-3 text-blue-600 mx-auto">
         <span class="">
           <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -89,8 +89,8 @@
       <div class="block p-2 w-full">
           <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
               <a v-on:click="fnViewEdu()">미이수 인원</a>
-          </p>{{edu_count}}
-          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(edu_date) }}</h2>
+          </p>{{eduCount}}
+          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(eduDate) }}</h2>
       </div>
     </div>
       <!-- end card -->
@@ -138,16 +138,16 @@
                         :key="items.transaction"
                 >
                     <td class="px-6 py-2">
-                        {{ items.notice_no }}
+                        {{ items.noticeNo }}
                     </td>
                     <td class="px-6 py-4">
-                        <a v-on:click="fnViewNotice(`${items.notice_no}`)">{{ items.title }}</a>
+                        <a v-on:click="fnViewNotice(`${items.noticeNo}`)">{{ items.title }}</a>
                     </td>
                     <td class="px-6 py-4">
                         {{ items.writer }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ items.created_at }}
+                        {{ items.createdAt }}
                     </td>
                 </tr>
                 </tbody>
@@ -221,28 +221,28 @@
                     :key="items.transaction"
             >
                 <td class="px-6 py-2">
-                    {{ items.doc_no }}
+                    {{ items.docNo }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.sub_category }}
+                    {{ items.subCategory }}
                 </td>
                 <td class="px-6 py-4">
                     <a v-if="items.sub_category === '회의실'"
-                    v-on:click="fnViewRoom(`${items.doc_no}`)">{{ items.title }}</a>
+                    v-on:click="fnViewRoom(`${items.docNo}`)">{{ items.title }}</a>
                     <a v-else
-                    v-on:click="fnViewCar(`${items.doc_no}`)">{{ items.title }}</a>
+                    v-on:click="fnViewCar(`${items.docNo}`)">{{ items.title }}</a>
                 </td>
                 <td class="px-6 py-4">
                     {{ items.writer }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.dept_name }}
+                    {{ items.deptName }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.created_at }}
+                    {{ items.createdAt }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.start_date }} ~ {{ items.end_date }}
+                    {{ items.startDate }} ~ {{ items.endDate }}
                 </td>
                 <td class="px-6 py-4">
                   <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
@@ -272,50 +272,50 @@ export default {
     data(){
         return{
             requestBody: this.$route.query,
-            room_count: 3,
-            room_date: '2023-05-06 23:24:00',
-            car_count: 4,
-            car_date: '2023-05-01 23:24:00',
-            edu_count: 35,
-            edu_date: '2023-05-04 23:24:00',
+            roomCount: 3,
+            roomDate: '2023-05-06 23:24:00',
+            carCount: 4,
+            carDate: '2023-05-01 23:24:00',
+            eduCount: 35,
+            eduDate: '2023-05-04 23:24:00',
 
             noticeTable: [
                 {
-                    notice_no: 1,
+                    noticeNo: 1,
                     title: '제목',
                     writer: '작성자',
                     contents: '내용',
-                    created_at: '작성일시',
+                    createdAt: '작성일시',
                 },
                 {
-                    notice_no: 2,
+                    noticeNo: 2,
                     title: '제목',
                     writer: '작성자',
                     contents: '내용',
-                    created_at: '작성일시',
+                    createdAt: '작성일시',
                 },
             ],
             roomAndCarTable: [
                 {
-                    doc_no: 1,
-                    sub_category: '차량',
+                    docNo: 1,
+                    subCategory: '차량',
                     title: '제목',
                     writer: '작성자',
-                    dept_name: '소속부서',
-                    created_at:'2023-05-04 23:24:00',
-                    start_date:'2023-05-05 23:24:00',
-                    end_date:'2023-05-05 23:24:00',
+                    deptName: '소속부서',
+                    createdAt:'2023-05-04 23:24:00',
+                    startDate:'2023-05-05 23:24:00',
+                    endDate:'2023-05-05 23:24:00',
                     status: 1
                 },
                 {
-                    doc_no: 2,
-                    sub_category: '회의실',
+                    docNo: 2,
+                    subCategory: '회의실',
                     title: '제목',
                     writer: '작성자',
                     dept_name: '소속부서',
-                    created_at: '2023-05-03 23:24:00',
-                    start_date: '2023-05-03 23:24:00',
-                    end_date: '2023-05-03 23:24:00',
+                    createdAt: '2023-05-03 23:24:00',
+                    startDate: '2023-05-03 23:24:00',
+                    endDate: '2023-05-03 23:24:00',
                     status: 2
                 },
             ]
@@ -338,22 +338,22 @@ export default {
                 return `months`;
             }
         },
-        fnViewNotice(notice_no){
-            this.requestBody.notice_no = notice_no
+        fnViewNotice(noticeNo){
+            this.requestBody.noticeNo = noticeNo
             this.$router.push({
                 path: './NoticeDetail',
                 query: this.requestBody
             })
         },
-        fnViewRoom(doc_no){
-            this.requestBody.doc_no = doc_no
+        fnViewRoom(docNo){
+            this.requestBody.docNo = docNo
             this.$router.push({
                 path: './RoomApprove',
                 query: this.requestBody
             })
         },
-        fnViewCar(doc_no){
-            this.requestBody.doc_no = doc_no
+        fnViewCar(docNo){
+            this.requestBody.docNo = docNo
             this.$router.push({
                 path: './CarApprove',
                 query: this.requestBody

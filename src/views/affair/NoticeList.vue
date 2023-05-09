@@ -33,15 +33,14 @@
                       <Icon icon="ei:search"/>
                   </span>
                     <input
-                            v-model = 's_title'
+                            v-model = 'sTitle'
                             type="text"
                             placeholder="SearchTitle..."
                             class="p-3 w-full bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
                     />
                 </div>
             </div>
-            <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
-            <button type="button" v-on:click="fnWrite" class="rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">등록</button>
+            <button v-on:click="fnWrite" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">등록</button>
         </div>
         <div class="wrapping-table mt-10">
             <table
@@ -84,16 +83,16 @@
                         :key="items.transaction"
                 >
                     <td class="px-6 py-2">
-                        {{ items.notice_no }}
+                        {{ items.noticeNo }}
                     </td>
                     <td class="px-6 py-4">
-                        <a v-on:click="fnView(`${items.notice_no}`)">{{ items.title }}</a>
+                        <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
                     </td>
                     <td class="px-6 py-4">
                         {{ items.writer }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ items.created_at }}
+                        {{ items.createdAt }}
                     </td>
                 </tr>
                 </tbody>
@@ -110,23 +109,23 @@ export default {
     data() { //변수생성
         return {
             //검색용
-            s_title: '',
+            sTitle: '',
             requestBody: this.$route.query,
             tableTransaction: [
                 {
-                    notice_no: 1,
+                    noticeNo: 1,
                     title: '제목',
                     writer: '작성자',
                     contents: '내용',
-                    created_at: '작성일시',
+                    createdAt: '작성일시',
                 },
 
                 {
-                    notice_no: 2,
+                    noticeNo: 2,
                     title: '제목',
                     writer: '작성자',
                     contents: '내용',
-                    created_at: '작성일시',
+                    createdAt: '작성일시',
                 },
             ]
         }
@@ -137,8 +136,8 @@ export default {
                 path: './NoticeWrite'
             })
         },
-        fnView(notice_no) {
-            this.requestBody.notice_no = notice_no
+        fnView(noticeNo) {
+            this.requestBody.noticeNo = noticeNo
             this.$router.push({
                 path: './NoticeDetail',
                 query: this.requestBody
@@ -146,7 +145,7 @@ export default {
         },
         fnSearch(){
             this.requestBody = {
-                title: this.s_title
+                title: this.sTitle
             }
             this.$axios.get(this.$serverUrl + "/notice/list",{
                 params: this. requestBody,

@@ -7,17 +7,17 @@
           </div>
           <div class="space-y-5">
               <div class="grid grid-cols-12 gap-4">
-                  <label for="edu_no" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="eduNo" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       교육번호
                   </label>
                   <div class="col-span-10">
                       <input
                               type="text"
-                              name="edu_no"
-                              id="edu_no"
+                              name="eduNo"
+                              id="eduNo"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="edu_no"
+                              v-model="eduNo"
                               required
                               readonly
                       />
@@ -41,50 +41,50 @@
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="dept_name" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="deptName" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       소속부서
                   </label>
                   <div class="col-span-10">
                       <input
                               type="text"
-                              name="dept_name"
-                              id="dept_name"
+                              name="deptName"
+                              id="deptName"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="dept_name"
+                              v-model="deptName"
                               required
                               readonly
                       />
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="created_at" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="createAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       작성일시
                   </label>
                   <div class="col-span-10">
                       <input
                               type="datetime-local"
-                              name="created_at"
-                              id="created_at"
+                              name="createAt"
+                              id="createAt"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="created_at"
+                              v-model="createAt"
                               required
                               readonly
                       />
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="leg_id" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="legId" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       교육항목
                   </label>
                   <div class="col-span-10">
                       <select
                               type="text"
-                              name="leg_id"
-                              id="leg_id"
+                              name="legId"
+                              id="legId"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                              v-model="leg_id"
+                              v-model="legId"
                               required
                               aria-readonly="true"
                       >
@@ -98,43 +98,43 @@
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="edu_title" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="eduTitle" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       교육제목
                   </label>
                   <div class="col-span-10">
                       <input
                               type="text"
-                              name="edu_title"
-                              id="edu_title"
+                              name="eduTitle"
+                              id="eduTitle"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="edu_title"
+                              v-model="eduTitle"
                               required
                       />
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="edu_start" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="eduStart" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       교육일시
                   </label>
                   <div class="col-span-10">
                       <input
                               type="datetime-local"
-                              name="edu_start"
-                              id="edu_start"
+                              name="eduStart"
+                              id="eduStart"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="edu_start"
+                              v-model="eduStart"
                               required
                       />
                       ~
                       <input
                               type="datetime-local"
-                              name="edu_end"
-                              id="edu_end"
+                              name="eduEnd"
+                              id="eduEnd"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model="edu_end"
+                              v-model="eduEnd"
                               required
                       />
                   </div>
@@ -188,17 +188,17 @@
                   </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
-                  <label for="edu_count" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                  <label for="eduCount" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                       교육인원
                   </label>
                   <div class="col-span-10">
                       <input
                               type="number"
-                              name="edu_count"
-                              id="edu_count"
+                              name="eduCount"
+                              id="eduCount"
                               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                               placeholder=""
-                              v-model.number="edu_count"
+                              v-model.number="eduCount"
                               required
                       />
                   </div>
@@ -221,24 +221,24 @@
     data() { //변수생성
       return {
           requestBody: this.$route.query,
-          edu_no: this.$route.query.edu_no,
+          eduNo: this.$route.query.eduNo,
           writer: '작성자',
-          dept_name: '소속부서',
-          created_at: '2023-02-18 23:24:00',
-          leg_id: '4',
+          deptName: '소속부서',
+          createAt: '2023-02-18 23:24:00',
+          legId: '4',
           institution: '교육기관',
-          edu_title: '교육제목',
+          eduTitle: '교육제목',
           presenter: '교육진행자',
           location: '교육장소',
           description: '',
-          edu_count: 23,
-          edu_start: '2023-02-18 23:24:00',
-          edu_end: '2023-02-19 23:24:00',
+          eduCount: 23,
+          eduStart: '2023-02-18 23:24:00',
+          eduEnd: '2023-02-19 23:24:00',
       }
     },
     methods : {
       fnList(){
-          delete this.requestBody.edu_no
+          delete this.requestBody.eduNo
           this.$router.push({
               path: './EduList',
               query: this.requestBody
@@ -247,27 +247,27 @@
       fnSave() {
           let apiUrl = this.$serverUrl + '/edu'
           this.form = {
-              "edu_no" : this.edu_no,
+              "eduNo" : this.eduNo,
               "writer": this.writer,
-              "dept_name": this.dept_name,
-              "created_at": this.created_at,
-              "leg_id": this.leg_id,
+              "deptName": this.deptName,
+              "createAt": this.createAt,
+              "legId": this.legId,
               "institution": this.institution,
-              "edu_title": this.edu_title,
+              "eduTitle": this.eduTitle,
               "presenter": this.presenter,
               "location": this.location,
               "description": this.description,
-              "edu_count": this.edu_count,
-              "edu_start": this.edu_start,
-              "edu_end": this.edu_end,
+              "eduCount": this.eduCount,
+              "eduStart": this.eduStart,
+              "eduEnd": this.eduEnd,
           }
 
-          if (this.edu_no === undefined) {
+          if (this.eduNo === undefined) {
               //INSERT
               this.$axios.post(apiUrl, this.form)
                   .then((res) => {
                       alert('글이 저장되었습니다.')
-                      this.fnView(res.data.idx)
+                      this.fnView(res.data.eduNo)
                   }).catch((err) => {
                   if (err.message.indexOf('Network Error') > -1) {
                       alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -278,7 +278,7 @@
               this.$axios.patch(apiUrl, this.form)
                   .then((res) => {
                       alert('글이 저장되었습니다.')
-                      this.fnView(res.data.idx)
+                      this.fnView(res.data.eduNo)
                   }).catch((err) => {
                   if (err.message.indexOf('Network Error') > -1) {
                       alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

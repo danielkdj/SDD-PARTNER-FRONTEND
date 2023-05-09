@@ -3,8 +3,8 @@
   >
     <div class="mt-3 flex items-center justify-end gap-x-2">
       <select
-              name="sub_category"
-              id="sub_category"
+              name="subCategory"
+              id="subCategory"
               class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
       >
         <option value="">-항목구분-</option>
@@ -23,20 +23,16 @@
         <option value="사용전">사용전</option>
         <option value="사용중">사용중</option>
       </select>
-      <div class="flex min-h-full flex-col lg:px-7">
         <input
                 type="date"
-                class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         />
-      </div>
       ~
-      <div class="flex min-h-full flex-col lg:px-7">
         <input
                 type="date"
-                class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
         />
-      </div>
-        <button type="button" v-on:click="fnSearch" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700-600">검색</button>
+        <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded ">검색</button>
     </div>
     <div class="wrapping-table mt-10">
       <table
@@ -121,22 +117,22 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.drv_no }}
+              {{ items.drvNo }}
           </td>
           <td class="px-6 py-4">
               {{ items.category }}
           </td>
           <td class="px-6 py-4">
-              <a v-on:click="fnView(`${items.drv_no}`)">{{ items.reason }}</a>
+              <a v-on:click="fnView(`${items.drvNo}`)">{{ items.reason }}</a>
           </td>
           <td class="px-6 py-4">
               {{ items.writer }}
           </td>
           <td class="px-6 py-4">
-              {{ items.dept_name }}
+              {{ items.deptName }}
           </td>
           <td class="px-6 py-4">
-              {{ items.drv_start }} ~ {{ items.drv_end }}
+              {{ items.drvStart }} ~ {{ items.drvEnd }}
           </td>
           <td class="px-6 py-4">
             <span
@@ -165,16 +161,16 @@
             </span>
           </td>
           <td class="px-6 py-4">
-              {{ items.drv_return }}
+              {{ items.drvReturn }}
           </td>
           <td class="px-6 py-4">
-              {{ items.before_mileage }}
+              {{ items.beforeMileage }}
           </td>
           <td class="px-6 py-4">
-              {{ items.after_mileage }}
+              {{ items.afterMileage }}
           </td>
           <td class="px-6 py-4">
-              {{ items.actual_mileage }}
+              {{ items.actualMileage }}
           </td>
         </tr>
         </tbody>
@@ -191,67 +187,67 @@ export default {
       requestBody: this.$route.query,
       tableTransaction: [
         {
-            drv_no: 1,
-            dept_name: '소속부서',
+            drvNo: 1,
+            deptName: '소속부서',
             writer: '신청자',
             category: 'A차량',
             reason: '운행사유',
-            drv_start: '2023-02-18 23:24:00',
-            drv_end: '2023-02-19 23:24:00',
-            drv_return: '',
-            before_mileage: '',
-            after_mileage: '',
-            actual_mileage: '',
+            drvStart: '2023-02-18 23:24:00',
+            drvEnd: '2023-02-19 23:24:00',
+            drvReturn: '',
+            beforeMileage: '',
+            afterMileage: '',
+            actualMileage: '',
             status: '',
         },
         {
-            drv_no: 2,
-            dept_name: '소속부서',
+            drvNo: 2,
+            deptName: '소속부서',
             writer: '신청자',
             category: 'B차량',
             reason: '운행사유',
-            drv_start: '2023-02-18 23:24:00',
-            drv_end: '2023-02-19 23:24:00',
-            drv_return: '2022-03-19 23:24:00',
-            before_mileage: '1000',
-            after_mileage: '1200',
-            actual_mileage: '',
+            drvStart: '2023-02-18 23:24:00',
+            drvEnd: '2023-02-19 23:24:00',
+            drvReturn: '2022-03-19 23:24:00',
+            beforeMileage: '1000',
+            afterMileage: '1200',
+            actualMileage: '',
             status: '',
         },
         {
-            drv_no: 3,
-            dept_name: '소속부서',
+            drvNo: 3,
+            deptName: '소속부서',
             writer: '신청자',
             category: 'B차량',
             reason: '운행사유',
-            drv_start: '2023-05-03 23:24:00',
-            drv_end: '2023-05-04 12:44:00',
-            drv_return: '',
-            before_mileage: '',
-            after_mileage: '',
-            actual_mileage: '',
+            drvStart: '2023-05-03 23:24:00',
+            drvEnd: '2023-05-04 12:44:00',
+            drvReturn: '',
+            beforeMileage: '',
+            afterMileage: '',
+            actualMileage: '',
             status: '',
         },
         {
-            drv_no: 4,
-            dept_name: '소속부서',
+            drvNo: 4,
+            deptName: '소속부서',
             writer: '신청자',
             category: 'B차량',
             reason: '운행사유',
-            drv_start: '2023-05-04 23:24:00',
-            drv_end: '2023-05-05 23:24:00',
-            drv_return: '',
-            before_mileage: '',
-            after_mileage: '',
-            actual_mileage: '',
+            drvStart: '2023-05-04 23:24:00',
+            drvEnd: '2023-05-05 23:24:00',
+            drvReturn: '',
+            beforeMileage: '',
+            afterMileage: '',
+            actualMileage: '',
             status: '',
         },
       ]
     }
   },
   methods: {
-    fnView(drv_no) {
-        this.requestBody.drv_no = drv_no
+    fnView(drvNo) {
+        this.requestBody.drvNo = drvNo
         this.$router.push({
             path: './CarUseDetail',
             query: this.requestBody
@@ -261,11 +257,11 @@ export default {
       let now = new Date();
       for (let i = 0; i < this.tableTransaction.length; i++) {
         let transaction = this.tableTransaction[i];
-        let drvStart = new Date(transaction.drv_start);
-        let drvEnd = new Date(transaction.drv_end);
+        let drvStart = new Date(transaction.drvStart);
+        let drvEnd = new Date(transaction.drvEnd);
         let drvReturn;
-        if(transaction.drv_return.length>0){
-        drvReturn = new Date(transaction.drv_return);}
+        if(transaction.drvReturn.length>0){
+        drvReturn = new Date(transaction.drvReturn);}
 
         if (drvReturn) {
             transaction.status = '반납';
@@ -284,19 +280,19 @@ export default {
         console.log(drvReturn)
       }
     },
-    setActual_mileage() {
+    setActualMileage() {
       for (let i = 0; i < this.tableTransaction.length; i++) {
         let transaction = this.tableTransaction[i];
-        let afterM = transaction.after_mileage;
-        let beforeM = transaction.before_mileage;
+        let afterM = transaction.afterMileage;
+        let beforeM = transaction.beforeMileage;
         if (afterM > 0 && beforeM > 0 && afterM > beforeM)
-            transaction.actual_mileage = afterM - beforeM;
+            transaction.actualMileage = afterM - beforeM;
       }
     },
   },
   mounted() { //페이지로드시 함수 적용
         this.setStatus()
-        this.setActual_mileage()
+        this.setActualMileage()
   },
 }
 </script>

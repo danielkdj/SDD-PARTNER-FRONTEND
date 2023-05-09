@@ -3,8 +3,8 @@
   >
     <div class="mt-3 flex items-center justify-end gap-x-2">
       <select
-              name="sub_category"
-              id="sub_category"
+              name="subCategory"
+              id="subCategory"
               class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
       >
         <option value="">-항목구분-</option>
@@ -89,13 +89,13 @@
           :key="items.transaction"
         >
           <td class="px-6 py-2">
-              {{ items.edu_no }}
+              {{ items.eduNo }}
           </td>
           <td class="px-6 py-4">
-              {{ items.leg_id }}
+              {{ items.legId }}
           </td>
           <td class="px-6 py-4">
-              <a v-on:click="fnView(`${items.edu_no}`)">{{ items.edu_title }}</a>
+              <a v-on:click="fnView(`${items.eduNo}`)">{{ items.eduTitle }}</a>
           </td>
           <td class="px-6 py-4">
               {{ items.presenter }}
@@ -104,10 +104,10 @@
               {{ items.location }}
           </td>
           <td class="px-6 py-4">
-              {{ items.edu_count }}
+              {{ items.eduCount }}
           </td>
           <td class="px-6 py-4">
-              {{ items.edu_start }} ~ {{ items.edu_end }}
+              {{ items.eduStart }} ~ {{ items.eduEnd }}
           </td>
         </tr>
         </tbody>
@@ -122,60 +122,60 @@ export default {
   data() { //변수생성
     return {
       requestBody: this.$route.query,
-        s_category: '',
-        s_start: '',
-        s_end: '',
+        sCategory: '',
+        sStart: '',
+        sEnd: '',
 
       tableTransaction: [
         {
-            edu_no: 1,
-            leg_id: '산업안전보건교육',
-            edu_title: '교육제목',
+            eduNo: 1,
+            legId: '산업안전보건교육',
+            eduTitle: '교육제목',
             presenter: '교육진행자',
             location: '교육장소',
-            edu_count: 23,
-            edu_start: '2023-02-18 23:24:00',
-            edu_end: '2023-02-19 23:24:00',
+            eduCount: 23,
+            eduStart: '2023-02-18 23:24:00',
+            eduEnd: '2023-02-19 23:24:00',
         },
         {
-            edu_no: 2,
-            leg_id: '성희롱예방교육',
-            edu_title: '교육제목',
+            eduNo: 2,
+            legId: '성희롱예방교육',
+            eduTitle: '교육제목',
             presenter: '교육진행자',
             location: '교육장소',
-            edu_count: 23,
-            edu_start: '2023-02-18 23:24:00',
-            edu_end: '2023-02-19 23:24:00',
+            eduCount: 23,
+            eduStart: '2023-02-18 23:24:00',
+            eduEnd: '2023-02-19 23:24:00',
         },
         {
-            edu_no: 3,
-            leg_id: '개인정보보호교육',
-            edu_title: '교육제목',
+            eduNo: 3,
+            legId: '개인정보보호교육',
+            eduTitle: '교육제목',
             presenter: '교육진행자',
             location: '교육장소',
-            edu_count: 23,
-            edu_start: '2023-02-18 23:24:00',
-            edu_end: '2023-02-19 23:24:00',
+            eduCount: 23,
+            eduStart: '2023-02-18 23:24:00',
+            eduEnd: '2023-02-19 23:24:00',
         },
         {
-            edu_no: 4,
-            leg_id: '장애인인식개선교육',
-            edu_title: '교육제목',
+            eduNo: 4,
+            legId: '장애인인식개선교육',
+            eduTitle: '교육제목',
             presenter: '교육진행자',
             location: '교육장소',
-            edu_count: 23,
-            edu_start: '2023-02-18 23:24:00',
-            edu_end: '2023-02-19 23:24:00',
+            eduCount: 23,
+            eduStart: '2023-02-18 23:24:00',
+            eduEnd: '2023-02-19 23:24:00',
         },
         {
-            edu_no: 5,
-            leg_id: '퇴직연금교육',
-            edu_title: '교육제목',
+            eduNo: 5,
+            legId: '퇴직연금교육',
+            eduTitle: '교육제목',
             presenter: '교육진행자',
             location: '교육장소',
-            edu_count: 23,
-            edu_start: '2023-02-18 23:24:00',
-            edu_end: '2023-02-19 23:24:00',
+            eduCount: 23,
+            eduStart: '2023-02-18 23:24:00',
+            eduEnd: '2023-02-19 23:24:00',
         },
       ]
     }
@@ -186,8 +186,8 @@ export default {
             path: './EduWrite'
         })
     },
-    fnView(edu_no) {
-        this.requestBody.edu_no = edu_no
+    fnView(eduNo) {
+        this.requestBody.eduNo = eduNo
         this.$router.push({
             path: './EduDetail',
             query: this.requestBody
@@ -195,9 +195,9 @@ export default {
     },
     fnSearch(){
         this.requestBody = {
-            category: this.s_category,
-            start : this.s_start,
-            end : this.s_end,
+            category: this.sCategory,
+            start : this.sStart,
+            end : this.sEnd,
         }
         this.$axios.get(this.$serverUrl + "/edu/list",{
             params: this. requestBody,
