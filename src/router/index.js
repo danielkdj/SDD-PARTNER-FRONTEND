@@ -24,6 +24,21 @@ import Page500 from "../views/layouts/error/500.vue";
 import PageMaintenance from "../views/layouts/error/maintenance.vue";
 import Tables from "../views/tables.vue";
 
+
+
+
+//Mypage Pages  (김영우 5월4일 추가)
+import MyInfo from "@/views/mypage/myInfo.vue";
+import ChangePassword from "@/views/mypage/changePassword.vue";
+import AppointmentInfo from "@/views/mypage/appointmentInfo.vue";
+import RequestCounsel from "@/views/mypage/requestCounsel.vue";
+
+//EA(전자결재) Pages  (김영우 5월9일 추가)
+import EaRequest from "@/views/ea/eaRequest.vue";
+import EaRequestList from "@/views/ea/eaRequestList.vue";
+import EaApprovalList from "@/views/ea/eaApprovalList.vue";
+
+
 var appname = " - Windzo Dashboard Admin Template";
 
 const routes = [
