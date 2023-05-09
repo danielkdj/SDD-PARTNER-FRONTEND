@@ -51,41 +51,73 @@
                 <p class="font-medium text-gray-400 dark:text-gray-400">Menu</p>
                 <div class="wrap-item mt-4 dark:text-gray-500">
                     <div class="item">
+
                         <menu-accordion>
+
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard"/>
+
+                                <Icon icon="bxs:dashboard" />
+
                             </template>
-                            <template v-slot:title> My Page</template>
+
+                            <template v-slot:title> My Page </template>
+
                             <template v-slot:content>
+
                                 <router-link
-                                        to="/component/alert"
+
+                                        to="/mypage/myInfo"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     내 정보 보기
+
                                 </router-link>
+
                                 <router-link
-                                        to="/component/alert"
+
+                                        to="/mypage/changePassword"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     비밀번호 변경
+
                                 </router-link>
+
                                 <router-link
-                                        to="/component/alert"
+
+                                        to="/mypage/appointmentInfo"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     발령정보 조회
+
                                 </router-link>
+
                                 <router-link
-                                        to="/component/alert"
+
+                                        to="/mypage/requestCounsel"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     상담신청
+
                                 </router-link>
 
                             </template>
+
                         </menu-accordion>
+
                     </div>
-<div class="item mt-3">
+                        <div class="item mt-3">
 
                         <menu-accordion>
 
