@@ -18,3 +18,4 @@ app.use(VueApexCharts);
 app.use(PerfectScrollbar);
 app.use(vClickOutside);
 app.mount("#app");
+// test
