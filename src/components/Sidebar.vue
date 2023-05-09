@@ -85,35 +85,63 @@
                             </template>
                         </menu-accordion>
                     </div>
-                    <div class="item mt-3">
+<div class="item mt-3">
+
                         <menu-accordion>
+
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard"/>
+
+                                <Icon icon="bxs:dashboard" />
+
                             </template>
-                            <template v-slot:title> 전자결재</template>
+
+                            <template v-slot:title> 전자결재 </template>
+
                             <template v-slot:content>
+
                                 <router-link
-                                        to="/component/alert"
+
+                                        to="/ea/eaRequest"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     전자결재 신청
+
                                 </router-link>
+
                                 <router-link
-                                        to="/component/accordion"
+
+                                        to="/ea/eaRequestList"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     전자결재 신청내역 조회
+
                                 </router-link>
+
                                 <router-link
-                                        to="/component/badge"
+
+                                        to="/ea/eaApprovalList"
+
                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
+
                                     전자결재 요청내역 조회
+
                                 </router-link>
 
                             </template>
+
                         </menu-accordion>
+
                     </div>
+
+                    <!-- 오늘은 요기까지 -->
                     <div class="item mt-3">
                         <menu-accordion>
                             <template v-slot:icon>
