@@ -53,9 +53,9 @@
                     <div class="item">
                         <menu-accordion>
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard" />
+                                <Icon icon="bxs:dashboard"/>
                             </template>
-                            <template v-slot:title> My Page </template>
+                            <template v-slot:title> My Page</template>
                             <template v-slot:content>
                                 <router-link
                                         to="/component/alert"
@@ -88,9 +88,9 @@
                     <div class="item mt-3">
                         <menu-accordion>
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard" />
+                                <Icon icon="bxs:dashboard"/>
                             </template>
-                            <template v-slot:title> 전자결재 </template>
+                            <template v-slot:title> 전자결재</template>
                             <template v-slot:content>
                                 <router-link
                                         to="/component/alert"
@@ -117,9 +117,9 @@
                     <div class="item mt-3">
                         <menu-accordion>
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard" />
+                                <Icon icon="bxs:dashboard"/>
                             </template>
-                            <template v-slot:title> 근태관리 </template>
+                            <template v-slot:title> 근태관리</template>
                             <template v-slot:content>
                                 <router-link
                                         to="/component/alert"
@@ -140,9 +140,9 @@
                     <div class="item mt-3">
                         <menu-accordion>
                             <template v-slot:icon>
-                                <Icon icon="bxs:dashboard" />
+                                <Icon icon="bxs:dashboard"/>
                             </template>
-                            <template v-slot:title> 일정관리  </template>
+                            <template v-slot:title> 일정관리</template>
                             <template v-slot:content>
                                 <router-link
                                         to="/component/alert"
@@ -173,7 +173,7 @@
                                     exact
                                     class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+                                <span class="mr-3 text-xl"><Icon icon="bxs:dashboard"/></span>
                                 <span class="w-full"> 공지사항 </span>
                             </router-link>
                         </div>
@@ -188,9 +188,9 @@
                 <div class="item mt-3">
                     <menu-accordion>
                         <template v-slot:icon>
-                            <Icon icon="gg:components" />
+                            <Icon icon="gg:components"/>
                         </template>
-                        <template v-slot:title> 근태 & 근태  </template>
+                        <template v-slot:title> 근태 & 근태</template>
                         <template v-slot:content>
                             <router-link
                                     to="/component/alert"
@@ -224,46 +224,33 @@
                 <div class="item mt-3">
                     <menu-accordion>
                         <template v-slot:icon>
-                            <Icon icon="gg:components" />
+                            <Icon icon="gg:components"/>
                         </template>
-                        <template v-slot:title> 인사  </template>
+                        <template v-slot:title> 인사</template>
                         <template v-slot:content>
-                            <router-link
-                                    to="/component/alert"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                사원정보 관리
-                            </router-link>
-                            <router-link
-                                    to="/component/accordion"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                인사평가 관리
+                            <router-link to="/HR/employee"
+                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                사원관리
                             </router-link>
 
-                            <router-link
-                                    to="/component/breadcumb"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                사원 입사서류 관리
+                            <router-link to="/HR/counseling"
+                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                상담
                             </router-link>
-                            <router-link
-                                    to="/component/button"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                사원 4대보험 가입처리
+
+                            <router-link to="/HR/AD"
+                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                입사서류
                             </router-link>
-                            <router-link
-                                    to="/component/card"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                사원 발령 관리
+
+                            <router-link to="/HR/insurance"
+                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                4대보험
                             </router-link>
-                            <router-link
-                                    to="/component/dropdown"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            >
-                                사원 발령 정보 조회
+
+                            <router-link to="/HR/dispatch"
+                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+                                발령
                             </router-link>
                         </template>
                     </menu-accordion>
@@ -272,9 +259,9 @@
                 <div class="item mt-3">
                     <menu-accordion>
                         <template v-slot:icon>
-                            <Icon icon="gg:components" />
+                            <Icon icon="gg:components"/>
                         </template>
-                        <template v-slot:title> 총무  </template>
+                        <template v-slot:title> 총무</template>
                         <template v-slot:content>
                             <router-link
                                     to="/component/badge"
@@ -321,8 +308,9 @@
 </template>
 
 <script>
-import { Icon } from "@iconify/vue";
+import {Icon} from "@iconify/vue";
 import MenuAccordion from "./MenuAccordion.vue";
+
 export default {
     components: {
         Icon,
