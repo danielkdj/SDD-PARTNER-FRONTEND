@@ -182,7 +182,64 @@ const routes = [
         title: "Dispatch" + appname,
     }
   },
-    //test
+        //mypage (김영우 5/4일 추가)
+  {
+    path: "/mypage/myInfo",
+    name: "MyInfo",
+    component: MyInfo,
+    meta: {
+      title: "MyInfo" + appname,
+    },
+  },
+  {
+    path: "/mypage/changePassword",
+    name: "ChangePassword",
+    component: ChangePassword,
+    meta: {
+      title: "ChangePassword" + appname,
+    },
+  },
+  {
+    path: "/mypage/appointmentInfo",
+    name: "AppointmentInfo",
+    component: AppointmentInfo,
+    meta: {
+      title: "AppointmentInfo" + appname,
+    },
+  },
+  {
+    path: "/mypage/requestCounsel",
+    name: "RequestCounsel",
+    component: RequestCounsel,
+    meta: {
+      title: "RequestCounsel" + appname,
+    },
+  },
+    // 전자결재 항목 (김영우 5/9일 추가)
+  {
+    path: "/ea/eaRequest",
+    name: "EaRequest",
+    component: EaRequest,
+    meta: {
+      title: "EaRequest" + appname,
+    },
+  },
+  {
+    path: "/ea/eaRequestList",
+    name: "EaRequestList",
+    component: EaRequestList,
+    meta: {
+      title: "EaRequestList" + appname,
+    },
+  },
+  {
+    path: "/ea/eaApprovalList",
+    name: "EaApprovalList",
+    component: EaApprovalList,
+    meta: {
+      title: "EaApprovalList" + appname,
+    },
+  },
 ];
 
 const router = createRouter({
