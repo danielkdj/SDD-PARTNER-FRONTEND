@@ -16,7 +16,7 @@
             <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">인사</a>
+            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">급태</a>
           </div>
         </li>
         <li>
@@ -24,7 +24,7 @@
             <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">사원관리</a>
+            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">근태관리</a>
           </div>
         </li>
       </ol>
@@ -35,34 +35,14 @@
             {{  }}
           </h1>
         </div>
-        <div class="flex gap-2">
-          <button class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5">
-            수정
-          </button>
-          <button class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5">
-            <span class="icon text-xl"><Icon icon="ic:twotone-plus" /></span>
-            <span class="text">사원등록</span>
-          </button>
-        </div>
+
       </div>
     </div>
 
-    <!-- 사원 상세정보 츨력 카드 -->
-    <div class="mt-2 w-full bg-gray-100 dark:bg-gray-800 p-7 w-full rounded-md box-border border dark:border-gray-700">
-      <!-- card  -->
-      <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-2 border dark:border-gray-700 flex">
-        <div class="p-4 max-w-sm">
-          상세보기
-        </div>
-        <div class="wrapper-card w-full grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
-
-        </div>
-      </div>
-    </div>
     <!-- grid wrapper card -->
-    <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
+    <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5 place-content-between">
       <!-- card  -->
-      <div class="card bg-gray-100 dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
         <div class="p-2 max-w-sm">
           <div class="bg-orange-200 rounded-full w-14 h-14 text-lg p-3 text-orange-600 mx-auto">
             <span class="">
@@ -85,20 +65,24 @@
 
         <div class="block p-2 w-full">
 
-            <div>
-                    <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-                   총사원수
-                  </p>
-                  <h2 class="font-normal text-gray-400 text-md mt-1">전일대비<h2 class="text-center">43%</h2></h2>
-                  <div class="text-emerald-700 text-3xl ml-3">5명</div>
-            </div>
+          <div>
+            <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
+              총사원수
+            </p>
+            <h2 class="font-normal text-gray-400 text-md mt-1 ml-2">전일대비<h2 class="ml-4">43%</h2></h2>
+
+          </div>
 
 
 
         </div>
+        <div class="w-full self-center text-center">
+          <h2 class="text-xl">5명</h2>
+        </div>
       </div>
+
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
         <div class="p-2 max-w-sm">
           <div class="bg-green-200 rounded-full w-14 h-14 text-lg p-3 text-green-600 mx-auto">
             <span class="">
@@ -124,12 +108,14 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             근무인원
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">전일대비</h2>
-          <div class="text-emerald-700 text-3xl ml-3">53%</div>
+             <h2 class="font-normal text-gray-400 text-md mt-1 ml-2">전일대비<h2 class="ml-4">43%</h2></h2>
+        </div>
+        <div class="w-full self-center text-center">
+          <h2 class="text-xl">5명</h2>
         </div>
       </div>
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
         <div class="p-2 max-w-sm">
           <div class="bg-red-200 rounded-full w-14 h-14 text-lg p-3 text-red-600 mx-auto">
             <span class="">
@@ -159,14 +145,15 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             연장근무
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">
-           전일대비
-          </h2>
-          <div class="text-emerald-700 text-3xl ml-3">53%</div>
+
+          <h2 class="font-normal text-gray-400 text-md mt-1 ml-2">전일대비<h2 class="ml-4">43%</h2></h2>
+        </div>
+        <div class="w-full self-center text-center">
+          <h2 class="text-xl">5명</h2>
         </div>
       </div>
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
         <div class="p-2 max-w-sm">
           <div class="bg-purple-200 rounded-full w-14 h-14 text-lg p-3 text-purple-600 mx-auto">
             <span class="">
@@ -194,12 +181,33 @@
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             휴가 인원
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">전일 대비</h2>
-          <div class="text-emerald-700 text-3xl ml-3">53%</div>
+          <h2 class="font-normal text-gray-400 text-md mt-1 ml-2">전일대비<h2 class="ml-4">43%</h2></h2>
+
+        </div>
+        <div class="w-full self-center text-center">
+          <h2 class="text-xl">5명</h2>
         </div>
       </div>
       <!-- end card -->
     </div>
+
+    <!-- 사원 상세정보 츨력 카드 -->
+    <div class="mt-2 w-full bg-gray-100 dark:bg-gray-800 p-7 w-full rounded-md box-border border dark:border-gray-700">
+
+      <!-- card  -->
+      <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-2 border dark:border-gray-700">
+        <div class="p-4 w-full text-xl text-center bg-gray-300">
+          상세보기
+        </div>
+        <div>
+          상세내역
+        </div>
+        <div class="wrapper-card w-full grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
+
+        </div>
+      </div>
+    </div>
+
     <!-- end wrapper card -->
 
     <div class="mt-2 bg-white dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
@@ -215,97 +223,110 @@
           </div>
         </div>
       </div>
-      <div class="wrapping-table mt-10">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="uppercase px-6 py-3">
-              신청내역
-            </th>
-            <th scope="col" class="uppercase px-6 py-3">
-              신청일자
-            </th>
-            <th scope="col" class="uppercase px-6 py-3">
-              소속부서
-            </th>
-
-            <th scope="col" class="uppercase px-6 py-3">
-              신청자
-            </th>
-            <th
-                scope="col"
-                class="uppercase px-6 py-3"
-            >
-              승인여부
-            </th>
-            <th
-                class="uppercase px-6 py-3 text-center"
-            >
-              승인
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr
-              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-              v-for="items in tableTransaction"
-              :key="items.transaction"
+      <perfect-scrollbar class="h-4/6 mt-5 dark:divide-gray-700">
+        <div class="wrapping-table mt-10">
+          <table
+              class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-1/2 lg:overflow-auto overflow-y-scroll"
           >
-            <td class="px-6 py-2">
-              {{ items.docNo }}
-            </td>
-            <td class="px-6 py-4">
-              {{ items.subCategory }}
-            </td>
-            <td class="px-6 py-4">
-              {{ items.title }}
-            </td>
-            <td class="px-6 py-4">
-              {{ items.writer }}
-            </td>
-            <td class="px-6 py-4">
-              {{ items.deptName }}
-            </td>
-            <td class="px-6 py-4">
-              {{ items.startDate }} ~ {{ items.endDate }}
-            </td>
-            <td class="px-6 py-4">
-                        <span
-                            class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-                            v-if="items.status === '사용완료'"
-                        >
-                          {{ items.status }}
-                        </span>
-              <span
-                  class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status === '사용중'"
+            <thead
+                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+            <tr class="bg-gray-300">
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-2"
               >
-                          {{ items.status }}
-                        </span>
-              <span
-                  class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
-                  v-else
+                번호
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
               >
-                          {{ items.status }}
-                        </span>
-            </td>
-          </tr>
-          </tbody>
+                항목구분
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
+              >
+                제목
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
+              >
+                신청자
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
+              >
+                소속부서
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
+              >
+                사용일시
+              </th>
+              <th
+                  scope="col"
+                  class="uppercase px-6 py-3"
+              >
+                상태
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+                v-for="items in tableTransaction"
+                :key="items.transaction"
+            >
+              <td class="px-6 py-2">
+                {{ items.docNo }}
+              </td>
+              <td class="px-6 py-4">
+                {{ items.subCategory }}
+              </td>
+              <td class="px-6 py-4">
+                {{ items.title }}
+              </td>
+              <td class="px-6 py-4">
+                {{ items.writer }}
+              </td>
+              <td class="px-6 py-4">
+                {{ items.deptName }}
+              </td>
+              <td class="px-6 py-4">
+                {{ items.startDate }} ~ {{ items.endDate }}
+              </td>
+              <td class="px-6 py-4">
+                                <span
+                                    class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
+                                    v-if="items.status === '사용완료'"
+                                >
+                                  {{ items.status }}
+                                </span>
+                <span
+                    class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+                    v-else-if="items.status === '사용중'"
+                >
+                                  {{ items.status }}
+                                </span>
+                <span
+                    class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
+                    v-else
+                >
+                                  {{ items.status }}
+                                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </perfect-scrollbar>
 
-        </table>
-      </div>
-      <div class="wrapper-button flex justify-between mt-3">
-        <select
-            name=""
-            id=""
-            class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
-        >
-          <option value="">Last 7 years</option>
-        </select>
-        <button class="uppercase border-b border-red-600 text-red-600">
-          Transaction Report
-        </button>
-      </div>
+
     </div>
   </div>
 

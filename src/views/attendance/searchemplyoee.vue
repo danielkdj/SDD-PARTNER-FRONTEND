@@ -3,10 +3,10 @@
   <div class="dashboard p-4">
   <div class="w-full h-screen">
     <div class="container bg-gray-200 mx-auto h-full">
-      <div class="grid grid-cols-2 min-h-full gap-4">
-        <div class="row-span-2 p-6">
+      <div class="grid grid-cols-2 min-h-full">
+        <div class="row-span-2 p-4">
           <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-          <header class="text-black text-center text-3xl font-bold mb-4">사원 검색</header>
+          <header class="text-center text-3xl font-bold bg-gray-200">사원 검색</header>
           <hr>
           <div class="flex items-center justify-center space-x-2 mb-4">
             <i class="fas fa-star text-yellow-400"></i>
@@ -66,13 +66,9 @@
             </perfect-scrollbar>
         </div>
         </div>
-        <div class="p-6"><div class="bg-white p-6 rounded-lg shadow-lg h-full w-full">
-          <div class="flex justify-between items-center divide-y">
-            <div class="w-1/3"></div>
-            <div class="text-black text-center text-3xl font-bold mb-4 ml-10">사원 리스트</div>
-            <div class="flex justify-end flex-1">
-              <button class="bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">전체선택</button>
-            </div>
+        <div class="p-4"><div class="bg-white p-6 rounded-lg box-border border h-full w-full">
+          <div class="text-3xl text-center items-center font-bold bg-gray-200">
+            월별조회
           </div>
           <hr>
           <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
@@ -116,14 +112,11 @@
         </div></div>
         <div class="p-6">
           <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <div class="flex justify-between items-center divide-y">
-              <div class="w-1/3"></div>
-              <div class="text-black text-center text-3xl font-bold mb-4 ml-10">미리보기</div>
-              <div class="flex justify-end flex-1">
-                <button @click="makeExcelFile5" class="bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">내보내기</button>
-              </div>
+            <div class="text-center text-3xl font-bold bg-gray-200">
+
+             근무내역
             </div>
-            <hr>
+
           </div>
         </div>
       </div>

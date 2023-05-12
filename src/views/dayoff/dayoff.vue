@@ -1,94 +1,136 @@
 <template>
-  <div class="w-full h-screen">
-    <div class="container bg-gray-200 mx-auto h-full">
-      <div class="grid grid-row-2 h-full">
-        <div class="h-full">
-          <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <header class="text-black text-3xl font-bold mb-4">총 사원수</header>
-            <hr>
-            <div class="mb-4 flex justify-center mt-3">
-              <select class="w-1/3 bg-sky-200 border-0.4 rounded-lg py-2 px-3 mr-2">
-                <option value="">검색 구분</option>
-                <option value="option1">사 번</option>
-                <option value="option2">부 서</option>
-                <option value="option3">이 름</option>
-              </select>
-              <input type="text" placeholder="Search" class="w-1/3 bg-sky-200 border-0.4 rounded-lg py-2 px-3 ml-2">
-            </div>
-            <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
-              <div class="p-3 w-full">
-                <div class="flex gap-5  place-content-between">
-
-                  <div>
-                    <img
-                        class="w-14 rounded-md"
-                        src="@/assets/img/user1.png"
-                        alt=""
-                    />
-                  </div>
-
-                  <div class="mt-1">
-                    <h2 class="dark:text-gray-200">김동준</h2>
-                    <p class="text-sm dark:text-gray-500 text-gray-400">
-                      IT 1팀 /  팀장
-                    </p>
-
-
-                  </div>
-                  <div>
-                    <button class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">x</button>
-                  </div>
-
-
-                </div>
+  <!-- Search component button with name of type, press Ctrl + F -->
+  <div class="dashboard p-4">
+    <div class="w-full h-screen">
+      <div class="container bg-gray-200 mx-auto h-full">
+        <div class="grid grid-cols-2 min-h-full">
+          <div class="p-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg h-full">
+              <header class="text-center text-3xl font-bold bg-gray-200">사원 검색</header>
+              <hr>
+              <div class="flex items-center justify-center space-x-2 mb-4">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
               </div>
-            </perfect-scrollbar>
-
-
-            <div class="bg-white hover:bg-gray-400 text-black text-3xl font-bold py-2 px-4 rounded">5명</div>
+              <div class="mb-4 flex justify-center">
+                <dropdown placement="left">
+                  <template v-slot:button>
+                    <button class="flex px-5 py-3 rounded-md bg-blue-100 text-gray-400">
+                      선택
+                      <span class="ml-5 mt-1"
+                      ><Icon icon="ant-design:caret-down-filled"
+                      /></span>
+                    </button>
+                  </template>
+                  <template v-slot:content>
+                    <div class="">
+                      <!-- 검색 유형 옵션 추가 -->
+                      <button @click="searchType = 'empId'">직원 ID</button>
+                      <button @click="searchType = 'salaryDate'">급여 날짜</button>
+                    </div>
+                  </template>
+                </dropdown>
+                <input type="text" placeholder="검색" v-model="search" @input="fnGetList" class="w-1/3 bg-blue-100 border-0.4 rounded-lg py-2 px-3 ml-2">
+              </div>
+              <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
+                <div
+                    v-for="(user, index) in users"
+                    :key="index"
+                    class="p-3 w-full"
+                >
+                  <div class="flex gap-5 place-content-between">
+                    <div>
+                      <img
+                          class="w-14 rounded-md"
+                          :src="user.image"
+                          alt=""
+                      />
+                    </div>
+                    <div class="mt-1">
+                      <h2 class="dark:text-gray-200">{{ user.name }}</h2>
+                      <p class="text-sm dark:text-gray-500 text-gray-400">
+                        {{ user.status }}
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                          @click="selectUser(user)"
+                          class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                      >
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </perfect-scrollbar>
+            </div>
           </div>
-        </div>
-        <div class="h-full">
-          <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <header class="text-black text-3xl font-bold mb-4">총 사원수</header>
-            <hr>
-            <div class="mb-4 flex justify-center mt-3">
-              <select class="w-1/3 bg-sky-200 border-0.4 rounded-lg py-2 px-3 mr-2">
-                <option value="">검색 구분</option>
-                <option value="option1">사 번</option>
-                <option value="option2">부 서</option>
-                <option value="option3">이 름</option>
-              </select>
-              <input type="text" placeholder="Search" class="w-1/3 bg-sky-200 border-0.4 rounded-lg py-2 px-3 ml-2">
-            </div>
-            <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
-              <div class="p-3 w-full">
-                <div class="flex gap-5  place-content-between">
+          <div class="p-4"><div class="bg-white p-6 rounded-lg box-border border h-full w-full">
+            <div class="text-center text-3xl font-bold bg-gray-200">
 
+              사원 리스트
+
+            </div>
+            <div class="h-3/4">
+            <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
+              <div
+                  v-for="(user, index) in selectedUsers"
+                  :key="index"
+                  class="p-3 w-full"
+              >
+                <div class="flex gap-5 place-content-between">
                   <div>
                     <img
                         class="w-14 rounded-md"
-                        src="@/assets/img/user1.png"
+                        :src="user.image"
                         alt=""
                     />
                   </div>
 
                   <div class="mt-1">
-                    <h2 class="dark:text-gray-200">김동준</h2>
+                    <h2 class="dark:text-gray-200">{{ user.name }}</h2>
                     <p class="text-sm dark:text-gray-500 text-gray-400">
-                      IT 1팀 /  팀장
+                      {{ user.status }}
                     </p>
-
-
                   </div>
-
-
-
+                  <div>
+                    <input
+                        type="checkbox"
+                        v-model="selectedItems"
+                        :value="user"
+                    />
+                    <button
+                        @click="removeUser(index)"
+                        class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    >
+                      x
+                    </button>
+                  </div>
                 </div>
               </div>
             </perfect-scrollbar>
+            </div>
+            <div class="float-right">
+              <button class="bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">전체선택</button>
 
 
+            </div>
+          </div>
+         </div>
+          <div class="p-6 col-span-2">
+            <div class="bg-white p-6 rounded-lg shadow-lg h-full">
+
+
+                <div class="text-center bg-gray-200 text-3xl font-bold">미리보기</div>
+                <div class="h-3/4">
+
+                </div>
+
+
+                <button class="bg-cyan-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right mr-6">내보내기</button>
+
+            </div>
 
           </div>
         </div>
@@ -98,15 +140,72 @@
 </template>
 
 <script>
+import Xlsx from 'xlsx'
 import { Icon } from "@iconify/vue";
-import AppAccordion from "../../components/AppAccordion.vue";
-import MenuAccordion from "../../components/MenuAccordion.vue";
+import Dropdown from "@/components/Dropdown.vue";
+
+
+
 export default {
   components: {
+    Dropdown,
     Icon,
-    AppAccordion,
-    MenuAccordion,
+    name: 'App'
   },
-  mounted() {},
-};
+
+  data() {
+    return {
+      search: '',
+      searchType: 'empId',
+      selectedItems: [],
+      selectedUsers: [],
+      users: [] // Add this to store the fetched users
+    };
+  },
+  mounted() {
+    this.fnGetList()
+  },
+  //function
+  methods: {
+
+    fnGetList() {
+      //스프링 부트에서 전송받은 데이터를 출력 처리
+      this.requestBody = {
+        sk: this.searchType,
+        sv: this.search,
+        page: this.page,
+        size: this.size,
+      };
+
+      this.$axios
+          .get(this.$serverUrl + "/salary/list", {
+            params: this.requestBody,
+            headers: {},
+          })
+          .then((res) => {
+            this.users = res.data.content; // Update this line
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    makeExcelFile5() {
+      const workBook = Xlsx.utils.book_new();
+      const workSheet = Xlsx.utils.json_to_sheet(this.selectedItems);
+      Xlsx.utils.book_append_sheet(workBook, workSheet, 'example');
+      Xlsx.writeFile(workBook, 'example.xlsx');
+    },
+    selectUser(user) {
+
+      this.selectedUsers.push(user);
+    },
+    removeUser(index) {
+      this.selectedUsers.splice(index, 1);
+    }
+  }
+}
 </script>
+
+<style>
+</style>
+
