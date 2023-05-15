@@ -57,8 +57,15 @@
               운행사유
           </label>
           <div class="col-span-10">
-              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-              >{{reason}}</p>
+              <input
+                      type="text"
+                      name="reason"
+                      id="reason"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                      placeholder=""
+                      v-model="reason"
+                      required
+              />
           </div>
         </div>
         <div class="grid grid-cols-12 gap-4">
@@ -75,8 +82,15 @@
               주행 전 거리
           </label>
           <div class="col-span-10">
-              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-              >{{before_mileage}}</p>
+            <input
+                    type="number"
+                    name="before_mileage"
+                    id="before_mileage"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                    placeholder=""
+                    v-model.number="before_mileage"
+                    required
+            />
           </div>
         </div>
         <div class="grid grid-cols-12 gap-4">
@@ -84,8 +98,15 @@
               주행 후 거리
           </label>
           <div class="col-span-10">
-              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-              >{{after_mileage}}</p>
+            <input
+                    type="number"
+                    name="after_mileage"
+                    id="after_mileage"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                    placeholder=""
+                    v-model.number="after_mileage"
+                    required
+            />
           </div>
         </div>
         <div class="grid grid-cols-12 gap-4">

@@ -1,6 +1,5 @@
 <template>
-    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
-    >
+    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full h-1/2 rounded-md box-border border dark:border-gray-700" >
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <div class="flex flex-no-shrink items-center">
                 <button
@@ -42,62 +41,46 @@
             </div>
             <button v-on:click="fnWrite" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">등록</button>
         </div>
+        <perfect-scrollbar class="h-2/3 mt-5 dark:divide-gray-700">
         <div class="wrapping-table mt-10">
-            <table
-                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-            >
-                <thead
-                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-                >
-                <tr>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-2"
-                    >
-                        번호
-                    </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
-                        제목
-                    </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
-                        작성자
-                    </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
-                        작성일시
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                        v-for="items in tableTransaction"
-                        :key="items.transaction"
-                >
-                    <td class="px-6 py-2">
-                        {{ items.noticeNo }}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ items.writer }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ items.createdAt }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll" >
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
+                        <tr>
+                            <th scope="col" class="uppercase px-6 py-2" >
+                                번호
+                            </th>
+                            <th scope="col" class="uppercase px-6 py-3" >
+                                제목
+                            </th>
+                            <th scope="col" class="uppercase px-6 py-3" >
+                                작성자
+                            </th>
+                            <th scope="col" class="uppercase px-6 py-3" >
+                                작성일시
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+                             v-for="items in tableTransaction"
+                              :key="items.transaction" >
+                            <td class="px-6 py-2">
+                                {{ items.noticeNo }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ items.writer }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ items.createdAt }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </perfect-scrollbar>
     </div>
 </template>
 
@@ -121,6 +104,66 @@ export default {
                 },
 
                 {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                },                {
                     noticeNo: 2,
                     title: '제목',
                     writer: '작성자',

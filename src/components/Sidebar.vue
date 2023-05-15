@@ -337,7 +337,7 @@
                                 차량 사용일정
                             </router-link>
                             <router-link
-                                to="/CarUseList"
+                                to="/DrvList"
                                 class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
                                 차량 관리대장

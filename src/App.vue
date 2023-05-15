@@ -33,7 +33,6 @@
       >
         <router-view />
       </transition>
-      <Footer v-if="!$route.meta.hideNav" />
     </div>
   </div>
   <!-- End app -->

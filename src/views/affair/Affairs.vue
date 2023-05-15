@@ -312,7 +312,7 @@ export default {
                     subCategory: '회의실',
                     title: '제목',
                     writer: '작성자',
-                    dept_name: '소속부서',
+                    deptName: '소속부서',
                     createdAt: '2023-05-03 23:24:00',
                     startDate: '2023-05-03 23:24:00',
                     endDate: '2023-05-03 23:24:00',

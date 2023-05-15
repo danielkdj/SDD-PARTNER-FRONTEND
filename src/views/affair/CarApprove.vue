@@ -216,7 +216,7 @@ export default {
             sEnd:'',
             resultCode:'',
             requestBody: this.$route.query,
-            docNo: this.$route.query.doc_no,
+            docNo: this.$route.query.docNo,
             category: '차량',
             subCategory: 'A차량',
             title: '제목',
