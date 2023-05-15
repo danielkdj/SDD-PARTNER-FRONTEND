@@ -56,11 +56,11 @@
 
                             <template v-slot:icon>
 
-                                <Icon icon="bxs:dashboard"/>
+                                <Icon icon="bxs:dashboard" />
 
                             </template>
 
-                            <template v-slot:title> My Page</template>
+                            <template v-slot:title> My Page </template>
 
                             <template v-slot:content>
 
@@ -117,17 +117,17 @@
                         </menu-accordion>
 
                     </div>
-                    <div class="item mt-3">
+                        <div class="item mt-3">
 
                         <menu-accordion>
 
                             <template v-slot:icon>
 
-                                <Icon icon="bxs:dashboard"/>
+                                <Icon icon="bxs:dashboard" />
 
                             </template>
 
-                            <template v-slot:title> 전자결재</template>
+                            <template v-slot:title> 전자결재 </template>
 
                             <template v-slot:content>
 
