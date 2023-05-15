@@ -1,33 +1,31 @@
 <template>
-  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
+  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700 h-screen"
   >
-    <div class="mt-3 flex items-center justify-end gap-x-2">
-        <select v-model="sCategory"
-                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
-        >
+      <div class="mt-3 flex items-center justify-end gap-x-6">
+          <select
+                  v-model ='sCategory'
+                  class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+          >
             <option value="">-항목구분-</option>
             <option value="A">A회의실</option>
             <option value="B">B회의실</option>
         </select>
-        <div class="flex min-h-full flex-col lg:px-7">
           <input
-                  v-model="sStart"
+                  v-model ='sStart'
                   type="date"
-                  class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+                  class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
           />
-        </div>
-        ~
-        <div class="flex min-h-full flex-col lg:px-7">
+          ~
           <input
-                  v-model="sEnd"
+                  v-model ='sEnd'
                   type="date"
-                  class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+                  class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
           />
-        </div>
         <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">검색</button>
 
     </div>
-    <div class="wrapping-table mt-10">
+      <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
+      <div class="wrapping-table mt-10">
       <table
         class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
       >
@@ -136,6 +134,7 @@
         </tbody>
       </table>
     </div>
+      </perfect-scrollbar>
   </div>
 </template>
 
@@ -162,6 +161,149 @@ export default {
         status: '',
         },
 
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
+        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: '',
+        },
         {
         docNo: 2,
         subCategory: '항목구분',

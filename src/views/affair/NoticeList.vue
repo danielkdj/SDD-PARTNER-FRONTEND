@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full h-1/2 rounded-md box-border border dark:border-gray-700" >
+    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700 h-screen" >
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <div class="flex flex-no-shrink items-center">
                 <button
@@ -28,9 +28,6 @@
                 <div
                         class="input-box border dark:bg-gray-900 lg:ml-0 ml-5 dark:border-gray-700 rounded-md hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700"
                 >
-                  <span class="text-3xl p-2 text-gray-400">
-                      <Icon icon="ei:search"/>
-                  </span>
                     <input
                             v-model = 'sTitle'
                             type="text"
@@ -41,8 +38,8 @@
             </div>
             <button v-on:click="fnWrite" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">등록</button>
         </div>
-        <perfect-scrollbar class="h-2/3 mt-5 dark:divide-gray-700">
-        <div class="wrapping-table mt-10">
+        <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
+            <div class="wrapping-table mt-10">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll" >
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
                         <tr>
@@ -85,8 +82,6 @@
 </template>
 
 <script>
-import { Icon } from "@iconify/vue";
-
 export default {
     name: "NoticeList",
     data() { //변수생성
@@ -164,6 +159,42 @@ export default {
                     contents: '내용',
                     createdAt: '작성일시',
                 },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
+                }, {
                     noticeNo: 2,
                     title: '제목',
                     writer: '작성자',
