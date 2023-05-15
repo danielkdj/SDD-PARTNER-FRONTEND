@@ -316,52 +316,96 @@
                     </menu-accordion>
                 </div>
 
-                <div class="item mt-3">
+
+<div class="item mt-3">
                     <menu-accordion>
                         <template v-slot:icon>
-                            <Icon icon="gg:components"/>
+                            <Icon icon="gg:components" />
                         </template>
-                        <template v-slot:title> 총무</template>
+                        <template v-slot:title> 총무  </template>
                         <template v-slot:content>
                             <router-link
-                                    to="/component/badge"
+                                    to="/Affairs"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                총무과 메인
+                            </router-link>
+                            <router-link
+                                    to="/NoticeList"
                                     class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
                                 공지사항
                             </router-link>
                             <router-link
-                                    to="/component/breadcumb"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                to="/NoticeDetail"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                비품구매
+                                공지사항 상세
                             </router-link>
                             <router-link
-                                    to="/component/button"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                to="/NoticeWrite"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                회의실 사용
+                                공지사항 작성
                             </router-link>
                             <router-link
-                                    to="/component/card"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                to="/RoomList"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                차량사용
+                                회의실 신청내역
                             </router-link>
                             <router-link
-                                    to="/component/dropdown"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                to="/RoomSchedule"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                법정 의무교육
+                                회의실 사용일정
                             </router-link>
                             <router-link
-                                    to="/component/modal"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                to="/CarList"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                                서류함
+                                차량 신청내역
+                            </router-link>
+                            <router-link
+                                to="/CarSchedule"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                차량 사용일정
+                            </router-link>
+                            <router-link
+                                to="/DrvList"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                차량 관리대장
+                            </router-link>
+                            <router-link
+                                to="/EduList"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                교육관리
+                            </router-link>
+                            <router-link
+                                to="/EduWrite"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                교육관리 작성
+                            </router-link>
+                            <router-link
+                                to="/EduCompletion"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                이수관리
+                            </router-link>
+                            <router-link
+                                to="/Test"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                Test
                             </router-link>
                         </template>
                     </menu-accordion>
                 </div>
+                
             </div>
         </div>
     </nav>
