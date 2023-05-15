@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
-// Default Pages
 import Dashboard from "../views/Dashboard.vue";
-// Component Pages
 import Valert from "../views/components/alert.vue";
 import Vaccrodion from "../views/components/accordion.vue";
 import Vbadges from "../views/components/badges.vue";
@@ -14,26 +11,15 @@ import Vmodal from "../views/components/modal.vue";
 import Login from "../views/layouts/auth/Login.vue";
 import Register from "../views/layouts/auth/Register.vue";
 import ForgotPassword from "../views/layouts/auth/forgot-password.vue";
-
-// layouts
 import Blank from "../views/layouts/Blank.vue";
-
-// error page
 import Page404 from "../views/layouts/error/404.vue";
 import Page500 from "../views/layouts/error/500.vue";
 import PageMaintenance from "../views/layouts/error/maintenance.vue";
 import Tables from "../views/tables.vue";
-
-
-
-
-//Mypage Pages  (김영우 5월4일 추가)
 import MyInfo from "@/views/mypage/myInfo.vue";
 import ChangePassword from "@/views/mypage/changePassword.vue";
 import AppointmentInfo from "@/views/mypage/appointmentInfo.vue";
 import RequestCounsel from "@/views/mypage/requestCounsel.vue";
-
-//EA(전자결재) Pages  (김영우 5월9일 추가)
 import EaRequest from "@/views/ea/eaRequest.vue";
 import EaRequestList from "@/views/ea/eaRequestList.vue";
 import EaApprovalList from "@/views/ea/eaApprovalList.vue";
@@ -48,7 +34,22 @@ import attendance from "@/views/attendance/attendance.vue";
 import searchemplyoee from "@/views/attendance/searchemplyoee.vue";
 import Salary from "@/views/salary/salary.vue";
 import dayoff from "@/views/dayoff/dayoff.vue";
-
+import Affairs from "../views/affair/Affairs.vue";
+import NoticeList from "../views/affair/NoticeList.vue";
+import NoticeDetail from "../views/affair/NoticeDetail.vue";
+import NoticeWrite from "../views/affair/NoticeWrite.vue";
+import RoomList from "../views/affair/RoomList.vue";
+import RoomApprove from "../views/affair/RoomApprove.vue";
+import RoomSchedule from "../views/affair/RoomSchedule.vue";
+import CarList from "../views/affair/CarList.vue";
+import CarApprove from "../views/affair/CarApprove.vue";
+import CarSchedule from "../views/affair/CarSchedule.vue";
+import DrvList from "../views/affair/DrvList.vue";
+import DrvDetail from "../views/affair/DrvDetail.vue";
+import EduList from "../views/affair/EduList.vue";
+import EduDetail from "../views/affair/EduDetail.vue";
+import EduWrite from "../views/affair/EduWrite.vue";
+import EduCompletion from "../views/affair/EduCompletion.vue";
 
 var appname = " - Windzo Dashboard Admin Template";
 
@@ -327,6 +328,87 @@ const routes = [
     name: "adminCreate",
     component: AdminCreate
   },
+      {
+    path: "/Affairs",
+    name: "Affairs",
+    component: Affairs,
+    meta: { title: "Affairs " + appname },
+  },  {
+    path: "/NoticeList",
+    name: "NoticeList",
+    component: NoticeList,
+    meta: { title: "NoticeList " + appname },
+  },  {
+    path: "/NoticeDetail",
+    name: "NoticeDetail",
+    component: NoticeDetail,
+    meta: { title: "NoticeDetail " + appname },
+  },  {
+    path: "/NoticeWrite",
+    name: "NoticeWrite",
+    component: NoticeWrite,
+    meta: { title: "NoticeWrite " + appname },
+  },  {
+    path: "/RoomList",
+    name: "RoomList",
+    component: RoomList,
+    meta: { title: "RoomList " + appname },
+  },  {
+    path: "/RoomApprove",
+    name: "RoomApprove",
+    component: RoomApprove,
+    meta: { title: "RoomApprove " + appname },
+  },  {
+    path: "/RoomSchedule",
+    name: "RoomSchedule",
+    component: RoomSchedule,
+    meta: { title: "RoomSchedule " + appname },
+  },  {
+    path: "/CarList",
+    name: "CarList",
+    component: CarList,
+    meta: { title: "CarList " + appname },
+  },  {
+    path: "/CarApprove",
+    name: "CarApprove",
+    component: CarApprove,
+    meta: { title: "CarApprove " + appname },
+  },  {
+    path: "/CarSchedule",
+    name: "CarSchedule",
+    component: CarSchedule,
+    meta: { title: "CarSchedule " + appname },
+  },  {
+    path: "/DrvList",
+    name: "DrvList",
+    component: DrvList,
+    meta: { title: "DrvList " + appname },
+  },  {
+    path: "/DrvDetail",
+    name: "DrvDetail",
+    component: DrvDetail,
+    meta: { title: "DrvDetail " + appname },
+  },  {
+    path: "/EduList",
+    name: "EduList",
+    component: EduList,
+    meta: { title: "EduList " + appname },
+  },  {
+    path: "/EduDetail",
+    name: "EduDetail",
+    component: EduDetail,
+    meta: { title: "EduDetail " + appname },
+  },  {
+    path: "/EduWrite",
+    name: "EduWrite",
+    component: EduWrite,
+    meta: { title: "EduWrite " + appname },
+  },  {
+    path: "/EduCompletion",
+    name: "EduCompletion",
+    component: EduCompletion,
+    meta: { title: "EduCompletion " + appname },
+  }
 ];
 
 const router = createRouter({
