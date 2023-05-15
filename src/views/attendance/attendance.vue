@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div class="dashboard p-4">
     <!-- end nav -->
     <div class="mt-2 w-full space-y-3">

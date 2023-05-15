@@ -2,7 +2,7 @@
   <!-- Search component button with name of type, press Ctrl + F -->
   <div class="dashboard p-4">
   <div class="w-full h-screen">
-    <div class="container bg-gray-200 mx-auto h-full">
+    <div class="bg-gray-200 mx-auto h-full">
       <div class="grid grid-cols-2 min-h-full">
         <div class="row-span-2 p-4">
           <div class="bg-white p-6 rounded-lg shadow-lg h-full">
@@ -126,7 +126,7 @@
 </template>
 
 <script>
-  import Xlsx from 'xlsx'
+  import * as xlsx from 'xlsx'
   import { Icon } from "@iconify/vue";
   import Dropdown from "@/components/Dropdown.vue";
 
@@ -136,6 +136,7 @@
     components: {
       Dropdown,
       Icon,
+      xlsx,
       name: 'App'
     },
 
