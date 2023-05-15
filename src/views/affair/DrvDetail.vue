@@ -1,0 +1,209 @@
+<template>
+  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
+    <form>
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+          <button v-on:click="fnUpdate" class="bg-amber-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">수정</button>
+          <button v-on:click="fnDelete" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">삭제</button>
+          <button v-on:click="fnList" class="bg-gray-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
+      </div>
+      <div class="space-y-5">
+        <div class="grid grid-cols-12 gap-4">
+          <label for="drv_no" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              관리번호
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{drv_no}}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              작성자
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{writer}}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+            <label for="dept_name" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                소속부서
+            </label>
+            <div class="col-span-10">
+                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                >{{dept_name}}</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="created_at" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              작성일시
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{created_at}}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="category" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              항목
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{category}}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="reason" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              운행사유
+          </label>
+          <div class="col-span-10">
+              <input
+                      type="text"
+                      name="reason"
+                      id="reason"
+                      class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                      placeholder=""
+                      v-model="reason"
+                      required
+              />
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="drv_start" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              사용일시
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{drv_start}} ~ {{drv_end}}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="before_mileage" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              주행 전 거리
+          </label>
+          <div class="col-span-10">
+            <input
+                    type="number"
+                    name="before_mileage"
+                    id="before_mileage"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                    placeholder=""
+                    v-model.number="before_mileage"
+                    required
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="after_mileage" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              주행 후 거리
+          </label>
+          <div class="col-span-10">
+            <input
+                    type="number"
+                    name="after_mileage"
+                    id="after_mileage"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                    placeholder=""
+                    v-model.number="after_mileage"
+                    required
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="actual_mileage" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              실 운행거리
+          </label>
+          <div class="col-span-10">
+              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              >{{actual_mileage}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() { //변수생성
+      return {
+          requestBody: this.$route.query,
+          drv_no: this.$route.query.drv_no,
+          dept_name: '소속부서',
+          writer: '신청자',
+          category: 'A차량',
+          created_at: '2022-02-11 23:24:00',
+          reason: '운행사유',
+          drv_start: '2022-02-18 23:24:00',
+          drv_end: '2022-02-19 23:24:00',
+          before_mileage: ' ',
+          after_mileage: ' ',
+          actual_mileage: ' ',
+      }
+    },
+    computed: { //연산
+      actual_mileage() {
+          if(this.after_mileage>0 && this.before_mileage>0 && this.after_mileage > this.before_mileage)
+        return this.after_mileage - this.before_mileage;
+          return '';
+      },
+    },
+    filters:{ //단위 포맷팅
+      numberWithCommas: function(value){
+          if(!value) return '0';
+          return value.toLocaleString() + ' km';
+      }
+    },
+  //   mounted() { //document.ready = window.upload역할과 동일
+  //       this.fnGetView()
+  //   },
+    methods: {
+    fnGetView() {
+      this.$axios.get(this.$serverUrl + '/car/' + this.drv_no, { //비동기 방식으로 요청한다.= ajax
+        params: this.requestBody
+      }).then((res) => {
+        this.dept_name = res.data.dept_name
+        this.writer = res.data.writer
+        this.category = res.data.category
+        this.created_at = res.data.created_at
+        this.reason = res.data.reason
+        this.drv_start = res.data.drv_start
+        this.drv_end = res.data.drv_end
+        this.before_mileage = res.data.before_mileage
+        this.after_mileage = res.data.after_mileage
+        this.actual_mileage = res.data.actual_mileage
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    },
+      fnList() {
+        delete this.requestBody.drv_no
+        this.$router.push({
+            path: './CarUseList',
+            query: this.requestBody
+        })
+      },
+      fnUpdate() {
+        //글 수정이므로 idx를 전송함 : requestBody에 idx가 담겨있음. 이걸 query로 보냄
+        this.$router.push({
+            path: './CarUseWrite',
+            query: this.requestBody
+        })
+      },
+      fnDelete() {
+        if (!confirm("삭제하시겠습니까?")) return //취소 클릭시
+
+        this.$axios.delete(this.$serverUrl + '/board/' + this.idx, {}) //확인 클릭시
+            .then(() => {
+                alert('삭제되었습니다.')
+                this.fnList();
+            }).catch((err) => {
+            console.log(err);
+            this.fnList(); //test용
+        })
+      }
+    }
+  };
+</script>
