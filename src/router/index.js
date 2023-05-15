@@ -37,6 +37,17 @@ import RequestCounsel from "@/views/mypage/requestCounsel.vue";
 import EaRequest from "@/views/ea/eaRequest.vue";
 import EaRequestList from "@/views/ea/eaRequestList.vue";
 import EaApprovalList from "@/views/ea/eaApprovalList.vue";
+import AdminCreate from "@/views/admin/AdminCreate.vue";
+import TeamCalendarWrite from "@/views/teamCalendar/TeamCalendarWrite.vue";
+import AdminPermission from "@/views/admin/AdminPermission.vue";
+import DocumentList from "@/views/document/DocumentList.vue";
+import DocumentDetail from "@/views/document/DocumentDetail.vue";
+import TeamCalendar from "@/views/teamCalendar/TeamCalendar.vue";
+import DocumentWrite from "@/views/document/DocumentWrite.vue";
+import attendance from "@/views/attendance/attendance.vue";
+import searchemplyoee from "@/views/attendance/searchemplyoee.vue";
+import Salary from "@/views/salary/salary.vue";
+import dayoff from "@/views/dayoff/dayoff.vue";
 
 
 var appname = " - Windzo Dashboard Admin Template";
@@ -254,6 +265,67 @@ const routes = [
     meta: {
       title: "EaApprovalList" + appname,
     },
+  },
+  {
+    path: "/dayoff",
+    name: "dayoff",
+    component: dayoff,
+
+
+  },
+  {
+    path: "/salary",
+    name: "Salary",
+    component: Salary,
+
+
+  },
+  {
+    path: "/attendance",
+    name: "attendance",
+    component: attendance,
+
+  },
+  {
+    path: "/searchemplyoee",
+    name: "searchemplyoee",
+    component: searchemplyoee,
+
+  },
+  {
+    path: "/document",
+    name: "document",
+    component: DocumentList
+  },
+  {
+    path: "/documentDetail/:id",
+    name: "documentDetail",
+    component: DocumentDetail
+  },
+  {
+    path: "/teamCalendar",
+    name: "teamCalendar",
+    component: TeamCalendar
+  },
+  {
+    path: "/documentWrite",
+    name: "documentWrite",
+    component: DocumentWrite
+  },
+  {
+    path: "/adminPermission",
+    name: "adminPermission",
+    component: AdminPermission
+  },
+  {
+    path: "/teamCalendarWrite",
+    name: "teamCalendarWrite",
+    component: TeamCalendarWrite
+  },
+  {
+    path: "/adminCreate",
+    name: "adminCreate",
+    component: AdminCreate
   },
 ];
 
