@@ -17,9 +17,15 @@
   "author": "Mohammad Sahrullah",
   "license": "MIT",
   "dependencies": {
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
+    "@fullcalendar/core": "^6.1.6",
+    "@fullcalendar/daygrid": "^6.1.6",
+    "@fullcalendar/interaction": "^6.1.6",
+    "@fullcalendar/vue3": "^6.1.6",
     "apexcharts": "^3.34.0",
     "autoprefixer": "^10.4.14",
     "chart.js": "^3.7.1",
+    "ckeditor5-custom-build": "file:./ckeditor5",
     "click-outside-vue3": "^4.0.1",
     "core-js": "^3.8.3",
     "dropzone-vue": "^0.1.11",
@@ -36,13 +42,15 @@
     "vue-perfect-scrollbar": "^0.2.1",
     "vue-router": "^4.0.3",
     "vue3-apexcharts": "^1.4.1",
-    "vue3-perfect-scrollbar": "^1.6.0"
+    "vue3-perfect-scrollbar": "^1.6.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@iconify/vue": "^3.2.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "vue-cli-plugin-tailwind": "~3.0.0"
   }
 }
