@@ -73,13 +73,13 @@ export default {
       // },
       methods: {
         // fnGetView() {
-        //   this.$axios.get(this.$serverUrl + '/notice/' + this.notice_no, { //비동기 방식으로 요청한다.= ajax
+        //   this.$axios.get(this.$serverUrl + '/notice/' + this.noticeNo, { //비동기 방식으로 요청한다.= ajax
         //       params: this.requestBody
         //   }).then((res) => {
         //       this.title = res.data.title
         //       this.writer = res.data.writer
         //       this.contents = res.data.contents
-        //       this.created_at = res.data.created_at
+        //       this.createdAt = res.data.createdAt
         //   }).catch((err) => {
         //       if (err.message.indexOf('Network Error') > -1) {
         //           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -94,7 +94,7 @@ export default {
           })
         },
         fnUpdate() {
-          //글 수정페이지로 이동: requestBody에 notice_no가 담겨있음.
+          //글 수정페이지로 이동: requestBody에 noticeNo가 담겨있음.
           this.$router.push({
               path: './NoticeWrite',
               query: this.requestBody

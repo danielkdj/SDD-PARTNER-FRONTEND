@@ -22,14 +22,14 @@
                   />
               </div>
           </div>            <div class="grid grid-cols-12 gap-4">
-              <label for="created_at" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              <label for="createdAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                   작성일시
               </label>
               <div class="col-span-10">
                   <input
                           type="text"
                           name="createdAt"
-                          id="created_at"
+                          id="createdAt"
                           class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                           placeholder=""
                           v-model="createdAt"

@@ -227,7 +227,7 @@
                     {{ items.subCategory }}
                 </td>
                 <td class="px-6 py-4">
-                    <a v-if="items.sub_category === '회의실'"
+                    <a v-if="items.subCategory === '회의실'"
                     v-on:click="fnViewRoom(`${items.docNo}`)">{{ items.title }}</a>
                     <a v-else
                     v-on:click="fnViewCar(`${items.docNo}`)">{{ items.title }}</a>
@@ -293,6 +293,12 @@ export default {
                     writer: '작성자',
                     contents: '내용',
                     createdAt: '작성일시',
+                },                {
+                    noticeNo: 2,
+                    title: '제목',
+                    writer: '작성자',
+                    contents: '내용',
+                    createdAt: '작성일시',
                 },
             ],
             roomAndCarTable: [
@@ -308,6 +314,26 @@ export default {
                     status: 1
                 },
                 {
+                    docNo: 2,
+                    subCategory: '회의실',
+                    title: '제목',
+                    writer: '작성자',
+                    deptName: '소속부서',
+                    createdAt: '2023-05-03 23:24:00',
+                    startDate: '2023-05-03 23:24:00',
+                    endDate: '2023-05-03 23:24:00',
+                    status: 2
+                },                {
+                    docNo: 2,
+                    subCategory: '회의실',
+                    title: '제목',
+                    writer: '작성자',
+                    deptName: '소속부서',
+                    createdAt: '2023-05-03 23:24:00',
+                    startDate: '2023-05-03 23:24:00',
+                    endDate: '2023-05-03 23:24:00',
+                    status: 2
+                }, {
                     docNo: 2,
                     subCategory: '회의실',
                     title: '제목',
