@@ -6,6 +6,7 @@ import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 import { createPinia } from "pinia";
 // import "flowbite";
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import "./assets/tailwind.css";
 import "./assets/animate.css";
 import "./assets/sass/css/windzo.css";
@@ -17,5 +18,6 @@ app.use(createPinia());
 app.use(VueApexCharts);
 app.use(PerfectScrollbar);
 app.use(vClickOutside);
+app.use(CKEditor);
 app.mount("#app");
 // test
