@@ -1,5 +1,5 @@
 <template>
-  <!-- Search component button with name of type, press Ctrl + F -->
+
   <div class="dashboard p-4">
   <div class="w-full h-screen">
     <div class="bg-gray-200 mx-auto h-full">
