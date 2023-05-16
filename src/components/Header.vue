@@ -3,89 +3,14 @@
   <header class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700">
     <div class="wrap-header flex items-center gap-5 justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
-        <button
-          class="text-gray-500 lg:hidden ml-3 block"
-          @click="$emit('sidebarToggle', true)"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            width="2em"
-            height="2em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"
-            />
-          </svg>
-        </button>
-        <div
-          class="input-box border dark:bg-gray-900 lg:ml-0 ml-5 dark:border-gray-700 rounded-md hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700"
-        >
-          <span class="text-3xl p-2 text-gray-400"
-            ><Icon icon="ei:search"
-          /></span>
-          <input
-            type="text"
-            placeholder="Search..."
-            class="p-3 w-full bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-          />
+        <div class="flex items-center" v-if="weatherData && weatherData.name">
+            위치정보 : {{ weatherData.name }}
+            <img class="h-12 w-12" :src="`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`" alt="Weather Icon" v-if="weatherData.weather[0].icon">            현재날씨 : {{ weatherData.weather[0].description }}
+            현재온도 : {{ weatherData.main.temp }}℃
         </div>
       </div>
 
       <div class="mr-5 flex gap-3">
-        <!-- btn dark mode -->
-
-        <button class="lg:hidden block mr-5 text-2xl text-gray-500 relative">
-          <i>
-            <Icon icon="ic:outline-search" />
-          </i>
-        </button>
-
-        <button
-          @click="fullscreenToggle"
-          class="mr-5 text-2xl text-gray-500 relative"
-        >
-          <i v-if="!fullscreenMode">
-            <Icon icon="ic:outline-fullscreen" />
-          </i>
-          <i v-else>
-            <Icon icon="ic:outline-fullscreen-exit" />
-          </i>
-        </button>
-
-        <button
-          @click="setTheme(true)"
-          class="mr-5 text-2xl text-gray-500"
-          v-if="!darkMode"
-        >
-          <Icon icon="ph:sun-dim" />
-        </button>
-        <button
-          @click="setTheme(false)"
-          v-else
-          class="mr-5 text-2xl text-gray-500"
-        >
-          <Icon icon="ri:moon-fill" />
-        </button>
-        <!-- btn notification -->
-        <button
-          @click="notifToggle"
-          class="mr-5 text-2xl text-gray-500 relative"
-        >
-          <i
-            class="bg-red-500 rounded-full p-1.5 border border-white dark:border-gray-700 -mt-1 absolute"
-          ></i>
-          <Icon icon="clarity:notification-line" />
-        </button>
-
         <transition name="fade">
           <div
             id="notificaitons"
@@ -221,6 +146,7 @@
   import { Icon } from "@iconify/vue";
   import { fullscreen } from "@/helper/fullscreen";
   import { setDarkMode, loadDarkMode } from "@/helper/theme";
+  import axios from 'axios';
   export default {
     data() {
       return {
@@ -228,7 +154,7 @@
         darkMode: false,
         notification: false,
         fullscreenMode: false,
-
+        weatherData: null,
         notifList: [
           {
             name: "Elizabeth Begum",
@@ -294,15 +220,28 @@
         this.darkMode = bool;
         this.setDarkMode(bool);
       },
-
       imageAssets(url) {
         return require("@/assets/img/" + url);
       },
-    },
+      fetchWeatherData() {
+          const apiKey = "21ca248509cfaf37971c07ac47bfadf2";
+          const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+          const lat = 37.555134;
+          const lon = 126.936893;
+
+          axios.get(`${baseUrl}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+              .then(response => {
+                  this.weatherData = response.data;
+                  })
+              .catch(error => {
+                  console.error(error);
+                  });
+          },
+      },
     mounted() {
       // get theme dark or light with loadDarkMode()
       this.darkMode = this.loadDarkMode();
-
+      this.fetchWeatherData();
       document.onfullscreenchange = (event) => {
         if (document.fullscreenElement) {
           this.fullscreenMode = true;
