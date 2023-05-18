@@ -51,7 +51,7 @@ import EduDetail from "../views/affair/EduDetail.vue";
 import EduWrite from "../views/affair/EduWrite.vue";
 import EduCompletion from "../views/affair/EduCompletion.vue";
 
-var appname = " - Windzo Dashboard Admin Template";
+var appname = " - SDD Partner";
 
 const routes = [
   // Routes

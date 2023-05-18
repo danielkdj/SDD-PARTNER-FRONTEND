@@ -24,6 +24,7 @@
     "@fullcalendar/vue3": "^6.1.6",
     "apexcharts": "^3.34.0",
     "autoprefixer": "^10.4.14",
+    "axios": "^1.4.0",
     "chart.js": "^3.7.1",
     "ckeditor5-custom-build": "file:./ckeditor5",
     "click-outside-vue3": "^4.0.1",
@@ -31,6 +32,7 @@
     "dropzone-vue": "^0.1.11",
     "flowbite": "^1.4.1",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "perfect-scrollbar": "^1.5.5",
     "pinia": "^2.0.33",
     "postcss": "^8.4.21",
@@ -44,7 +46,7 @@
     "vue3-apexcharts": "^1.4.1",
     "vue3-perfect-scrollbar": "^1.6.0",
     "xlsx": "^0.18.5",
-    "moment": "^2.29.4"
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@iconify/vue": "^3.2.0",

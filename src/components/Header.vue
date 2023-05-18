@@ -11,6 +11,21 @@
       </div>
 
       <div class="mr-5 flex gap-3">
+        <button
+            @click="setTheme(true)"
+            class="mr-5 text-2xl text-gray-500"
+            v-if="!darkMode"
+        >
+          <Icon icon="ph:sun-dim" />
+        </button>
+        <button
+            @click="setTheme(false)"
+            v-else
+            class="mr-5 text-2xl text-gray-500"
+        >
+          <Icon icon="ri:moon-fill" />
+        </button>
+
         <transition name="fade">
           <div
             id="notificaitons"
@@ -84,9 +99,6 @@
                 Frontend Developer
               </p>
             </div>
-            <!-- <span class="text-md mt-4 text-gray-300"
-              ><Icon icon="bi:caret-down-fill"
-            /></span> -->
           </div>
         </button>
 
@@ -242,13 +254,6 @@
       // get theme dark or light with loadDarkMode()
       this.darkMode = this.loadDarkMode();
       this.fetchWeatherData();
-      document.onfullscreenchange = (event) => {
-        if (document.fullscreenElement) {
-          this.fullscreenMode = true;
-        } else {
-          this.fullscreenMode = false;
-        }
-      };
     },
   };
 </script>
