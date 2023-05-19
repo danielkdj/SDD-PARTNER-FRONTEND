@@ -11,6 +11,7 @@ import "./assets/tailwind.css";
 import "./assets/animate.css";
 import "./assets/sass/css/windzo.css";
 import vClickOutside from "click-outside-vue3";
+import axios from 'axios';
 
 const app = createApp(App);
 app.use(router);
@@ -20,4 +21,6 @@ app.use(PerfectScrollbar);
 app.use(vClickOutside);
 app.use(CKEditor);
 app.mount("#app");
+app.config.globalProperties.$axios = axios;
+app.config.globalProperties.$serverUrl = '//localhost:8888';
 // test
