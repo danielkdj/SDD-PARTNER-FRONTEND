@@ -360,38 +360,49 @@
                         <template v-slot:title> 총무</template>
                         <template v-slot:content>
                             <router-link
-                                to="/component/badge"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/badge"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">>>>>>> master
                             >
                                 공지사항
                             </router-link>
                             <router-link
-                                to="/component/breadcumb"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/breadcumb"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
                                 비품구매
                             </router-link>
                             <router-link
-                                to="/component/button"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/button"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
                                 회의실 사용
                             </router-link>
                             <router-link
-                                to="/component/card"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/card"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
                                 차량사용
                             </router-link>
                             <router-link
-                                to="/component/dropdown"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/dropdown"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
                                 법정 의무교육
                             </router-link>
                             <router-link
-                                to="/component/modal"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/component/modal"
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
                                 서류함
                             </router-link>

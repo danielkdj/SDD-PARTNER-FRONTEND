@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
+  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700 h-screen"
   >
     <div class="mt-6 flex items-center justify-end gap-x-6">
         <select
@@ -23,115 +23,117 @@
         <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">검색</button>
 
     </div>
-    <div class="wrapping-table mt-10">
-      <table
-        class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-      >
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
+      <div class="wrapping-table mt-10">
+        <table
+          class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
         >
-        <tr>
-          <th
-            scope="col"
-            class="uppercase px-6 py-2"
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
           >
-            번호
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
+          <tr>
+            <th
+              scope="col"
+              class="uppercase px-6 py-2"
+            >
+              번호
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              항목구분
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              제목
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              신청자
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              소속부서
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              작성일시
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              사용일시
+            </th>
+            <th
+              scope="col"
+              class="uppercase px-6 py-3"
+            >
+              상태
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+            v-for="items in tableTransaction"
+            :key="items.transaction"
           >
-            항목구분
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            제목
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            신청자
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            소속부서
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            작성일시
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            사용일시
-          </th>
-          <th
-            scope="col"
-            class="uppercase px-6 py-3"
-          >
-            상태
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-          v-for="items in tableTransaction"
-          :key="items.transaction"
-        >
-          <td class="px-6 py-2">
-              {{ items.docNo }}
-          </td>
-          <td class="px-6 py-4">
-              {{ items.subCategory }}
-          </td>
-          <td class="px-6 py-4">
-              <a v-on:click="fnView(`${items.docNo}`)">{{ items.title }}</a>
-          </td>
-          <td class="px-6 py-4">
-              {{ items.writer }}
-          </td>
-          <td class="px-6 py-4">
-              {{ items.deptName }}
-          </td>
-          <td class="px-6 py-4">
-              {{ items.createdAt }}
-          </td>
-            <td class="px-6 py-4">
-              {{ items.startDate }} ~ {{ items.endDate }}
-          </td>
-          <td class="px-6 py-4">
-          <span
-            class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-            v-if="items.status === 1"
-          >
-            처리 전
-          </span>
-          <span
-                  class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                  v-else-if="items.status === 2"
-          >
-            반려
-          </span>
-          <span
-            class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
-            v-else
-          >
-            승인
-          </span>
+            <td class="px-6 py-2">
+                {{ items.docNo }}
             </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+            <td class="px-6 py-4">
+                {{ items.subCategory }}
+            </td>
+            <td class="px-6 py-4">
+                <a v-on:click="fnView(`${items.docNo}`)">{{ items.title }}</a>
+            </td>
+            <td class="px-6 py-4">
+                {{ items.writer }}
+            </td>
+            <td class="px-6 py-4">
+                {{ items.deptName }}
+            </td>
+            <td class="px-6 py-4">
+                {{ items.createdAt }}
+            </td>
+              <td class="px-6 py-4">
+                {{ items.startDate }} ~ {{ items.endDate }}
+            </td>
+            <td class="px-6 py-4">
+            <span
+              class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
+              v-if="items.status === 1"
+            >
+              처리 전
+            </span>
+            <span
+                    class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+                    v-else-if="items.status === 2"
+            >
+              반려
+            </span>
+            <span
+              class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
+              v-else
+            >
+              승인
+            </span>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </perfect-scrollbar>
   </div>
 </template>
 
@@ -158,6 +160,96 @@ export default {
         },
 
         {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
+        docNo: 2,
+        subCategory: '항목구분',
+        title: '제목',
+        writer: '작성자',
+        deptName: '소속부서',
+        createdAt: '2023-05-03 23:24:00',
+        startDate: '2023-05-03 23:24:00',
+        endDate: '2023-05-03 23:24:00',
+        status: 2
+        },        {
         docNo: 2,
         subCategory: '항목구분',
         title: '제목',

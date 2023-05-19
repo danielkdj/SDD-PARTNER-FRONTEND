@@ -1,7 +1,7 @@
 <template>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
     >
-        <div class="mt-3 flex items-center justify-end gap-x-2">
+        <div class="mt-3 flex items-center justify-end gap-x-6">
             <select
                 v-model ='sCategory'
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
@@ -11,21 +11,17 @@
                 <option value="B차량">B차량</option>
                 <option value="C차량">C차량</option>
             </select>
-            <div class="flex min-h-full flex-col lg:px-7">
-                <input
-                    type="date"
-                    class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-                    v-model ='sStart'
-                />
-            </div>
+            <input
+                v-model ='sStart'
+                type="date"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+            />
             ~
-            <div class="flex min-h-full flex-col lg:px-7">
-                <input
-                    type="date"
-                    class="p-3 w-full border bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
-                    v-model ='sEnd'
-                />
-            </div>
+            <input
+                v-model ='sEnd'
+                type="date"
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+            />
             <button v-on:click="fnSearch" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">검색</button>
 
         </div>
@@ -139,7 +135,7 @@
         </div>
         <div class="space-y-5">
             <div class="grid grid-cols-12 gap-4">
-                <label for="notice_no" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                <label for="noticeNo" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                     문서 번호
                 </label>
                 <div class="col-span-10">
@@ -166,7 +162,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-12 gap-4">
-                <label for="sub_category" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                <label for="subCategory" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                     항목구분
                 </label>
                 <div class="col-span-10">
@@ -175,7 +171,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-12 gap-4">
-                <label for="created_at" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                <label for="createdAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                     작성일시
                 </label>
                 <div class="col-span-10">
