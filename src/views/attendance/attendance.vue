@@ -42,7 +42,7 @@
     <!-- grid wrapper card -->
     <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5 place-content-between">
       <!-- card  -->
-      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex" @click="fetchAllEmp()">
         <div class="p-2 max-w-sm">
           <div class="bg-orange-200 rounded-full w-14 h-14 text-lg p-3 text-orange-600 mx-auto">
             <span class="">
@@ -82,7 +82,7 @@
       </div>
 
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex" @click="fetchNowWorking()">
         <div class="p-2 max-w-sm">
           <div class="bg-green-200 rounded-full w-14 h-14 text-lg p-3 text-green-600 mx-auto">
             <span class="">
@@ -115,7 +115,7 @@
         </div>
       </div>
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex" @click="fetchExtraEmp()">
         <div class="p-2 max-w-sm">
           <div class="bg-red-200 rounded-full w-14 h-14 text-lg p-3 text-red-600 mx-auto">
             <span class="">
@@ -153,7 +153,7 @@
         </div>
       </div>
       <!-- end card -->
-      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex">
+      <div class="card bg-gray-100 dark:bg-gray-800 hover:bg-gray-300 w-full rounded-md p-5 border dark:border-gray-700 flex" @click="fetchDayOffEmp()">
         <div class="p-2 max-w-sm">
           <div class="bg-purple-200 rounded-full w-14 h-14 text-lg p-3 text-purple-600 mx-auto">
             <span class="">
@@ -214,7 +214,7 @@
       <div class="mt-2 w-full">
         <div class="lg:flex grid-cols-1 lg:space-y-0 space-y-3 gap-5 justify-between">
           <div>
-            <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">
+            <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">
               전자결재 내역 현황
             </h2>
             <p class="text-gray-400 text-base font-roboto font-regular">
@@ -336,48 +336,115 @@
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import Button from "@/views/components/button.vue";
+import axios from "axios";
 
 export default {
   name: "Employee",
   data() {
-    return {
-      tableTransaction: [
-        {
-          transaction: "재직증명서 발급",
-          datetime: "2023-05-01",
-          dept: "인사1팀",
-          statusTransaction: "completed",
-          name: "김철수",
-        },
-        {
-          transaction: "재직증명서 발급",
-          datetime: "2023-05-02",
-          dept: "급여1팀",
-          statusTransaction: "completed",
-          name: "이영희",
-        },
-        {
-          transaction: "이직신청서 발급",
-          datetime: "2023-05-05",
-          dept: "개발1팀",
-          statusTransaction: "progress",
-          name: "설유화",
-        },
-        {
-          transaction: "상담신청",
-          datetime: "2023-05-05",
-          dept: "개발2팀",
-          statusTransaction: "cancelled",
-          name: "김정수",
-        },
-      ],
-    };
+    return {};
     // end chart data line
   },
   components: {
     Button,
     Icon,
   },
-  mounted() {},
-};
+  mounted() {
+    this.fnGetList()
+  },
+  methods: {
+
+    fnGetList() {
+      //스프링 부트에서 전송받은 데이터를 출력 처리
+
+      this.$axios
+          .get(this.$serverUrl + "/salary/list",
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
+
+            this.list = res.data;
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    fetchAllEmp() {
+      this.$axios
+          .get(this.$serverUrl + "/employee/list",
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
+
+            this.list = res.data;
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    fetchExtraEmp() {
+      this.$axios
+          .get(this.$serverUrl + "/employee/extra/list",
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
+
+            this.list = res.data;
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    fetchDayOffEmp() {
+      this.$axios
+          .get(this.$serverUrl + "/employee/dayoff/list",
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
+
+            this.list = res.data;
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    fetchNowWorking() {
+      this.$axios
+          .get(this.$serverUrl + "/employee/working/list",
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
+
+            this.list = res.data;
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+  }
+}
 </script>

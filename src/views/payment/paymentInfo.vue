@@ -34,31 +34,32 @@
                 <input type="text" placeholder="검색" v-model="search" @input="fnGetList" class="w-1/3 bg-blue-100 border-0.4 rounded-lg py-2 px-3 ml-2">
               </div>
               <perfect-scrollbar class="divide-y max-h-72 mt-5 dark:divide-gray-700">
+
                 <div
-                    v-for="(user, index) in list"
-                    :key="index"
+                    v-for="att in list"
+                    :key="list.id"
                     class="p-3 w-full"
                 >
                   <div class="flex gap-5 place-content-between">
                     <div>
                       <img
                           class="w-14 rounded-md"
-                          :src="user.empImg"
+                          :src="list.salaryDate"
                           alt=""
                       />
                     </div>
                     <div class="mt-1">
-                      <h2 class="dark:text-gray-200">{{ user.name }}</h2>
+                      <h2 class="dark:text-gray-200">{{ att.salaryDate }}</h2>
                       <p class="text-sm dark:text-gray-500 text-gray-400">
-                        {{ user.empId }}
+                        {{ currency(att.payment) }}원
                       </p>
                     </div>
                     <div class="self-center">
-                      {{user.empRank}}
+                      {{att.extraTime}}
                     </div>
                     <div>
                       <button
-                          @click="selectUser(user)"
+                          @click="selectUser(att)"
                           class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                       >
                         >
@@ -78,8 +79,8 @@
             <div class="h-3/4">
             <perfect-scrollbar class="divide-y mt-5 dark:divide-gray-700 max-h-72">
               <div
-                  v-for="(user, index) in selectedUsers"
-                  :key="index"
+                  v-for="user in selectedUsers"
+                  :key="list.id"
                   class="p-3 w-full"
               >
                 <div class="flex gap-5 place-content-between">
@@ -92,9 +93,9 @@
                   </div>
 
                   <div class="mt-1">
-                    <h2 class="dark:text-gray-200">{{ user.name }}</h2>
+                    <h2 class="dark:text-gray-200">{{ user.salaryDate }}</h2>
                     <p class="text-sm dark:text-gray-500 text-gray-400">
-                      {{ user.empId }}
+                      {{ user.bonus }}
                     </p>
                   </div>
                   <div class="self-center">
@@ -191,50 +192,8 @@ export default {
       searchType: 'empId',
       selectedItems: [],
       previewData: [],
-      list: [
-        {
-          idx: 1,
-          empId: "3891394",
-          empImg:"src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-        {
-          idx: 2,
-          empId: "3891393",
-          empImg: "src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-        {
-          idx: 3,
-          empId: "3891392",
-          empImg: "src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-        {
-          idx: 4,
-          empId: "3891391",
-          empImg: "src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-        {
-          idx: 5,
-          empId: "3891391",
-          empImg: "src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-        {
-          idx: 6,
-          empId: "3891391",
-          empImg: "src/assets/img/user2.png",//이미지
-          empRank: "사원", //직급
-          name: "전병현", //이름
-        },
-      ],
+      list: [],
+      requestBody: {},
       selectedUsers: [],
       users: [] // Add this to store the fetched users
     };
@@ -247,20 +206,19 @@ export default {
 
     fnGetList() {
       //스프링 부트에서 전송받은 데이터를 출력 처리
-      this.requestBody = {
-        sk: this.searchType,
-        sv: this.search,
-        page: this.page,
-        size: this.size,
-      };
 
       this.$axios
-          .get(this.$serverUrl + "/salary/list", {
+          .get(this.$serverUrl + "/salary/list",
+              {
             params: this.requestBody,
             headers: {},
           })
-          .then((res) => {
-            this.users = res.data.content; // Update this line
+          .then((res
+          ) => {
+
+                  this.list = res.data;
+                  // Update this line
+
           })
           .catch((err) => {
             console.error(err);
@@ -300,6 +258,9 @@ export default {
     previewXlsx(selectedUsers) {
       this.previewData = [...this.selectedUsers];
 
+    },
+    currency(value) {
+      return new Intl.NumberFormat().format(value);
     },
     today() {
       const date = new Date();
