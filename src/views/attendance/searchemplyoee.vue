@@ -3,9 +3,9 @@
   <div class="dashboard p-4">
   <div class="w-full h-screen">
     <div class="bg-gray-200 mx-auto h-full">
-      <div class="grid grid-cols-2 min-h-full">
-        <div class="row-span-2 p-4">
-          <div class="bg-white p-6 rounded-lg shadow-lg h-full">
+      <div class="grid grid-cols-2 h-full">
+        <div class="p-4">
+          <div class="bg-white p-4 rounded-lg shadow-lg h-full">
           <header class="text-center text-3xl font-bold bg-gray-200">사원 검색</header>
           <hr>
           <div class="flex items-center justify-center space-x-2 mb-4">
@@ -66,57 +66,47 @@
             </perfect-scrollbar>
         </div>
         </div>
-        <div class="p-4"><div class="bg-white p-6 rounded-lg box-border border h-full w-full">
-          <div class="text-3xl text-center items-center font-bold bg-gray-200">
-            월별조회
+        <div class="flex flex-col h-full">
+          <div class="bg-white p-4 rounded-lg box-border border h-3/4 w-full mt-4">
+            <div class="mt-4">
+              <FullCalendar :options="calendarOptions" id="calendar"/>
+            </div>
           </div>
-          <hr>
-          <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
-            <div
-                v-for="(user, index) in selectedUsers"
-                :key="index"
-                class="p-3 w-full"
-            >
-              <div class="flex gap-5 place-content-between">
-                <div>
-                  <img
-                      class="w-14 rounded-md"
-                      :src="user.image"
-                      alt=""
-                  />
-                </div>
-
-                <div class="mt-1">
-                  <h2 class="dark:text-gray-200">{{ user.name }}</h2>
-                  <p class="text-sm dark:text-gray-500 text-gray-400">
-                    {{ user.status }}
-                  </p>
-                </div>
-                <div>
-                  <input
-                      type="checkbox"
-                      v-model="selectedItems"
-                      :value="user"
-                  />
-                  <button
-                      @click="removeUser(index)"
-                      class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                  >
-                    x
-                  </button>
+          <div class="flex-grow bg-white p-4 rounded-lg shadow-lg h-full mb-4">
+            <div class="text-center text-3xl font-bold bg-gray-200">
+              근무내역
+            </div>
+            <perfect-scrollbar class="divide-y h-full mt-5 dark:divide-gray-700">
+              <div
+                  v-for="(user, index) in users"
+                  :key="index"
+                  class="p-3 w-full"
+              >
+                <div class="flex gap-5 place-content-between">
+                  <div>
+                    <img
+                        class="w-14 rounded-md"
+                        :src="user.image"
+                        alt=""
+                    />
+                  </div>
+                  <div class="mt-1">
+                    <h2 class="dark:text-gray-200">{{ user.name }}</h2>
+                    <p class="text-sm dark:text-gray-500 text-gray-400">
+                      {{ user.status }}
+                    </p>
+                  </div>
+                  <div>
+                    <button
+                        @click="selectUser(user)"
+                        class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    >
+                      >
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </perfect-scrollbar>
-
-        </div></div>
-        <div class="p-6">
-          <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-            <div class="text-center text-3xl font-bold bg-gray-200">
-
-             근무내역
-            </div>
-
+            </perfect-scrollbar>
           </div>
         </div>
       </div>
@@ -129,70 +119,38 @@
   import * as xlsx from 'xlsx'
   import { Icon } from "@iconify/vue";
   import Dropdown from "@/components/Dropdown.vue";
-
-
-
+  import FullCalendar from "@fullcalendar/vue3";
+  import dayGridPlugin from "@fullcalendar/daygrid";
+  import interactionPlugin from "@fullcalendar/interaction";
   export default {
-    components: {
-      Dropdown,
-      Icon,
-      xlsx,
-      name: 'App'
-    },
+    components: {Dropdown, FullCalendar},
 
     data() {
       return {
-        search: '',
-        searchType: 'empId',
-        selectedItems: [],
-        selectedUsers: [],
-        users: [] // Add this to store the fetched users
-      };
+        greeting: "",
+        calendarOptions: {
+          plugins: [dayGridPlugin, interactionPlugin],
+          height: 425,
+          initialView: 'dayGridMonth',
+          dateClick: this.handleDateClick,
+          events: [
+            {title: 'event 1', date: '2023-05-01'},
+            {title: 'event 2', date: '2023-05-02'}
+          ]
+        },
+      }
     },
     mounted() {
-      this.fnGetList()
+      this.greeting = "Hello world!";
     },
-    //function
-    methods: {
 
-      fnGetList() {
-        //스프링 부트에서 전송받은 데이터를 출력 처리
-        this.requestBody = {
-          sk: this.searchType,
-          sv: this.search,
-          page: this.page,
-          size: this.size,
-        };
-
-        this.$axios
-            .get(this.$serverUrl + "/salary/list", {
-              params: this.requestBody,
-              headers: {},
-            })
-            .then((res) => {
-              this.users = res.data.content; // Update this line
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-      },
-      makeExcelFile5() {
-        const workBook = Xlsx.utils.book_new();
-        const workSheet = Xlsx.utils.json_to_sheet(this.selectedItems);
-        Xlsx.utils.book_append_sheet(workBook, workSheet, 'example');
-        Xlsx.writeFile(workBook, 'example.xlsx');
-      },
-      selectUser(user) {
-
-        this.selectedUsers.push(user);
-      },
-      removeUser(index) {
-        this.selectedUsers.splice(index, 1);
-      }
-    }
   }
+
+
+
 </script>
 
 <style>
+
 </style>
 
