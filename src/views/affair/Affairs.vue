@@ -1,6 +1,7 @@
 <template>
   <!-- grid wrapper card -->
-  <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
+    <HomeLink :homeLink="homeLink"/>
+    <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
     <!-- card  -->
     <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
       <div class="p-2 max-w-sm">
@@ -267,10 +268,19 @@
 
 <script>
 import moment from 'moment';
+import HomeLink from "@/components/HomeLink.vue";
 export default {
     name: "Affairs",
+    components: {HomeLink},
     data(){
         return{
+          //link 변수
+          homeLink:{
+            name1:"Affair",
+            link1:"/Affairs",
+            link2:"#",
+            link3:"#",
+          },
             requestBody: this.$route.query,
             roomCount: 3,
             roomDate: '2023-05-06 23:24:00',

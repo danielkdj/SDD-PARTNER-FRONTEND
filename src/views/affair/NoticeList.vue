@@ -59,16 +59,16 @@
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                             v-for="items in tableTransaction"
-                              :key="items.transaction" >
+                             v-for="(items, index) in tableTransaction"
+                              :key="items.noticeNo" >
                             <td class="px-6 py-2">
-                                {{ items.noticeNo }}
+                                {{tableTransaction.length - index}}
                             </td>
                             <td class="px-6 py-4">
                                 <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.writer }}
+                                {{ items.users.userName }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ items.createdAt }}
@@ -88,123 +88,156 @@ export default {
         return {
             //검색용
             sTitle: '',
-            requestBody: this.$route.query,
+            // requestBody: this.$route.query,
+            // tableTransaction: [
+            //     {
+            //         noticeNo: 1,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },
+            //
+            //     {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },                {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     }, {
+            //         noticeNo: 2,
+            //         title: '제목',
+            //         writer: '작성자',
+            //         contents: '내용',
+            //         createdAt: '작성일시',
+            //     },
+            // ]
+            requestBody:{},
             tableTransaction: [
                 {
                     noticeNo: 1,
                     title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
                     createdAt: '작성일시',
-                },
+                    users : {
+                        userName: '작성자',
+                    }
 
-                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                }, {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
                 },
-            ]
+            ],
         }
     },
     methods: {
+        fnGetList() { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+            // this.requestBody = { // 데이터 전송
+            //     sTitle: this.sTitle,
+            // }
+            //get요청이므로 select가 작동됨. 그중에서도 /notice 매핑된 메소드가 실행됨
+            //파라매터 없이 요청
+            //.then은 ajax의 success콜백과 같은 기능. res는 response와 같음
+            //.catch는 ajax의 error콜백과 같은 기능.
+            this.$axios.get(this.$serverUrl + "/notice", {
+                params: this.requestBody,
+                headers: {}
+            }).then((res) => {
+
+                this.tableTransaction = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+            }).catch((err) => {
+                if (err.message.indexOf('Network Error') > -1) {
+                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                }
+            })
+        },
         fnWrite() {
             this.$router.push({
                 path: './NoticeWrite'
@@ -232,6 +265,9 @@ export default {
                 }
             })
         }
-    }
+    },
+    mounted() { //페이지로드시 함수 적용
+        this.fnGetList()
+    },
 }
 </script>
