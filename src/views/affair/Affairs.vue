@@ -99,35 +99,19 @@
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
         <h2 class="font-bold text-gray-900 dark:text-gray-200 text-xl">공지사항</h2>
         <div class="wrapping-table mt-10">
-            <table
-                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-            >
-                <thead
-                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-                >
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-2"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         번호
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
-                        제목
+                    <th scope="col" class="uppercase px-6 py-2">
+                    제목
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         작성자
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         작성일시
                     </th>
                 </tr>
@@ -135,17 +119,17 @@
                 <tbody>
                 <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                        v-for="items in noticeTable"
-                        :key="items.transaction"
+                        v-for="(items, index) in noticeTable"
+                        :key="items.index"
                 >
                     <td class="px-6 py-2">
-                        {{ items.noticeNo }}
+                        {{ noticeTable.length - index }}
                     </td>
                     <td class="px-6 py-4">
                         <a v-on:click="fnViewNotice(`${items.noticeNo}`)">{{ items.title }}</a>
                     </td>
                     <td class="px-6 py-4">
-                        {{ items.writer }}
+                        {{ items.users.userName }}
                     </td>
                     <td class="px-6 py-4">
                         {{ items.createdAt }}
@@ -165,52 +149,28 @@
                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
             >
             <tr>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-2"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     번호
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     항목구분
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     제목
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     신청자
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     소속부서
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     작성일시
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     사용일시
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     상태
                 </th>
             </tr>
@@ -218,26 +178,26 @@
             <tbody>
             <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                    v-for="items in roomAndCarTable"
-                    :key="items.transaction"
+                    v-for="(items,index) in roomAndCarTable"
+                    :key="index"
             >
                 <td class="px-6 py-2">
-                    {{ items.docNo }}
+                    {{ roomAndCarTable.length - index }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.subCategory }}
+                    {{ items.categoryId }}
                 </td>
                 <td class="px-6 py-4">
-                    <a v-if="items.subCategory === '회의실'"
-                    v-on:click="fnViewRoom(`${items.docNo}`)">{{ items.title }}</a>
+                    <a v-if="items.categoryId === 1"
+                    v-on:click="fnViewRoom(`${items.documentNo}`)">{{ items.title }}</a>
                     <a v-else
-                    v-on:click="fnViewCar(`${items.docNo}`)">{{ items.title }}</a>
+                    v-on:click="fnViewCar(`${items.documentNo}`)">{{ items.title }}</a>
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.writer }}
+                    {{ items.name }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.deptName }}
+                    {{ items.deptNo }}
                 </td>
                 <td class="px-6 py-4">
                     {{ items.createdAt }}
@@ -269,6 +229,7 @@
 <script>
 import moment from 'moment';
 import HomeLink from "@/components/HomeLink.vue";
+import {ref} from "vue";
 export default {
     name: "Affairs",
     components: {HomeLink},
@@ -288,76 +249,51 @@ export default {
             carDate: '2023-05-01 23:24:00',
             eduCount: 35,
             eduDate: '2023-05-04 23:24:00',
-
-            noticeTable: [
-                {
-                    noticeNo: 1,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },
-                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },
-            ],
-            roomAndCarTable: [
-                {
-                    docNo: 1,
-                    subCategory: '차량',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt:'2023-05-04 23:24:00',
-                    startDate:'2023-05-05 23:24:00',
-                    endDate:'2023-05-05 23:24:00',
-                    status: 1
-                },
-                {
-                    docNo: 2,
-                    subCategory: '회의실',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt: '2023-05-03 23:24:00',
-                    startDate: '2023-05-03 23:24:00',
-                    endDate: '2023-05-03 23:24:00',
-                    status: 2
-                },                {
-                    docNo: 2,
-                    subCategory: '회의실',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt: '2023-05-03 23:24:00',
-                    startDate: '2023-05-03 23:24:00',
-                    endDate: '2023-05-03 23:24:00',
-                    status: 2
-                }, {
-                    docNo: 2,
-                    subCategory: '회의실',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt: '2023-05-03 23:24:00',
-                    startDate: '2023-05-03 23:24:00',
-                    endDate: '2023-05-03 23:24:00',
-                    status: 2
-                },
-            ]
+            noticeTable: ref([
+              {
+              noticeNo : '',
+              title: '',
+              content : '',
+              createdAt: '',
+              users : {
+                userId: '',
+                userName : ''}
+              },
+            ]),
+            roomAndCarTable : ref([]),
         }
     },
     methods: {
+        fnGetUses(){
+            let url = this.$serverUrl + "/use/main"
+            this.$axios.get(url, {
+              params: this.requestBody,
+              headers: {}
+            }).then((res) => {
+
+              this.roomAndCarTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+            }).catch((err) => {
+              if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+              }
+            })
+          },
+      fnGetNotice(){
+            let url = this.$serverUrl + "/notice/main"
+            this.$axios.get(url, {
+              params: this.requestBody,
+              headers: {}
+            }).then((res) => {
+
+              this.noticeTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+            }).catch((err) => {
+              if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+              }
+            })
+          },
         formatDate(date) {
             const now = moment();
             const dateObj = moment(date, 'YYYY-MM-DD HH:mm:ss');
@@ -381,15 +317,15 @@ export default {
                 query: this.requestBody
             })
         },
-        fnViewRoom(docNo){
-            this.requestBody.docNo = docNo
+        fnViewRoom(documentNo){
+            this.requestBody.documentNo = documentNo
             this.$router.push({
                 path: './RoomApprove',
                 query: this.requestBody
             })
         },
-        fnViewCar(docNo){
-            this.requestBody.docNo = docNo
+        fnViewCar(documentNo){
+            this.requestBody.documentNo = documentNo
             this.$router.push({
                 path: './CarApprove',
                 query: this.requestBody
@@ -413,7 +349,11 @@ export default {
                 query: this.requestBody
             })
         }
-    }
+    },
+  mounted() {
+      this.fnGetUses();
+      this.fnGetNotice();
+  }
 }
 </script>
 
