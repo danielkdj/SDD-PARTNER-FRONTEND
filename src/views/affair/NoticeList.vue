@@ -98,7 +98,7 @@ export default {
                 name1: "Affair",
                 name2: "NoticeList",
                 link1: "/Affairs",
-                link2: "/Affairs",
+                link2: "/NoticeList",
                 link3: "#",
             },
             requestBody:{},
