@@ -4,7 +4,7 @@
         <div class="mt-2 w-full">
             <!-- site path -->
             <nav class="flex p-2" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <ol class="m-3 inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="/"
                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
@@ -33,9 +33,8 @@
                                       clip-rule="evenodd">
                                 </path>
                             </svg>
-                            <a href="#"
-                               class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-                                인사
+                            <a href="/HR/employee" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                              인사
                             </a>
                         </div>
                     </li>
@@ -66,8 +65,261 @@
           <div class="lg:flex sh grid-cols-1 lg:space-y-0 space-y-2 gap-5 justify-between">
 
               <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium p-2">
-                사원카드
+                사원관리
               </h1>
+
+            <div class="flex gap-2">
+              <!-- crud 버튼 -->
+              <button
+                  class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5" @click="addButtonClick()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </button>
+              <button
+                  class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
+                  @click="createEmployee()">
+                등록
+              </button>
+              <button
+                  class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
+                  @click="editEmployee()">
+                수정
+              </button>
+              <button class="bg-white hover:border-gray-200 border rounded py-3 px-5"
+                      @click="deleteEmployee()">
+                삭제
+              </button>
+              <!-- end crud 버튼 -->
+            </div>
+          </div>
+        </div>
+      <!-- 사원 상세정보 출력 카드 -->
+      <div class="mt-2 h-auto w-full bg-white dark:bg-gray-800 p-4 rounded-md box-border border dark:border-gray-700">
+        <div class="mt-2 mb-5">
+          <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">
+            사원 카드
+          </h2>
+          <p class="text-gray-400 text-base font-roboto font-regular">
+            사원 상세 정보
+          </p>
+        </div>
+        <div class="flex" v-for="e in selectedEmployee" :key="e.empId">
+            <div class="mr-4">
+              <img :src="getRelativePath(e.empImgDisplay)" alt="사원사진" class="rounded-lg border items-center w-80 h-80 cursor-pointer"
+                   @click="triggerUpload"/>
+              <input type="file" accept="image/*" ref="fileInput" @change="handleFileUpload" style="display: none;"/>
+            </div>
+            <table class="w-full text-sm rounded-md text-center text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+              <tr>
+                <th class="py-2 border bg-gray-100">사원번호</th>
+                <td class="py-2 border">{{ e.empId }}</td>
+                <th class="py-2 border bg-gray-100">주민번호</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.empSsn"
+                         placeholder="주민번호 입력"/>
+                </td>
+                <th class="py-2 border bg-gray-100">이 름</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.name"
+                         placeholder="이름 입력"/>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">성 별</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.gender">
+                    <option value="e.gender">{{ e.gender }}</option>
+                    <option value=""></option>
+                    <option value="남자">남자</option>
+                    <option value="여자">여자</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">전화번호</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.phone"
+                         placeholder="전화번호 입력"/>
+                </td>
+                <th class="py-2 border bg-gray-100">이메일</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.email"
+                         placeholder="e-mail 입력"/>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">연 봉</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.salary"
+                         placeholder="급여 입력"/>
+                </td>
+                <th class="py-2 border bg-gray-100">급여계좌번호</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.accountNo"
+                         placeholder="급여계좌번호 입력"/>
+                </td>
+                <th class="py-2 border bg-gray-100">주 소</th>
+                <td class="py-2 border">
+                  <input class="text-center w-2/3" type="text" v-model="e.address"
+                         placeholder="주소찾기 버튼클릭"/>
+                  <button @click="openPostcode(e)" class="ml-2 px-2 py-1 bg-cyan-700 text-white rounded">주소찾기</button>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">호 봉</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.empRank"
+                         placeholder="호봉 입력"/>
+                </td>
+                <th class="py-2 border bg-gray-100">직 위</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.empSpot">
+                    <option value="e.empSpot">{{ e.empSpot }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 사장</option>
+                    <option value="12">12: 이사</option>
+                    <option value="13">13: 부장</option>
+                    <option value="14">14: 과장</option>
+                    <option value="15">15: 대리</option>
+                    <option value="16">16: 주임</option>
+                    <option value="17">17: 사원</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">직 책</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.empPosition"/>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">소속부서</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.deptNo">
+                    <option value="e.deptNo">{{ e.deptNo }}</option>
+                    <option value=""></option>
+                    <option value="1">11: 개발</option>
+                    <option value="2">12: 인사</option>
+                    <option value="3">13: 급여</option>
+                    <option value="4">14: 총무</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">입사일</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.hireDate"/>
+                </td>
+                <th class="py-2 border bg-gray-100">결혼여부</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.marriage">
+                    <option value="e.marriage">{{ e.marriage }}</option>
+                    <option value=""></option>
+                    <option value="Y">Y</option>
+                    <option value="N">N</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">채용구분</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.classification">
+                    <option value="e.classification">{{ e.classification }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 공개채용</option>
+                    <option value="12">12: 특별채용</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">고용구분</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.empClassification">
+                    <option value="e.empClassification">{{ e.empClassification }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 정규직</option>
+                    <option value="12">12: 시간제</option>
+                    <option value="13">13: 무기계약직</option>
+                    <option value="14">14: 계약직</option>
+                    <option value="15">15: 파견직</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">입사구분</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.admission">
+                    <option value="e.admission">{{ e.admission }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 신입</option>
+                    <option value="12">12: 경력</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">자격정보</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.qualification"/>
+                </td>
+                <th class="py-2 border bg-gray-100">퇴사일자</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.leaveDate"/>
+                </td>
+                <th class="py-2 border bg-gray-100">퇴사사유</th>
+                <td class="py-2 border">
+                  <input class="text-center cursor-pointer" type="text" v-model="e.leaveReason"/>
+                </td>
+              </tr>
+              <tr>
+                <th class="py-2 border bg-gray-100">퇴사여부</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer required:" v-model="e.leaveIs">
+                    <option value="">{{ e.leaveIs }}</option>
+                    <option value=""></option>
+                    <option value="Y">Y</option>
+                    <option value="N">N</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">퇴사사유코드</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.leaveCode">
+                    <option value="e.leaveCode">{{ e.leaveCode }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 개인사정 자진퇴사</option>
+                    <option value="12">12: 사업장이전등으로 자진퇴사</option>
+                    <option value="22">22: 폐업, 도산</option>
+                    <option value="23">23: 해고, 권고사직등</option>
+                    <option value="26">26: 근로자 귀책해고, 권고사직</option>
+                    <option value="31">31: 정년</option>
+                    <option value="32">32: 계약만료</option>
+                    <option value="41">41: 고용보험미적용</option>
+                    <option value="42">42: 이중고용</option>
+                  </select>
+                </td>
+                <th class="py-2 border bg-gray-100">재직상태</th>
+                <td class="py-2 border">
+                  <select class="text-center cursor-pointer" v-model="e.empStatus">
+                    <option value="e.empStatus">{{ e.empStatus }}</option>
+                    <option value=""></option>
+                    <option value="11">11: 재직</option>
+                    <option value="12">12: 퇴직</option>
+                    <option value="13">13: 퇴직예정</option>
+                    <option value="14">14: 휴직</option>
+                    <option value="15">15: 휴직예정</option>
+                    <option value="16">16: 입사예정</option>
+                    <option value="17">17: 수습</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+        </div>
+      </div>
+      <!-- 사원카드 end -->
+
+      <!-- 전체 사원 리스트 -->
+      <div class="mt-2 bg-white dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
+        <div class="mt-2 w-full">
+          <div class="lg:flex sh grid-cols-1 lg:space-y-0 space-y-2 gap-5 justify-between">
+
+            <div>
+              <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">
+                사원 리스트
+              </h2>
+              <p class="text-gray-400 text-base font-roboto font-regular">
+                이름으로 사원 조회 지원
+              </p>
+            </div>
 
             <div class="flex gap-2">
               <!-- search bar -->
@@ -84,239 +336,16 @@
               </div>
               <!-- end search bar -->
 
-              <!-- crud 버튼 -->
+              <!-- 목록 버튼 -->
               <button
                   class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
-                  @click="createEmployee(emp, file)">
-                등록
-              </button>
-              <button
-                  class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
-                  @click="updateEmployee(emp.empId, emp, file)">
-                수정
-              </button>
-              <button class="bg-white hover:border-gray-200 border rounded py-3 px-5"
-                      @click="deleteEmployee(emp.empId)">
-                삭제
+                  @click="returnEmpList()">
+                목록
               </button>
               <!-- end crud 버튼 -->
             </div>
           </div>
         </div>
-      <!-- 사원 상세정보 출력 카드 -->
-      <div
-          class="mt-2 h-90 w-full bg-gray-100 dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
-        <perfect-scrollbar class="divide-y mt-3 h-80">
-          <!-- <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex" v-for="em4p in filteredEmployees" :key="emp.employee">-->
-          <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex"
-               v-for="emp in empList" :key="emp.empId">
-            <div class="mr-6 max-w-sm items-center">
-              <img src="/img/류준열씨.webp" alt="사원사진" class="pt-1 w-72 h-72 rounded-sm cursor-pointer"
-                   @click="triggerUpload"/>
-              <input type="file" accept="image/*" ref="fileInput" @change="handleFileUpload" style="display: none;"/>
-            </div>
-            <table
-                class="w-full text-sm text-center text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
-              <tr>
-                <th class="py-2 border bg-gray-100">사원번호</th>
-                <td class="py-2 border">{{ emp.empId }}</td>
-                <th class="py-2 border bg-gray-100">주민번호</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.empSsn"/>
-                </td>
-                <th class="py-2 border bg-gray-100">이 름</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.name"/>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">성 별</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.gender">
-                    <option value="">{{ emp.gender }}</option>
-                    <option value=""></option>
-                    <option value="남자">남자</option>
-                    <option value="여자">여자</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">전화번호</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.phone"
-                         placeholder="{{ emp.phone }}"/>
-                </td>
-                <th class="py-2 border bg-gray-100">이메일</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.email"
-                         placeholder="{{ emp.email }}"/>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">연 봉</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.salary"
-                         placeholder="{{ emp.salary }}"/>
-                </td>
-                <th class="py-2 border bg-gray-100">급여계좌번호</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.accountNo"
-                         placeholder="{{ emp.accountNo }}"/>
-                </td>
-                <th class="py-2 border bg-gray-100">주 소</th>
-                <td class="py-2 border">
-                  <input class="text-center w-2/3" type="text" v-model="emp.address" placeholder="{{ emp.address }}"/>
-                  <button @click="openPostcode(emp)" class="ml-2 px-2 py-1 bg-cyan-700 text-white rounded">주소찾기</button>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">호 봉</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.empRank"
-                         placeholder="{{ emp.empRank }}"/>
-                </td>
-                <th class="py-2 border bg-gray-100">직 위</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.empSpot">
-                    <option value="">{{ emp.empSpot }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 사장</option>
-                    <option value="12">12: 이사</option>
-                    <option value="13">13: 부장</option>
-                    <option value="14">14: 과장</option>
-                    <option value="15">15: 대리</option>
-                    <option value="16">16: 주임</option>
-                    <option value="17">17: 사원</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">직 책</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.empPosition"/>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">소속부서</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.deptNo">
-                    <option value="">{{ emp.deptNo }}</option>
-                    <option value=""></option>
-                    <option value="1">11: 개발</option>
-                    <option value="2">12: 인사</option>
-                    <option value="3">13: 급여</option>
-                    <option value="4">14: 총무</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">입사일</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.hireDate"/>
-                </td>
-                <th class="py-2 border bg-gray-100">결혼여부</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.marriage">
-                    <option value="">{{ emp.marriage }}</option>
-                    <option value=""></option>
-                    <option value="Y">Y</option>
-                    <option value="N">N</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">채용구분</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.classification">
-                    <option value="">{{ emp.classification }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 공개채용</option>
-                    <option value="12">12: 특별채용</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">고용구분</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.empClassification">
-                    <option value="">{{ emp.empClassification }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 정규직</option>
-                    <option value="12">12: 시간제</option>
-                    <option value="13">13: 무기계약직</option>
-                    <option value="14">14: 계약직</option>
-                    <option value="15">15: 파견직</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">입사구분</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.admission">
-                    <option value="">{{ emp.admission }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 신입</option>
-                    <option value="12">12: 경력</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">자격정보</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.qualification"/>
-                </td>
-                <th class="py-2 border bg-gray-100">퇴사일자</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.leaveDate"/>
-                </td>
-                <th class="py-2 border bg-gray-100">퇴사사유</th>
-                <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="emp.leaveReason"/>
-                </td>
-              </tr>
-              <tr>
-                <th class="py-2 border bg-gray-100">퇴사여부</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.leaveIs">
-                    <option value="">{{ emp.leaveIs }}</option>
-                    <option value=""></option>
-                    <option value="Y">Y</option>
-                    <option value="N">N</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">퇴사사유코드</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.leaveCode">
-                    <option value="">{{ emp.leaveCode }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 개인사정 자진퇴사</option>
-                    <option value="12">12: 사업장이전등으로 자진퇴사</option>
-                    <option value="22">22: 폐업, 도산</option>
-                    <option value="23">23: 해고, 권고사직등</option>
-                    <option value="26">26: 근로자 귀책해고, 권고사직</option>
-                    <option value="31">31: 정년</option>
-                    <option value="32">32: 계약만료</option>
-                    <option value="41">41: 고용보험미적용</option>
-                    <option value="42">42: 이중고용</option>
-                  </select>
-                </td>
-                <th class="py-2 border bg-gray-100">재직상태</th>
-                <td class="py-2 border">
-                  <select class="text-center cursor-pointer" v-model="emp.empStatus">
-                    <option value="emp.empStatus">{{ emp.empStatus }}</option>
-                    <option value=""></option>
-                    <option value="11">11: 재직</option>
-                    <option value="12">12: 퇴직</option>
-                    <option value="13">13: 퇴직예정</option>
-                    <option value="14">14: 휴직</option>
-                    <option value="15">15: 휴직예정</option>
-                    <option value="16">16: 입사예정</option>
-                    <option value="17">17: 수습</option>
-                  </select>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </perfect-scrollbar>
-      </div>
-      <!-- 사원카드 end -->
-
-      <!-- 전체 사원 리스트 -->
-      <div class="mt-2 bg-white dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
-        <div class="mt-2 w-full">
-          <h1 class="text-2xl text-gray-900 dark:text-gray-200 font-medium">
-            전체 사원 리스트
-          </h1>
           <div class="wrapping-table mt-10">
             <perfect-scrollbar class="divide-y mt-5 h-80">
               <table
@@ -338,8 +367,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                    v-for="items in empList" :key="items.empId">
+                <tr class="cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+                    v-for="items in empList" :key="items.empId"
+                    @click="selectEmployee(items)">
                   <td class="px-6 py-3">
                     {{ items.empId }}
                   </td>
@@ -451,58 +481,198 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- 전자결재 리스트 end -->
 </template>
 
 <script>
 import { Icon } from "@iconify/vue";
-import Button from "@/views/components/button.vue";
 import { ref } from "vue";
+import Button from "@/views/components/button.vue";
 
 export default {
   data() {
     return {
-      requestBody: {},
       empList: ref([]),
+      searchEmpList: ref([]),
+      selectedEmployee: [{
+        empId: "",
+        name: "",
+        password: "",
+        empImg: "",
+        empImgDisplay: "",
+        empSsn: "",
+        gender: "",
+        marriage: "",
+        phone: "",
+        email: "",
+        salary: "",
+        accountNo: "",
+        address: "",
+        empSpot: "",
+        empPosition: "",
+        empRank: "",
+        empStatus: "",
+        classification: "",
+        empClassification: "",
+        admission: "",
+        permission: "",
+        hireDate: null,
+        leaveDate: null,
+        leaveReason: "",
+        leaveIs: "",
+        leaveCode: "",
+        awards: "",
+        qualifications: "",
+        deptNo: "",
+      }],
+      defaultEmployee: {
+        empId: "",
+        name: "",
+        password: "",
+        empImg: "",
+        empImgDisplay: "",
+        empSsn: "",
+        gender: "",
+        marriage: "",
+        phone: "",
+        email: "",
+        salary: "",
+        accountNo: "",
+        address: "",
+        empSpot: "",
+        empPosition: "",
+        empRank: "",
+        empStatus: "",
+        classification: "",
+        empClassification: "",
+        admission: "",
+        permission: "",
+        hireDate: null,
+        leaveDate: null,
+        leaveReason: "",
+        leaveIs: "",
+        leaveCode: "",
+        awards: "",
+        qualifications: "",
+        deptNo: "",
+      },
+      defaultEmpCard: [{
+        empId: "",
+        name: "",
+        password: "",
+        empImg: "",
+        empImgDisplay: "",
+        empSsn: "",
+        gender: "",
+        marriage: "",
+        phone: "",
+        email: "",
+        salary: "",
+        accountNo: "",
+        address: "",
+        empSpot: "",
+        empPosition: "",
+        empRank: "",
+        empStatus: "",
+        classification: "",
+        empClassification: "",
+        admission: "",
+        permission: "",
+        hireDate: null,
+        leaveDate: null,
+        leaveReason: "",
+        leaveIs: "",
+        leaveCode: "",
+        awards: "",
+        qualifications: "",
+        deptNo: "",
+      }],
+      requestBody: {},
+      search: "",
     };
   },
+  watch: {
+    search: function(newVal) {
+      this.fetchEmployees(newVal);
+    }
+  },
   methods: {
-    fetchEmployees() {
-      this.$axios.get(this.$serverUrl + "/employee/ep", {
+    fetchEmployees(search) {
+      let url = this.$serverUrl + "/employee/ep";
+      if (search) {
+        url += "/name/" + search;
+      }
+
+      this.$axios.get(url, {
         params: this.requestBody,
         headers: {}
       }).then((res) => {
-        let emp = res.data.map(emp => {
-        return emp;
-        });
-        this.empList = emp;
-      }).catch((err) => {
-        if (err.message.indexOf('Network Error') > -1) {
-          alert('네트워크가 연결되지 않았습니다.\n다시 시도해주세요.')
-        }
-      })
-    },
-    createEmployee(emp, file) {
-      const formData = new FormData();
-      formData.append("emp", JSON.stringify(emp));
-      formData.append("file", file);
-      this.$axios.post(this.$serverUrl + "/employee/ep/create", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then((res) => {
-        if (res.data.resultCode === "OK") {
-          this.fetchEmployees();
+        if (res.data.length > 0) {
+
+          this.empList = res.data.map(emp => ({
+            ...emp,
+            empImgDisplay: this.getRelativePath(emp.empImg)
+          }));
+        } else {
+          this.empList = this.defaultEmpCard;
         }
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
+        this.empList = this.defaultEmpCard;
       })
+    },
+    selectEmployee(employee) {
+      this.selectedEmployee = [employee];
+    },
+    addButtonClick() {
+      this.selectedEmployee = this.defaultEmpCard;
+    },
+    returnEmpList() {
+      this.search = '';
+      this.fetchEmployees();
+    },
+    async createEmployee() {
+      let url = this.$serverUrl + "/employee/ep/create";
+
+      const randomEmpId = Math.floor(Math.random() * 100000000).toString().padStart(8, '0');
+      // const randomPassword = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+
+      this.selectedEmployee[0].empId = `EMP-${randomEmpId}`;
+      this.selectedEmployee[0].password = this.selectedEmployee[0].empId;
+
+      const formData = new FormData();
+      formData.append('emp', JSON.stringify(this.selectedEmployee[0]));
+
+      let fileInput = this.$refs.fileInput;
+      if (Array.isArray(fileInput)) {
+        fileInput = fileInput[0];
+      }
+      const file = fileInput.files[0];
+
+      formData.append('file', file, file.name);
+      try {
+        const response = await this.$axios.post(url, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        alert(`새로 등록된 사원의 사번 : EMP-${randomEmpId}, 비밀번호: ${randomEmpId} 입니다.`);
+        console.log(response.data);
+      } catch (error) {
+        if(e.empID === e.newEmpId) {
+          alert('이미 등록된 사원입니다.');
+        } else {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      }
     },
     updateEmployee(empId, emp, file) {
       const formData = new FormData();
+      if (emp === undefined) {
+        emp = this.defaultEmployee;
+      }
       formData.append("emp", JSON.stringify(emp));
       formData.append("file", file);
       this.$axios.put(this.$serverUrl + `/employee/ep/update/${empId}`, formData, {
@@ -519,16 +689,34 @@ export default {
         }
       })
     },
-    openPostcode(emp) {
-      new window.daum.Postcode({
-        oncomplete: function (data) {
-          emp.address = data.roadAddress;
-        }
-      }).open();
+    editEmployee() {
+      let fileInput = this.$refs.fileInput;
+      if (Array.isArray(fileInput)) {
+        fileInput = fileInput[0];
+      }
+      const file = fileInput.files[0];
+      this.updateEmployee(this.selectedEmployee[0].empId, this.selectedEmployee[0], file);
     },
-    toggleAll() {
-      this.isAllChecked = !this.isAllChecked;  // 전체 선택 상태 토글
-      this.eaStatus.forEach(item => item.checked = this.isAllChecked);  // 모든 항목의 체크 상태를 전체 선택 상태와 동기화
+    getRelativePath(path) {
+      const fileSystemBasePath = 'C:/SDD/public/img/';
+      const serverBasePath = 'http://localhost:3030/img/';
+
+      if (path && typeof path === 'string') {
+        if (path.startsWith(fileSystemBasePath)) {
+          const newPath = serverBasePath + path.substring(fileSystemBasePath.length);
+          console.log("Converted path:", newPath);
+          return newPath;
+        }
+      }
+      console.log("Unchanged path:", path);
+      return path;
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.selectedEmployee[0].empImg = file.name;
+        this.selectedEmployee[0].empImgDisplay = this.getRelativePath('C:/SDD/public/img/' + file.name);
+      }
     },
     triggerUpload() {
       this.$nextTick(() => {
@@ -541,32 +729,29 @@ export default {
         }
       });
     },
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (file && this.emp && this.emp.empId) {
-        let reader = new FileReader();
-        reader.onload = e => {
-          const fileDataUrl = e.target.result;
-          const empIndex = this.empList.value.findIndex(emp => emp.empId === this.emp.empId);
-          if (empIndex !== -1) {
-            this.empList.value[empIndex].empImg = fileDataUrl;
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  },
-
-  components: {
-    Button,
-    Icon,
+    openPostcode(emp) {
+      new window.daum.Postcode({
+        oncomplete: function (data) {
+          emp.address = data.roadAddress;
+        }
+      }).open();
+    },
+    toggleAll() {
+      this.isAllChecked = !this.isAllChecked;  // 전체 선택 상태 토글
+      this.eaStatus.forEach(item => item.checked = this.isAllChecked);  // 모든 항목의 체크 상태를 전체 선택 상태와 동기화
+    },
   },
   mounted() {
     this.fetchEmployees();
+
     let script = document.createElement('script');
     script.src = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
     script.async = true;
     document.body.appendChild(script);
+  },
+  components: {
+    Button,
+    Icon,
   },
 };
 </script>
