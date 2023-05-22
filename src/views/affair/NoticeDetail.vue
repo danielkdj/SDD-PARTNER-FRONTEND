@@ -1,4 +1,5 @@
 <template>
+    <HomeLink :homeLink="homeLink"/>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button v-on:click="fnUpdate" class="bg-amber-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">수정</button>
@@ -58,15 +59,28 @@
 </template>
 
 <script>
+import HomeLink from "@/components/HomeLink.vue";
+
 export default {
+    components: {HomeLink},
     data() { //변수생성
         return {
+            //link 변수
+            homeLink: {
+                name1: "Affair",
+                name2: "NoticeList",
+                name3: "NoticeDetail",
+                link1: "/Affairs",
+                link2: "/NoticeList",
+                link3: "/NoticeDetail",
+            },
             requestBody: this.$route.query,
             noticeNo: this.$route.query.noticeNo,
             title: '제목',
             writer: '작성자',
             content: '내용작성',
             createdAt: '작성일시',
+
         }
     },
       mounted() { //document.ready = window.upload역할과 동일
