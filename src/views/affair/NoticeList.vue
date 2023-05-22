@@ -1,4 +1,5 @@
 <template>
+    <HomeLink :homeLink="homeLink"/>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700 h-screen" >
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <div class="flex flex-no-shrink items-center">
@@ -29,7 +30,7 @@
                         class="input-box border dark:bg-gray-900 lg:ml-0 ml-5 dark:border-gray-700 rounded-md hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700"
                 >
                     <input
-                            v-model = 'sTitle'
+                            v-model = "search"
                             type="text"
                             placeholder="SearchTitle..."
                             class="p-3 w-full bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
@@ -82,150 +83,52 @@
 </template>
 
 <script>
+import HomeLink from "@/components/HomeLink.vue";
+import {ref} from "vue";
+
 export default {
     name: "NoticeList",
+    components: {HomeLink},
     data() { //변수생성
         return {
             //검색용
-            sTitle: '',
-            // requestBody: this.$route.query,
+            search: '',
+            //link 변수
+            homeLink: {
+                name1: "Affair",
+                name2: "NoticeList",
+                link1: "/Affairs",
+                link2: "/NoticeList",
+                link3: "#",
+            },
+            requestBody:{},
+            tableTransaction  : ref([]),
             // tableTransaction: [
             //     {
             //         noticeNo: 1,
             //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
             //         createdAt: '작성일시',
-            //     },
+            //         users : {
+            //             userName: '작성자',
+            //         }
             //
-            //     {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     },                {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
-            //     }, {
-            //         noticeNo: 2,
-            //         title: '제목',
-            //         writer: '작성자',
-            //         contents: '내용',
-            //         createdAt: '작성일시',
             //     },
-            // ]
-            requestBody:{},
-            tableTransaction: [
-                {
-                    noticeNo: 1,
-                    title: '제목',
-                    createdAt: '작성일시',
-                    users : {
-                        userName: '작성자',
-                    }
-
-                },
-            ],
+            // ],
+        }
+    },
+    watch: {
+        search: function(newVal) {
+            console.log(newVal)
+            this.fnGetList(newVal)
         }
     },
     methods: {
-        fnGetList() { //스프링 부트통해 DB에서 전송받은 list 출력 처리
-            // this.requestBody = { // 데이터 전송
-            //     sTitle: this.sTitle,
-            // }
-            //get요청이므로 select가 작동됨. 그중에서도 /notice 매핑된 메소드가 실행됨
-            //파라매터 없이 요청
-            //.then은 ajax의 success콜백과 같은 기능. res는 response와 같음
-            //.catch는 ajax의 error콜백과 같은 기능.
-            this.$axios.get(this.$serverUrl + "/notice", {
+        fnGetList(search) { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+            let url = this.$serverUrl + "/notice"
+            if(search){
+                url += "/search/" + search
+            }
+            this.$axios.get(url, {
                 params: this.requestBody,
                 headers: {}
             }).then((res) => {
@@ -250,24 +153,25 @@ export default {
                 query: this.requestBody
             })
         },
-        fnSearch(){
-            this.requestBody = {
-                title: this.sTitle
-            }
-            this.$axios.get(this.$serverUrl + "/notice/list",{
-                params: this. requestBody,
-                headers: {}
-            }).then((res)=>{
-                this.list = res.data.data
-            }).catch((err) => {
-                if (err.message.indexOf('Network Error') > -1) {
-                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-                }
-            })
-        }
+        // fnSearch(){
+        //     this.requestBody = {
+        //         title: this.sTitle
+        //     }
+        //     this.$axios.get(this.$serverUrl + "/notice/list",{
+        //         params: this. requestBody,
+        //         headers: {}
+        //     }).then((res)=>{
+        //         this.list = res.data.data
+        //     }).catch((err) => {
+        //         if (err.message.indexOf('Network Error') > -1) {
+        //             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        //         }
+        //     })
+        // }
     },
     mounted() { //페이지로드시 함수 적용
         this.fnGetList()
-    },
+    }
+
 }
 </script>
