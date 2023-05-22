@@ -279,29 +279,53 @@
                         </template>
                         <template v-slot:title> 근태 & 근태</template>
                         <template v-slot:content>
+
                             <router-link
-                                to="/component/alert"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/attendance"
+
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
+
                                 급여대장 등록
+
                             </router-link>
+
                             <router-link
-                                to="/component/accordion"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/salary"
+
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
+
                                 급여목록 조회
+
                             </router-link>
+
                             <router-link
-                                to="/component/badge"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/searchemplyoee"
+
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
+
                                 근태등록 조회
+
                             </router-link>
+
                             <router-link
-                                to="/component/breadcumb"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                    to="/payment"
+
+                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                             >
+
                                 휴가등록 조회
+
                             </router-link>
 
                         </template>
