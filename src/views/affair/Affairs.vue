@@ -129,7 +129,7 @@
                         <a v-on:click="fnViewNotice(`${items.noticeNo}`)">{{ items.title }}</a>
                     </td>
                     <td class="px-6 py-4">
-                        {{ items.users.userName }}
+                        {{ items.deptName }} {{ items.name }}
                     </td>
                     <td class="px-6 py-4">
                         {{ items.createdAt }}
@@ -251,14 +251,13 @@ export default {
             eduDate: '2023-05-04 23:24:00',
             noticeTable: ref([
               {
-              noticeNo : '',
-              title: '',
-              content : '',
-              createdAt: '',
-              users : {
-                userId: '',
-                userName : ''}
-              },
+                noticeNo: '',
+                title: '',
+                name: '',
+                deptName: '',
+                content: '',
+                createdAt: ''
+              }
             ]),
             roomAndCarTable : ref([]),
         }

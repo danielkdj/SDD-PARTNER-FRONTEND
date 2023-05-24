@@ -58,7 +58,7 @@
                         내용
                     </label>
                     <div class="col-span-10">
-                        <div v-html="content"></div>
+                        <div v-html="content" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"></div>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,6 @@ export default {
             content: '내용작성',
             createdAt: '작성일시',
             deptName : '소속부서',
-
         }
     },
       mounted() { //document.ready = window.upload역할과 동일
@@ -103,8 +102,8 @@ export default {
               this.title = res.data.title
               this.content = res.data.content.toString()
               this.createdAt = res.data.createdAt
-              this.writer = res.data.users.userName
-              this.deptName = res.data.users.dept.deptName
+              this.writer = res.data.name
+              this.deptName = res.data.deptName
           }).catch((err) => {
               if (err.message.indexOf('Network Error') > -1) {
                   alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

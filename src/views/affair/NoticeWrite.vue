@@ -9,13 +9,32 @@
       <div class="space-y-5">
         <div class="grid grid-cols-12 gap-4">
           <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              공지글 번호
+          </label>
+            <div class="col-span-10">
+                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                >{{noticeNo}}</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
               작성자
           </label>
             <div class="col-span-10">
                 <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                 >{{writer}}</p>
             </div>
-        </div>            <div class="grid grid-cols-12 gap-4">
+        </div>
+        <div class="grid grid-cols-12 gap-4">
+          <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+              소속부서
+          </label>
+            <div class="col-span-10">
+                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                >{{deptName}}</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-12 gap-4">
             <label for="createdAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                 작성일시
             </label>
@@ -77,6 +96,7 @@
         noticeNo: this.$route.query.noticeNo,
         title: '',
         writer: '',
+        deptName: '',
         content: '',
         createdAt: '',
 
@@ -101,7 +121,8 @@
             this.title = res.data.title
             this.content = res.data.content.toString()
             this.createdAt = res.data.createdAt
-            this.writer = res.data.users.userName
+            this.writer = res.data.name
+            this.deptName = res.data.deptName
           }).catch((err) => {
             console.log(err)
           })
