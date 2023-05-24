@@ -17,8 +17,8 @@
                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <a :href="homeLink.link1" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-                    {{ homeLink.name1 }}</a>
+                <button v-on:click="fnLink(homeLink.link1)" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                    {{ homeLink.name1 }}</button>
             </div>
         </li>
         <li v-if="homeLink.link2!=='#'">
@@ -26,8 +26,10 @@
                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <a :href="homeLink.link2" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-                    {{ homeLink.name2 }}</a>
+<!--                <a :href="homeLink.link2" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">-->
+<!--                    {{ homeLink.name2 }}</a>             -->
+                <button v-on:click="fnLink(homeLink.link2)" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                    {{ homeLink.name2 }}</button>
             </div>
         </li>
         <li v-if="homeLink.link3 !=='#'">
@@ -35,8 +37,8 @@
                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <a :href="homeLink.link3" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-                    {{ homeLink.name3 }}</a>
+                <button v-on:click="fnLink(homeLink.link3)" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                    {{ homeLink.name3 }}</button>
             </div>
         </li>
     </ol>
@@ -45,9 +47,11 @@
 
 <script>
 import "./HomeLink.vue";
+import Button from "@/views/components/button.vue";
 
 export default {
     name: "HomeLink",
+    components: {Button},
     props: {
         homeLink: {
             type: Object,
@@ -63,5 +67,12 @@ export default {
             }
         }
     },
+    methods : {
+        fnLink(path) {
+            this.$router.push({
+                path: '.' + path
+            })
+        },
+    }
 }
 </script>

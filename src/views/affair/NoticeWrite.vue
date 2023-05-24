@@ -1,5 +1,6 @@
 <template>
-  <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
+    <HomeLink :homeLink="homeLink"/>
+    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <button v-on:click="fnSave" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded ">저장</button>
             <button v-on:click="fnList" class="bg-gray-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
@@ -53,9 +54,21 @@
 </template>
 
 <script>
+  import HomeLink from "@/components/HomeLink.vue";
+
   export default {
+    components: {HomeLink},
     data() { //변수생성
       return {
+        //link 변수
+        homeLink: {
+          name1: "Affair",
+          name2: "NoticeList",
+          name3: "NoticeWrite",
+          link1: "/Affairs",
+          link2: "/NoticeList",
+          link3: "/NoticeWrite",
+        },
           requestBody: this.$route.query,
           noticeNo: this.$route.query.noticeNo,
           title: '',
