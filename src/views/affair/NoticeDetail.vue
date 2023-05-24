@@ -27,6 +27,15 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-12 gap-4">
+                    <label for="writer" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
+                        소속부서
+                    </label>
+                    <div class="col-span-10">
+                        <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        >{{deptName}}</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4">
                     <label for="createdAt" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                         작성일시
                     </label>
@@ -49,8 +58,7 @@
                         내용
                     </label>
                     <div class="col-span-10">
-                        <textarea readonly rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"
-                        >{{content}} </textarea>
+                        <div v-html="content"></div>
                     </div>
                 </div>
             </div>
@@ -80,6 +88,7 @@ export default {
             writer: '작성자',
             content: '내용작성',
             createdAt: '작성일시',
+            deptName : '소속부서',
 
         }
     },
@@ -95,6 +104,7 @@ export default {
               this.content = res.data.content.toString()
               this.createdAt = res.data.createdAt
               this.writer = res.data.users.userName
+              this.deptName = res.data.users.dept.deptName
           }).catch((err) => {
               if (err.message.indexOf('Network Error') > -1) {
                   alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

@@ -44,8 +44,11 @@
           <label for="content" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
               내용
           </label>
+
           <div class="col-span-10">
-              <textarea id="content" name="content" v-model="content" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"></textarea>
+              <div id="ckeditor">
+                  <ckeditor :editor="editor" v-model="content" :config="editorConfig"></ckeditor>
+              </div>
           </div>
       </div>
       </div>
@@ -55,6 +58,7 @@
 
 <script>
   import HomeLink from "@/components/HomeLink.vue";
+  import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
   export default {
     components: {HomeLink},
@@ -69,13 +73,20 @@
           link2: "/NoticeList",
           link3: "/NoticeWrite",
         },
-          requestBody: this.$route.query,
-          noticeNo: this.$route.query.noticeNo,
-          title: '',
-          writer: '',
-          content: '',
-          createdAt: '',
-          //createdAt: new Date().toLocaleString(),
+        requestBody: this.$route.query,
+        noticeNo: this.$route.query.noticeNo,
+        title: '',
+        writer: '',
+        content: '',
+        createdAt: '',
+
+        //Editor 변수
+        editor: Editor,
+        editorData: '',
+        editorConfig: {
+          language: 'ko',
+        },
+
       }
     },
     mounted() { //document.ready = window.upload역할과 동일
