@@ -61,11 +61,12 @@
                   <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
               </td>
               <td class="px-6 py-4">
-                  {{ items.users.userName }}
+                  {{items.deptName}} {{ items.name }}
               </td>
               <td class="px-6 py-4">
                   {{ items.createdAt }}
               </td>
+
             </tr>
           </tbody>
         </table>
