@@ -185,10 +185,10 @@
                     {{ roomAndCarTable.length - index }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.categoryId }}
+                    {{ items.subCategory }}
                 </td>
                 <td class="px-6 py-4">
-                    <a v-if="items.categoryId === 1"
+                    <a v-if="items.categoryId === 12,13"
                     v-on:click="fnViewRoom(`${items.documentNo}`)">{{ items.title }}</a>
                     <a v-else
                     v-on:click="fnViewCar(`${items.documentNo}`)">{{ items.title }}</a>
@@ -197,7 +197,7 @@
                     {{ items.name }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.deptNo }}
+                    {{ items.deptName }}
                 </td>
                 <td class="px-6 py-4">
                     {{ items.createdAt }}
@@ -207,16 +207,16 @@
                 </td>
                 <td class="px-6 py-4">
                   <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-                          v-if="items.status === 1" >
+                          v-if="items.approvalStatus === 1" >
                     처리 전
                   </span>
                   <span class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                          v-else-if="items.status === 2" >
-                    반려
+                          v-else-if="items.approvalStatus === 2" >
+                    승인
                   </span>
                   <span class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
                           v-else >
-                  승인
+                    반려
                   </span>
                 </td>
             </tr>
@@ -259,7 +259,22 @@ export default {
                 createdAt: ''
               }
             ]),
-            roomAndCarTable : ref([]),
+            roomAndCarTable : ref([{
+              documentNo : '',
+              title: '',
+              content: '',
+              startDate : '',
+              endDate : '',
+              createdAt : '',
+              approvalStatus : '',
+              categoryId : '',
+              category : '',
+              subCategory : '',
+              empId : '',
+              name: '',
+              deptNo: '',
+              deptName: ''
+            }]),
         }
     },
     methods: {
