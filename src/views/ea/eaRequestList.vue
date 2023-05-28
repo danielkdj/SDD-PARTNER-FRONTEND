@@ -80,31 +80,41 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                                v-for="items in tableTransaction"
-                                :key="items.transaction"
-                        >
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+                            v-for="items in tableTransaction"
+                            :key="items.documentNo"
+                            @click="fnEaView(`${items.documentNo}`)">
                             <td class="px-6 py-4">
-                                {{ items.transaction }}
+                                {{ items.documentNo }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.item }}
+                                {{ items.categoryItem.category }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.sub_item }}
+                                {{ items.categoryItem.subCategory }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ items.title }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.datetime1 }}
+                                {{ items.createdAt }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.datetime2 }}
+                                {{ items.startDate }} - {{ items.endDate }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ items.status }}
+                                <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
+                                      v-if="items.approvalStatus === 1">
+                                          처리 전
+                                </span>
+                                <span class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+                                      v-else-if="items.approvalStatus === 2">
+                                         승인
+                                </span>
+                                <span class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
+                                      v-else>
+                                       반려
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -120,67 +130,77 @@
 
 <script>
 // @ is an alias to /src
-import { Icon } from "@iconify/vue";
+import {Icon} from "@iconify/vue";
 
 export default {
+    name: "EaRequestList",
 
-    name: "Dashboard",
-    data() {
-        return {
-            tableTransaction: [
-                {
-                    transaction: "1",
-                    item: "휴가",
-                    sub_item: "연차",
-                    title: "연차 사용",
-                    datetime1: "2019.04.09",
-                    datetime2: "2019.04.10 ~ 2019.04.12",
-                    status: "완료",
-                },
-                {
-                    transaction: "1",
-                    item: "휴가",
-                    sub_item: "포상휴가",
-                    title: "포상휴가 사용",
-                    datetime1: "2019.04.19",
-                    datetime2: "2019.04.20 ~ 2019.04.22",
-                    status: "대기",
-                },
-                {
-                    transaction: "1",
-                    item: "휴가",
-                    sub_item: "공가",
-                    title: "공가 사용",
-                    datetime1: "2019.04.09",
-                    datetime2: "2019.04.10 ~ 2019.04.12",
-                    status: "반려",
-                },
-                {
-                    transaction: "1",
-                    item: "휴가",
-                    sub_item: "연차",
-                    title: "연차 사용",
-                    datetime1: "2019.04.09",
-                    datetime2: "2019.04.10 ~ 2019.04.12",
-                    status: "대기",
-                },
-                {
-                    transaction: "1",
-                    item: "차량",
-                    sub_item: "차량A 신청",
-                    title: "회사 차량 신청",
-                    datetime1: "2019.04.10",
-                    datetime2: "2019.04.10 ~ 2019.04.10",
-                    status: "완료",
-                },
-
-            ],
-        };
-        // end chart data line
-    },
     components: {
         Icon,
     },
-    mounted() {},
+    data() {
+        return {
+            requestBody: {},
+            tableTransaction: [
+                {
+                    documentNo: '',
+                    title: '',
+                    content: '',
+                    startDate: '',
+                    endDate: '',
+                    approvalStatus: '',
+                    createdAt: '',
+                    categoryItem: {
+                        category: '',
+                        subCategory: ''
+                    },
+                    employee: {
+                        empId: '',
+                        name: ''
+                    }
+                }
+            ],
+        };
+    },
+    methods: {
+        fnGetEaApprovalList() {
+            this.$axios.get(this.$serverUrl + "/ea/eaList", {
+                params: this.requestBody,
+                headers: {}
+            }).then((res) => {
+                this.tableTransaction = res.data;
+            }).catch((err) => {
+                if (err.message.indexOf('Network Error') > -1) {
+                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
+                }
+            });
+        },
+
+        fnEaView(documentNo) {
+            this.requestBody.documentNo = documentNo
+            this.$router.push({
+                path: './eaDetail',
+                query: this.requestBody
+            })
+        },
+    },
+    mounted() { //페이지로드시 함수 적용
+        this.fnGetEaApprovalList()
+    },
+    // computed: {
+    //     getStatusText() {
+    //         return function(approvalStatus) {
+    //             if (approvalStatus === 1) {
+    //                 return '대기';
+    //             } else if (approvalStatus === 2) {
+    //                 return '승인';
+    //             } else if (approvalStatus === 3) {
+    //                 return '반려';
+    //             } else {
+    //                 return '';
+    //             }
+    //         };
+    //     }
+    // },
 };
 </script>
