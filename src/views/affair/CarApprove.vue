@@ -247,7 +247,7 @@ export default {
         console.log(err);
       })
     },
-    fnGetList(search) { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+    fnGetList() { //스프링 부트통해 DB에서 전송받은 list 출력 처리
       let url = this.$serverUrl + "/use/schedule/" + this.categoryId
       this.$axios.get(url, {
       }).then((res) => {

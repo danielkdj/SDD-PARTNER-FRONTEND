@@ -172,7 +172,7 @@ export default {
         fnGetList(search){
           let url = this.$serverUrl + "/com"
           let searchQuarter = this.quarter
-          if(this.quarter==''){
+          if(this.quarter ===''){
             searchQuarter = 0
           }
           if(search){
