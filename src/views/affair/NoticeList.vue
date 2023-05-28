@@ -1,7 +1,8 @@
 <template>
   <HomeLink :homeLink="homeLink"/>
   <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700 h-screen" >
-    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <p class="font-bold text-base text-gray-800 dark:text-gray-200">공지사항</p>
+    <div class="mt-2 flex items-center justify-end gap-x-6">
       <div class="flex flex-no-shrink items-center">
         <button class="text-gray-500 lg:hidden ml-3 block" @click="$emit('sidebarToggle', true)" >
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@
       <button v-on:click="fnWrite" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">등록</button>
     </div>
     <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
-      <div class="wrapping-table mt-10">
+      <div class="wrapping-table mt-2">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll" >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
             <tr>

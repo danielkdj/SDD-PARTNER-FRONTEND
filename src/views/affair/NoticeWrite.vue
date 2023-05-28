@@ -12,7 +12,7 @@
               공지글 번호
           </label>
             <div class="col-span-10">
-                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                <p class="block py-2.5 px-0 w-4/5 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                 >{{noticeNo}}</p>
             </div>
         </div>
@@ -21,7 +21,7 @@
               작성자
           </label>
             <div class="col-span-10">
-                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                <p class="block py-2.5 px-0 w-4/5 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                 >{{writer}}</p>
             </div>
         </div>
@@ -30,7 +30,7 @@
               소속부서
           </label>
             <div class="col-span-10">
-                <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                <p class="block py-2.5 px-0 w-4/5 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                 >{{deptName}}</p>
             </div>
         </div>
@@ -39,11 +39,11 @@
                 작성일시
             </label>
           <div class="col-span-10">
-              <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              <p class="block py-2.5 px-0 w-4/5 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
               >{{createdAt}}</p>
           </div>
         </div>
-          <div class="grid grid-cols-12 gap-4">
+        <div class="grid grid-cols-12 gap-4">
             <label for="title" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
                 제목
             </label>
@@ -52,7 +52,7 @@
                         type="text"
                         name="title"
                         id="title"
-                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                        class="block py-2.5 px-0 w-4/5 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
                         placeholder=""
                         v-model="title"
                         required
@@ -63,13 +63,12 @@
           <label for="content" class="text-sm text-gray-500 dark:text-gray-400 col-span-2 self-center">
               내용
           </label>
-
           <div class="col-span-10">
-              <div id="ckeditor">
+              <div id="ckeditor" class="w-4/5">
                   <ckeditor :editor="editor" v-model="content" :config="editorConfig"></ckeditor>
               </div>
           </div>
-      </div>
+        </div>
       </div>
     </form>
   </div>
