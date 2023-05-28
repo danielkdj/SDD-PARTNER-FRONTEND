@@ -68,11 +68,24 @@
       </perfect-scrollbar>
     </div>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
-      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">전자결재</h2>
+      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">전자결재  &nbsp
+        <span class="text-base text-green-800 bg-green-300 px-3 py-1 rounded-md"
+                v-if="approvalStatus === 1">
+                처리 전
+        </span>
+        <span class="text-base text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+                v-else-if="approvalStatus === 2">
+                승인
+        </span>
+        <span class="text-base text-red-800 bg-red-300 px-3 py-1 rounded-md"
+                v-else>
+                반려
+        </span>
+      </h2>
       <div class="flex items-center justify-end gap-x-6">
-            <button type="button" v-on:click="fnYes" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">승인</button>
-            <button type="button" v-on:click="fnNo" class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">반려</button>
-            <button type="button" v-on:click="fnList" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
+          <button v-if="approvalStatus==1" type="button" v-on:click="fnYes" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">승인</button>
+          <button v-if="approvalStatus==1" type="button" v-on:click="fnNo" class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">반려</button>
+          <button type="button" v-on:click="fnList" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
       </div>
       <div>
         <form>
@@ -225,12 +238,12 @@ export default {
     fnYes() {
       if (!confirm("승인하시겠습니까?")) return //취소 클릭시
 
-      this.$axios.update(this.$serverUrl + '/car/' + this.documentNo, {}) //확인 클릭시
+      this.$axios.patch(this.$serverUrl + '/use/' + this.documentNo + '/2') //확인 클릭시
         .then((res) => {
           alert('승인되었습니다.')
-          if(confirm(res.data.drvNo + '번 차량관리대장이 작성되었습니다. 상세페이지로 이동하시겠습니까?.' )){
-
-          }
+          // if(confirm(res.data.drvNo + '번 차량관리대장이 작성되었습니다. 상세페이지로 이동하시겠습니까?.' )){
+          //
+          // }
           this.fnList();
         }).catch((err) => {
         console.log(err);
@@ -239,7 +252,7 @@ export default {
     fnNo() {
       if (!confirm("반려하시겠습니까?")) return //취소 클릭시
 
-      this.$axios.update(this.$serverUrl + '/car/' + this.documentNo, {}) //확인 클릭시
+      this.$axios.patch(this.$serverUrl + '/use/' + this.documentNo + '/2') //확인 클릭시
         .then(() => {
           alert('반려되었습니다.')
           this.fnList();
