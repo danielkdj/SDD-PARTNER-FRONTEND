@@ -136,7 +136,7 @@
                     내용
                 </label>
                 <div class="col-span-10">
-                    <textarea rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"> {{content}} </textarea>
+                    <div v-html="content" class="block w-4/5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-0 focus:ring-inset focus:border-primary sm:text-sm sm:leading-6"></div>
                 </div>
               </div>
             </div>
@@ -248,7 +248,7 @@ export default {
         console.log(err);
       })
     },
-    fnGetList(search) { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+    fnGetList() { //스프링 부트통해 DB에서 전송받은 list 출력 처리
       let url = this.$serverUrl + "/use/schedule/" + this.categoryId
       this.$axios.get(url, {
       }).then((res) => {
