@@ -1,19 +1,9 @@
 <template>
   <HomeLink :homeLink="homeLink"/>
   <div class="h-screen">
-    <div class="h-2/5 mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
-      <div class="h-1/6 mt-3 flex items-center justify-end gap-x-6">
-        <select v-model ='search.category' class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400">
-            <option value="">-항목구분-</option>
-            <option value="A회의실">A회의실</option>
-            <option value="B회의실">B회의실</option>
-            <option value="C회의실">C회의실</option>
-        </select>
-        <input v-model ='search.start' type="date" class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"/>
-        ~
-        <input v-model ='search.end' type="date" class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"/>
-      </div>
-      <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
+    <div class="h-1/2 mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
+      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">{{ subCategory }} 사용일정</h2>
+      <perfect-scrollbar class="dark:divide-gray-700">
         <div class="wrapping-table mt-10">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-1/2 lg:overflow-auto overflow-y-scroll">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -31,9 +21,6 @@
                       신청자
                   </th>
                   <th scope="col" class="uppercase px-6 py-2" >
-                      소속부서
-                  </th>
-                  <th scope="col" class="uppercase px-6 py-2" >
                       사용일시
                   </th>
                   <th scope="col" class="uppercase px-6 py-2" >
@@ -43,22 +30,19 @@
             </thead>
             <tbody>
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                  v-for="items in tableTransaction"
+                  v-for="(items,index) in tableTransaction"
                   :key="items.transaction" >
                   <td class="px-6 py-2">
-                      {{ items.documentNo }}
+                      {{ tableTransaction.length - index }}
                   </td>
                   <td class="px-6 py-4">
-                      {{ items.categoryId }}
+                      {{ items.subCategory }}
                   </td>
                   <td class="px-6 py-4">
                       {{ items.title }}
                   </td>
                   <td class="px-6 py-4">
-                      {{ items.name }}
-                  </td>
-                  <td class="px-6 py-4">
-                      {{ items.deptNo }}
+                      {{items.deptName}} {{ items.name }}
                   </td>
                   <td class="px-6 py-4">
                       {{ items.startDate }} ~ {{ items.endDate }}
@@ -83,13 +67,13 @@
         </div>
       </perfect-scrollbar>
     </div>
-    <div class="h-3/5 mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
-      <div class="h-1/6 flex items-center justify-end gap-x-6">
+    <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
+      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">전자결재</h2>
+      <div class="flex items-center justify-end gap-x-6">
         <button type="button" v-on:click="fnYes" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">승인</button>
         <button type="button" v-on:click="fnNo" class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">반려</button>
         <button type="button" v-on:click="fnList" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
       </div>
-      <perfect-scrollbar class="h-5/6 dark:divide-gray-700">
         <div>
           <form>
             <div class="space-y-5">
@@ -108,7 +92,7 @@
                 </label>
                 <div class="col-span-10">
                   <p class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                  >{{deptName}} {{write}}</p>
+                  >{{deptName}} {{name}}</p>
                 </div>
               </div>
               <div class="grid grid-cols-12 gap-4">
@@ -158,7 +142,6 @@
             </div>
           </form>
         </div>
-      </perfect-scrollbar>
     </div>
   </div>
 </template>
@@ -166,6 +149,7 @@
 <script>
 import HomeLink from "@/components/HomeLink.vue";
 import {ref} from "vue";
+import moment from "moment";
 
 export default {
   name: "RoomApprove",
@@ -173,11 +157,9 @@ export default {
   data() { //변수생성
     return {
       //검색용 변수
-      search: {
-        category: '',
-        start: '',
-        end: '',
-      },
+      searchCategory: '1',
+      searchStart: '',
+      searchEnd: '',
       //homeLink
       homeLink: {
         name1: "Affair",
@@ -189,20 +171,23 @@ export default {
       },
       requestBody: this.$route.query,
       documentNo: this.$route.query.documentNo,
-      category: '회의실',
-      subCategory: 'A회의실',
-      title: '제목',
-      write: '작성자',
-      deptName: '소속부서',
-      content: '세부내용',
-      createdAt: '2023-05-04 23:24:00',
-      startDate: '2023-05-05 23:24:00',
-      endDate: '2023-05-05 23:24:00',
+      categoryId: this.$route.query.categoryId,
       tableTransaction: ref([]),
+      title: '',
+      content: '',
+      startDate: '',
+      endDate: '',
+      createdAt: '',
+      approvalStatus: '',
+      subCategory: '',
+      empId: '',
+      name: '',
+      deptNo: '',
+      deptName: '',
     }
   },
   watch: {
-    search: function(newVal) {
+    startDate: function(newVal) {
       console.log(newVal)
       this.fnGetList(newVal)
     }
@@ -211,15 +196,20 @@ export default {
     fnGetView(){
       this.$axios.get(this.$serverUrl +'/use/'+  this.documentNo)
         .then((res) => {
-            this.category = res.data.categoryId
-            this.subCategory = res.data.categoryId
-            this.title= res.data.title
-            this.write= res.data.name
-            this.deptName= res.data.deptNo
-            this.content= res.data.content
-            this.createdAt= res.data.
-            this.startDate= res.data.startDate
-            this.endDate= res.data.endDate
+          this.documentNo = res.data.documentNo
+          this.title = res.data.title
+          this.content = res.data.content
+          this.startDate = res.data.startDate
+          this.endDate = res.data.endDate
+          this.createdAt = res.data.createdAt
+          this.approvalStatus = res.data.approvalStatus
+          this.categoryId = res.data.categoryId
+          this.category = res.data.category
+          this.subCategory = res.data.subCategory
+          this.empId = res.data.empId
+          this.name = res.data.name
+          this.deptNo = res.data.deptNo
+          this.deptName = res.data.deptName
         }).catch((err) => {
           if (err.message.indexOf('Network Error') > -1) {
             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -259,10 +249,8 @@ export default {
       })
     },
     fnGetList(search) { //스프링 부트통해 DB에서 전송받은 list 출력 처리
-      let url = this.$serverUrl + "/use/list/1"
+      let url = this.$serverUrl + "/use/schedule/" + this.categoryId
       this.$axios.get(url, {
-        params: this.requestBody,
-        headers: {}
       }).then((res) => {
 
         this.tableTransaction = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
@@ -273,24 +261,21 @@ export default {
         }
       })
     },
-    //항상 사용완료만 출력됨. 수정해야함
     setStatus(start, end){
-      let now = new Date();
-        if (start > now) {
-          return '사용전';
-        }
-        if (start <= now && end >= now) {
-          return '사용중';
-        }else{
-          return '사용완료';
-        }
-    }
+      let startM = new moment(start, "YYYY-MM-DD hh:mm");
+      let endM = new moment(end, "YYYY-MM-DD hh:mm");
+      if (startM.isAfter(moment(),'minute')) {
+        return '사용전';
+      }
+      if (endM.isBefore(moment(),'minute')) {
+        return '사용완료';
+      }else{
+        return '사용중';
+      }
+    },
   },
   mounted() { //페이지로드시 함수 적용
     this.fnGetView()
-    this.fnGetList()
-
-
   },
 }
 </script>
