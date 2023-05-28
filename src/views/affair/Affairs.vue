@@ -303,7 +303,7 @@ export default {
         // let years = moment.year()
         // let quarters = moment.quarter()
         let url = this.$serverUrl + "/com/count/0/N/"+this.year+"/"+this.quarter
-        if(year, quarter){
+        if(year && quarter){
           url = this.$serverUrl + "/com/count/0/N/"+year+"/"+quarter
         }
         this.$axios.get(url, {
