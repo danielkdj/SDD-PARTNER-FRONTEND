@@ -83,8 +83,8 @@
         </span>
       </h2>
       <div class="flex items-center justify-end gap-x-6">
-          <button v-if="approvalStatus==1" type="button" v-on:click="fnYes" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">승인</button>
-          <button v-if="approvalStatus==1" type="button" v-on:click="fnNo" class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">반려</button>
+          <button v-if="approvalStatus===1" type="button" v-on:click="fnYes" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">승인</button>
+          <button v-if="approvalStatus===1" type="button" v-on:click="fnNo" class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">반려</button>
           <button type="button" v-on:click="fnList" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-3">목록</button>
       </div>
       <div>
