@@ -80,30 +80,6 @@
 
                                 <router-link
 
-                                    to="/mypage/changePassword"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                                >
-
-                                    비밀번호 변경
-
-                                </router-link>
-
-                                <router-link
-
-                                    to="/mypage/appointmentInfo"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                                >
-
-                                    발령정보 조회
-
-                                </router-link>
-
-                                <router-link
-
                                     to="/mypage/requestCounsel"
 
                                     class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -277,57 +253,32 @@
                             </svg>
 
                         </template>
-                        <template v-slot:title> 근태 & 근태</template>
+                        <template v-slot:title> 급여 & 근태</template>
                         <template v-slot:content>
-
                             <router-link
-
-                                    to="/attendance"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
+                                to="/component/badge"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-
-                                급여대장 등록
-
+                              근태조회 등록
                             </router-link>
-
                             <router-link
-
-                                    to="/salary"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
+                                to="/component/accordion"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-
-                                급여목록 조회
-
+                              급여목록 조회
                             </router-link>
-
                             <router-link
-
-                                    to="/searchemplyoee"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
+                                to="/component/badge"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-
-                                근태등록 조회
-
+                              근태등록 조회
                             </router-link>
-
                             <router-link
-
-                                    to="/payment"
-
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
+                                to="/component/breadcumb"
+                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-
-                                휴가등록 조회
-
+                              급여 이체 신청
                             </router-link>
-
                         </template>
                     </menu-accordion>
                 </div>
@@ -353,21 +304,6 @@
                                          class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
                                 상담
                             </router-link>
-
-                            <router-link to="/HR/AD"
-                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
-                                입사서류
-                            </router-link>
-
-                            <router-link to="/HR/insurance"
-                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
-                                4대보험
-                            </router-link>
-
-                            <router-link to="/HR/dispatch"
-                                         class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">
-                                발령
-                            </router-link>
                         </template>
                     </menu-accordion>
                 </div>
@@ -381,58 +317,60 @@
                             </svg>
 
                         </template>
-                        <template v-slot:title> 총무</template>
-                        <template v-slot:content>
-                            <router-link
-
-                                    to="/component/badge"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700">>>>>>> master
-                            >
-                                공지사항
-                            </router-link>
-                            <router-link
-
-                                    to="/component/breadcumb"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                            >
-                                비품구매
-                            </router-link>
-                            <router-link
-
-                                    to="/component/button"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                            >
-                                회의실 사용
-                            </router-link>
-                            <router-link
-
-                                    to="/component/card"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                            >
-                                차량사용
-                            </router-link>
-                            <router-link
-
-                                    to="/component/dropdown"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                            >
-                                법정 의무교육
-                            </router-link>
-                            <router-link
-
-                                    to="/component/modal"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-
-                            >
-                                서류함
-                            </router-link>
-                        </template>
+                      <template v-slot:title> 총무</template>
+                      <template v-slot:content>
+                        <router-link
+                            to="/Affairs"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          총무과 메인
+                        </router-link>
+                        <router-link
+                            to="/NoticeList"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          공지사항
+                        </router-link>
+                        <router-link
+                            to="/RoomList"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          회의실 신청내역
+                        </router-link>
+                        <router-link
+                            to="/RoomSchedule"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          회의실 사용일정
+                        </router-link>
+                        <router-link
+                            to="/CarList"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          차량 신청내역
+                        </router-link>
+                        <router-link
+                            to="/CarSchedule"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          차량 사용일정
+                        </router-link>
+                        <router-link
+                            to="/DrvList"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          차량 관리대장
+                        </router-link>
+                        <router-link
+                            to="/CompletionList"
+                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          이수관리
+                        </router-link>
+                      </template>
                     </menu-accordion>
                 </div>
+
             </div>
         </div>
     </nav>
