@@ -238,7 +238,7 @@ export default {
     fnYes() {
       if (!confirm("승인하시겠습니까?")) return //취소 클릭시
 
-      this.$axios.patch(this.$serverUrl + '/use/' + this.documentNo + '/2') //확인 클릭시
+      this.$axios.patch(this.$serverUrl + '/use/car/' + this.documentNo + '/2') //확인 클릭시
         .then((res) => {
           alert('승인되었습니다.')
           // if(confirm(res.data.drvNo + '번 차량관리대장이 작성되었습니다. 상세페이지로 이동하시겠습니까?.' )){

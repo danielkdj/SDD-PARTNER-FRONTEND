@@ -35,7 +35,7 @@
     <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
       <div class="wrapping-table mt-2">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll" >
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="uppercase px-6 py-2" >
                   번호
@@ -52,14 +52,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
                 v-for="(items, index) in tableTransaction"
-                :key="items.noticeNo" >
+                :key="items.noticeNo"
+                v-on:click="fnView(`${items.noticeNo}`)">
               <td class="px-6 py-2">
                  {{tableTransaction.length - index}}
               </td>
               <td class="px-6 py-4">
-                  <a v-on:click="fnView(`${items.noticeNo}`)">{{ items.title }}</a>
+                  {{ items.title }}
               </td>
               <td class="px-6 py-4">
                   {{items.deptName}} {{ items.name }}

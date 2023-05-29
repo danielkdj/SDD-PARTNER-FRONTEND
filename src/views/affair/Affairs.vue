@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="block p-2 w-full">
-        <p class="font-bold text-base text-gray-800 dark:text-gray-200">
+        <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
             <a v-on:click="fnViewRoomList()">회의실 신청</a>
         </p>{{roomCount}}
         <h3 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(roomDate) }}</h3>
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="block p-2 w-full">
-          <p class="font-bold text-base text-gray-800 dark:text-gray-200">
+          <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
               <a v-on:click="fnViewCarList()">차량 신청</a>
           </p>{{carCount}}
           <h3 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(carDate) }}</h3>
@@ -88,7 +88,7 @@
         </div>
 
       <div class="block p-2 w-1/2">
-          <p class="font-bold text-base text-gray-800 dark:text-gray-200">
+          <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
               <a v-on:click="fnViewEdu()">미이수 인원</a>
           </p>{{eduCount}}
           <div class="mt-6 flex items-center justify-end gap-x-5">
@@ -134,16 +134,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                        v-for="(items, index) in noticeTable"
-                        :key="items.index"
-                >
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                    v-for="(items, index) in noticeTable"
+                    :key="items.index"
+                    v-on:click="fnViewNotice(`${items.noticeNo}`)">
                     <td class="px-6 py-2">
                         {{ noticeTable.length - index }}
                     </td>
                     <td class="px-6 py-4">
-                        <a v-on:click="fnViewNotice(`${items.noticeNo}`)">{{ items.title }}</a>
+                        {{ items.title }}
                     </td>
                     <td class="px-6 py-4">
                         {{ items.deptName }} {{ items.name }}
@@ -159,12 +158,8 @@
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
       <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">신청내역</h2>
       <div class="wrapping-table mt-4">
-        <table
-                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-        >
-            <thead
-                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-            >
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="uppercase px-6 py-2">
                     번호
@@ -190,11 +185,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                    v-for="(items,index) in roomAndCarTable"
-                    :key="index"
-            >
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                v-for="(items,index) in roomAndCarTable"
+                :key="index"
+                v-on:click="fnViewApprove(`${items.documentNo}`, `${items.categoryId}`)">
                 <td class="px-6 py-2">
                     {{ roomAndCarTable.length - index }}
                 </td>
@@ -202,10 +196,7 @@
                     {{ items.subCategory }}
                 </td>
                 <td class="px-6 py-4">
-                    <a v-if="items.categoryId === 12 || 13"
-                    v-on:click="fnViewRoom(`${items.documentNo}`)">{{ items.title }}</a>
-                    <a v-else
-                    v-on:click="fnViewCar(`${items.documentNo}`)">{{ items.title }}</a>
+                    {{ items.title }}
                 </td>
                 <td class="px-6 py-4">
                     {{ items.deptName }} {{ items.name }}
@@ -383,6 +374,12 @@ export default {
                 path: './CarApprove',
                 query: this.requestBody
             })
+        },
+        fnViewApprove(documentNo, categoryId){
+        if(categoryId===12|13){
+          this.fnViewRoom(documentNo);
+        }
+          this.fnViewCar(documentNo);
         },
         fnViewCarList(){
             this.$router.push({

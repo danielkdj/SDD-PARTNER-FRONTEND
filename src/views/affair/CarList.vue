@@ -46,9 +46,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
                 v-for="(items, index) in tableTransaction"
-                :key="items.transaction" >
+                :key="items.transaction"
+                v-on:click="fnView(`${items.documentNo}`,`${items.categoryId}`)">
               <td class="px-6 py-2">
                     {{tableTransaction.length - index}}
               </td>
@@ -56,7 +57,7 @@
                   {{ items.subCategory }}
               </td>
               <td class="px-6 py-4">
-                  <a v-on:click="fnView(`${items.documentNo}`,`${items.categoryId}`)">{{ items.title }}</a>
+                  {{ items.title }}
               </td>
               <td class="px-6 py-4">
                   {{ items.deptName }} {{ items.name }}
