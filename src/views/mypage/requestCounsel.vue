@@ -88,11 +88,8 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -113,10 +110,10 @@ export default {
 
             employee:{
                 empId: "EMP-123456",
-                name: "",
+                name: "류준열씨?",
             },
             counTitle: "",
-            counContent: '',
+            counContent: "",
 
             //Editor 변수
             editor: Editor,
@@ -134,15 +131,15 @@ export default {
         createCounsel() {
             this.coun = {
                 employee:{
-                    empId: this.employee.empId,
+                    empId: "EMP-123456",
                 },
                 counTitle: this.counTitle,
                 counContent: this.counContent,
             };
-            this.$axios.post(this.$serverUrl + '/coun/create', this.coun)
+            this.$axios.post(this.$serverUrl + '/counseling/coun/create', this.coun)
                 .then((res) => {
                     alert('상담 신청 완료')
-                    window.location.href = 'http://localhost:3030';
+                    /*window.location.href = 'http://localhost:3030'*/
                 }).catch((err) => {
                 if (err.message.indexOf('Network Error') > -1) {
                     alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
