@@ -7,19 +7,8 @@
       <div class="p-2 max-w-sm">
         <div class="bg-blue-200 rounded-full w-14 h-14 text-lg p-3 text-blue-600 mx-auto">
           <span class="">
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    role="img"
-                    width="30px"
-                    height="30px"
-                    preserveAspectRatio="xMidYMid meet"
-                    viewBox="0 0 24 24"
-            >
-              <path
-                      fill="currentColor"
-                      d="M10 16V8a2 2 0 0 1 2-2h9V5c0-1.1-.9-2-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-1h-9a2 2 0 0 1-2-2zm3-8c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h9V8h-9zm3 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="30px" height="30px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M10 16V8a2 2 0 0 1 2-2h9V5c0-1.1-.9-2-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-1h-9a2 2 0 0 1-2-2zm3-8c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h9V8h-9zm3 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/>
             </svg>
           </span>
         </div>
@@ -36,19 +25,8 @@
       <div class="p-2 max-w-sm">
           <div class="bg-blue-200 rounded-full w-14 h-14 text-lg p-3 text-blue-600 mx-auto">
           <span class="">
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    role="img"
-                    width="30px"
-                    height="30px"
-                    preserveAspectRatio="xMidYMid meet"
-                    viewBox="0 0 24 24"
-            >
-              <path
-                      fill="currentColor"
-                      d="M5 22h14a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1h-3v-.777c0-2.609-1.903-4.945-4.5-5.198A5.005 5.005 0 0 0 7 7v1H4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2zm12-12v2h-2v-2h2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-2 3h2v2H7v-2z"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="30px" height="30px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M5 22h14a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1h-3v-.777c0-2.609-1.903-4.945-4.5-5.198A5.005 5.005 0 0 0 7 7v1H4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2zm12-12v2h-2v-2h2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-2 3h2v2H7v-2z"/>
             </svg>
           </span>
         </div>
@@ -91,24 +69,25 @@
           <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
               <a v-on:click="fnViewEdu()">미이수 인원</a>
           </p>{{eduCount}}
-          <div class="mt-6 flex items-center justify-end gap-x-5">
-            <div class="flex min-h-full flex-col">
-                <input type="number" min="1" max="9999" step="1"
-                       class="block py-2.5 px-0 w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                       v-model.number="year" />
-            </div>
-            <div class="flex min-h-full flex-col">
-                <h5 class="font-normal text-gray-400 text-sm mt-1">년</h5>
-            </div>
-            <div class="flex min-h-full flex-col">
-                <input type="number" min="0" max="5" step="1"
-                       class="block py-2.5 px-0 w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
-                       v-model.number="quarter"/>
-            </div>
-            <div class="flex min-h-full flex-col">
-              <h3 class="font-normal text-gray-400 text-sm mt-1">분기 </h3>
-            </div>
-          </div>
+          <h3 class="font-normal text-gray-400 text-md mt-1">{{year}}. {{quarter}}Q</h3>
+<!--          <div class="flex items-center justify-end gap-x-5">-->
+<!--            <div class="flex min-h-full flex-col">-->
+<!--                <input type="number" min="1" max="9999" step="1"-->
+<!--                       class="w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"-->
+<!--                       v-model.number="year" />-->
+<!--            </div>-->
+<!--            <div class="flex min-h-full flex-col">-->
+<!--                <h5 class="font-normal text-gray-400 text-sm mt-1">.</h5>-->
+<!--            </div>-->
+<!--            <div class="flex min-h-full flex-col">-->
+<!--                <input type="number" min="0" max="5" step="1"-->
+<!--                       class="block py-2.5 px-0 w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"-->
+<!--                       v-model.number="quarter"/>-->
+<!--            </div>-->
+<!--            <div class="flex min-h-full flex-col">-->
+<!--              <h3 class="font-normal text-gray-400 text-sm mt-1"></h3>-->
+<!--            </div>-->
+<!--          </div>-->
       </div>
     </div>
       <!-- end card -->
@@ -119,16 +98,16 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="uppercase px-6 py-2">
+                    <th scope="col" class="uppercase px-3 py-2">
                         번호
                     </th>
-                    <th scope="col" class="uppercase px-6 py-2">
+                    <th scope="col" class="uppercase px-3 py-2">
                     제목
                     </th>
-                    <th scope="col" class="uppercase px-6 py-2">
+                    <th scope="col" class="uppercase px-3 py-2">
                         작성자
                     </th>
-                    <th scope="col" class="uppercase px-6 py-2">
+                    <th scope="col" class="uppercase px-3 py-2">
                         작성일시
                     </th>
                 </tr>
@@ -138,16 +117,16 @@
                     v-for="(items, index) in noticeTable"
                     :key="items.index"
                     v-on:click="fnViewNotice(`${items.noticeNo}`)">
-                    <td class="px-6 py-2">
+                    <td class="px-3 py-2">
                         {{ noticeTable.length - index }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-4">
                         {{ items.title }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-4">
                         {{ items.deptName }} {{ items.name }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-3 py-4">
                         {{ items.createdAt }}
                     </td>
                 </tr>
@@ -161,25 +140,25 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-3">
                     번호
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     항목구분
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     제목
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     신청자
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     작성일시
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     사용일시
                 </th>
-                <th scope="col" class="uppercase px-6 py-2">
+                <th scope="col" class="uppercase px-3 py-2">
                     상태
                 </th>
             </tr>
@@ -189,25 +168,25 @@
                 v-for="(items,index) in roomAndCarTable"
                 :key="index"
                 v-on:click="fnViewApprove(`${items.documentNo}`, `${items.categoryId}`)">
-                <td class="px-6 py-2">
+                <td class="px-3 py-2">
                     {{ roomAndCarTable.length - index }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                     {{ items.subCategory }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                     {{ items.title }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                     {{ items.deptName }} {{ items.name }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                     {{ items.createdAt }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                     {{ items.startDate }} ~ {{ items.endDate }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-4">
                   <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
                           v-if="items.approvalStatus === 1" >
                     처리 전
@@ -237,18 +216,18 @@ export default {
     components: {HomeLink},
     data(){
         return{
-          //link 변수
-          homeLink:{
-            name1:"Affair",
-            link1:"/Affairs",
-            link2:"#",
-            link3:"#",
-          },
+            //link 변수
+            homeLink:{
+              name1:"Affair",
+              link1:"/Affairs",
+              link2:"#",
+              link3:"#",
+            },
             requestBody: this.$route.query,
-            roomCount: 3,
-            roomDate: '2023-05-06 23:24:00',
-            carCount: 4,
-            carDate: '2023-05-01 23:24:00',
+            roomCount: '',
+            roomDate: '',
+            carCount: '',
+            carDate: '',
             eduCount: '',
             year: '',
             quarter: '',
@@ -281,18 +260,48 @@ export default {
             }]),
         }
     },
-  watch:{
-      year : function (newVal){
-        this.fnGetEduCount(newVal, this.quarter)
-      },
-      quarter : function (newVal){
-        this.fnGetEduCount(this.year, newVal)
-      }
-  },
+    watch:{
+        year : function (newVal){
+          this.fnGetEduCount(newVal, this.quarter)
+        },
+        quarter : function (newVal){
+          this.fnGetEduCount(this.year, newVal)
+        }
+    },
     methods: {
+      fnGetUseCount(){
+        let url = this.$serverUrl + "/use/mainCount"
+        this.$axios.get(url).then((res) => {
+
+          this.roomCount = res.data[0]
+          this.carCount = res.data[1]
+
+        }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      },
+      fnGetUseDate(){
+        let url = this.$serverUrl + "/use/mainDate"
+        this.$axios.get(url).then((res) => {
+
+          if(res.data[0]){
+          this.roomDate = res.data[0]
+
+          }
+          if(res.data[1]){
+          this.carDate = res.data[1]
+          }
+
+
+        }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      },
       fnGetEduCount(year, quarter){
-        // let years = moment.year()
-        // let quarters = moment.quarter()
         let url = this.$serverUrl + "/com/count/0/N/"+this.year+"/"+this.quarter
         if(year && quarter){
           url = this.$serverUrl + "/com/count/0/N/"+year+"/"+quarter
@@ -308,45 +317,47 @@ export default {
           }
         })
       },
-        fnGetUses(){
-            let url = this.$serverUrl + "/use/main"
-            this.$axios.get(url, {
-              params: this.requestBody,
-              headers: {}
-            }).then((res) => {
+      fnGetUses(){
+          let url = this.$serverUrl + "/use/main"
+          this.$axios.get(url, {
+            params: this.requestBody,
+            headers: {}
+          }).then((res) => {
 
-              this.roomAndCarTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+            this.roomAndCarTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
 
-            }).catch((err) => {
-              if (err.message.indexOf('Network Error') > -1) {
-                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-              }
-            })
-          },
+          }).catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+              alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
+          })
+        },
       fnGetNotice(){
-            let url = this.$serverUrl + "/notice/main"
-            this.$axios.get(url, {
-              params: this.requestBody,
-              headers: {}
-            }).then((res) => {
+          let url = this.$serverUrl + "/notice/main"
+          this.$axios.get(url, {
+            params: this.requestBody,
+            headers: {}
+          }).then((res) => {
 
-              this.noticeTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+            this.noticeTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
 
-            }).catch((err) => {
-              if (err.message.indexOf('Network Error') > -1) {
-                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-              }
-            })
-          },
+          }).catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+              alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
+          })
+        },
         formatDate(date) {
             const now = moment();
-            const dateObj = moment(date, 'YYYY-MM-DD HH:mm:ss');
+            const dateObj = moment(date, 'YYYY-MM-DD');
             const diffInDays = now.diff(dateObj, 'days');
-            const diffInHours = now.diff(dateObj, 'hours');
+            // const diffInHours = now.diff(dateObj, 'hours');
 
-            if (diffInDays === 0) {
-                return `${diffInHours} hours`;
-            } else if (diffInDays === 1) {
+            // if (diffInDays === 0) {
+            //     return `${diffInHours} hours`;
+            // } else
+
+            if (diffInDays === 1) {
                 return 'yesterday';
             } else if (diffInDays < 30){
                 return `${diffInDays} days`;
@@ -376,7 +387,7 @@ export default {
             })
         },
         fnViewApprove(documentNo, categoryId){
-        if(categoryId===12|13){
+        if(categoryId===12||13){
           this.fnViewRoom(documentNo);
         }
           this.fnViewCar(documentNo);
@@ -400,14 +411,16 @@ export default {
             })
         }
     },
-  mounted() {
-      this.year = moment().year();
-      this.quarter = moment().quarter();
+    mounted() {
+        this.year = moment().year();
+        this.quarter = moment().quarter();
 
-      this.fnGetUses();
-      this.fnGetNotice();
-      this.fnGetEduCount();
-  }
+        this.fnGetUseCount();
+        this.fnGetUseDate();
+        this.fnGetUses();
+        this.fnGetNotice();
+        this.fnGetEduCount();
+    }
 }
 </script>
 
