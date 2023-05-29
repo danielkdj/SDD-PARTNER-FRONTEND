@@ -182,7 +182,7 @@ export default {
         '성명': drv.driver,
         '주행전': drv.beforeMileage,
         '주행후': drv.afterMileage,
-        '주행거리(km)': drv.actualMileage,
+        "주행거리(km)": drv.actualMileage,
         '비고':''
       }));
 
