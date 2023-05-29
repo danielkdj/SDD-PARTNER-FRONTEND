@@ -49,7 +49,7 @@ import DrvDetail from "../views/affair/DrvDetail.vue";
 import EduList from "../views/affair/EduList.vue";
 import EduDetail from "../views/affair/EduDetail.vue";
 import EduWrite from "../views/affair/EduWrite.vue";
-import EduCompletion from "../views/affair/EduCompletion.vue";
+import CompletionList from "../views/affair/CompletionList.vue";
 
 var appname = " - SDD Partner";
 
@@ -404,10 +404,10 @@ const routes = [
     component: EduWrite,
     meta: { title: "EduWrite " + appname },
   },  {
-    path: "/EduCompletion",
-    name: "EduCompletion",
-    component: EduCompletion,
-    meta: { title: "EduCompletion " + appname },
+    path: "/CompletionList",
+    name: "CompletionList",
+    component: CompletionList,
+    meta: { title: "CompletionList " + appname },
   }
 ];
 
