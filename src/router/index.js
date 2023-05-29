@@ -387,22 +387,24 @@ const routes = [
     name: "DrvDetail",
     component: DrvDetail,
     meta: { title: "DrvDetail " + appname },
-  },  {
-    path: "/EduList",
-    name: "EduList",
-    component: EduList,
-    meta: { title: "EduList " + appname },
-  },  {
-    path: "/EduDetail",
-    name: "EduDetail",
-    component: EduDetail,
-    meta: { title: "EduDetail " + appname },
-  },  {
-    path: "/EduWrite",
-    name: "EduWrite",
-    component: EduWrite,
-    meta: { title: "EduWrite " + appname },
-  },  {
+  },
+  // {
+  //   path: "/EduList",
+  //   name: "EduList",
+  //   component: EduList,
+  //   meta: { title: "EduList " + appname },
+  // },  {
+  //   path: "/EduDetail",
+  //   name: "EduDetail",
+  //   component: EduDetail,
+  //   meta: { title: "EduDetail " + appname },
+  // },  {
+  //   path: "/EduWrite",
+  //   name: "EduWrite",
+  //   component: EduWrite,
+  //   meta: { title: "EduWrite " + appname },
+  // },
+  {
     path: "/CompletionList",
     name: "CompletionList",
     component: CompletionList,
