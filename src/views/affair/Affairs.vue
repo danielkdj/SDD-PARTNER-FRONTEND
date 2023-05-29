@@ -387,7 +387,7 @@ export default {
             })
         },
         fnViewApprove(documentNo, categoryId){
-        if(categoryId===12|13){
+        if(categoryId===12||13){
           this.fnViewRoom(documentNo);
         }
           this.fnViewCar(documentNo);
