@@ -67,7 +67,7 @@
 
       <div class="block p-2 w-1/2">
           <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
-              <a v-on:click="fnViewEdu()">미이수 인원</a>
+              <a v-on:click="fnViewCom()">미이수 인원</a>
           </p>{{eduCount}}
           <h3 class="font-normal text-gray-400 text-md mt-1">{{year}}. {{quarter}}Q</h3>
 <!--          <div class="flex items-center justify-end gap-x-5">-->
@@ -404,9 +404,9 @@ export default {
                 query: this.requestBody
             })
         },
-        fnViewEdu(){
+      fnViewCom(){
             this.$router.push({
-                path: './EduCompletion',
+                path: './CompletionAdd',
                 query: this.requestBody
             })
         }
