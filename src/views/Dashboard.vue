@@ -7,7 +7,7 @@
             >
                 <div class="p-3 w-full text-center "> <!-- Add the "text-center" class to center align the content -->
                     <a href="#">
-                        <img class="avatar mx-auto" src="../assets/img/류준열씨.png" alt="..."
+                        <img class="avatar mx-auto" src="../assets/img/tinified/류준열씨.png" alt="..."
                              style="weight: 200px; height: 300px"/>
                         <br>
                         <h5 class="title">사원명 : 홍길동<!--{{ user.fullName }}--></h5>
@@ -65,12 +65,13 @@
                                 <tbody>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
                                     v-for="items in tableTransaction1"
-                                    :key="items.documentNo">
+                                    :key="items.documentNo"
+                                    @click="fnEaView(`${items.documentNo}`)">
                                     <td class="px-6 py-2">
                                         {{ items.documentNo }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a v-on:click="fnEaView(`${items.documentNo}`)">{{ items.title }}</a>
+                                        {{ items.title }}
                                     </td>
                                     <td class="px-6 py-6">
                                         {{ items.createdAt }}
@@ -110,12 +111,13 @@
                                 <tbody>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
                                     v-for="items in tableTransaction2"
-                                    :key="items.documentNo">
+                                    :key="items.documentNo"
+                                    @click="fnEaApproveView(`${items.documentNo}`)">
                                     <td class="px-6 py-2">
                                         {{ items.documentNo }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a v-on:click="fnEaApproveView(`${items.documentNo}`)">{{ items.title }}</a>
+                                        {{ items.title }}
                                     </td>
                                     <td class="px-6 py-6">
                                         {{ items.createdAt }}
@@ -304,14 +306,14 @@ export default {
         fnEaView(documentNo) {
             this.requestBody.documentNo = documentNo
             this.$router.push({
-                path: './eaDetail/',
+                path: './eaDetail',
                 query: this.requestBody
             })
         },
         fnEaApproveView(documentNo) {
             this.requestBody.documentNo = documentNo
             this.$router.push({
-                path: './eaApproval/',
+                path: './eaApproval',
                 query: this.requestBody
             })
         },
