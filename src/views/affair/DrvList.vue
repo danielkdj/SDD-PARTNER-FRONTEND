@@ -8,6 +8,7 @@
         <option value="차량A">차량A</option>
         <option value="차량B">차량B</option>
       </select>
+        <button v-on:click="makeExcelFile5()" class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded mr-3">내려받기</button>
     </div>
     <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
       <div class="wrapping-table mt-2">
@@ -94,6 +95,8 @@
 <script>
 import HomeLink from "@/components/HomeLink.vue";
 import {ref} from "vue";
+import * as xlsx from "xlsx";
+import moment from "moment";
 
 export default {
   name: "DrvList",
@@ -166,18 +169,34 @@ export default {
             query: this.requestBody
         })
     },
-    // setStatus(){
-    //   for (let i = 0; i < this.tableTransaction.length; i++) {
-    //     let transaction = this.tableTransaction[i];
-    //     if(transaction.beforeMileage) {
-    //       //주행정보가 존재, 반납
-    //       transaction.status = 1
-    //     }else {
-    //       //미반납
-    //       transaction.status = 2
-    //     }
-    //   }
-    // },
+    makeExcelFile5() {
+      // Create a new workbook
+      const wb = xlsx.utils.book_new();
+
+      // Map your selectedUsers data to only include the properties you want
+      const data = this.tableTransaction.map(drv => ({
+        '차종': drv.car,
+        '사용시작일시': drv.drvStart,
+        '사용종료일시': drv.drvEnd,
+        '부서': drv.deptName,
+        '성명': drv.driver,
+        '주행전': drv.beforeMileage,
+        '주행후': drv.afterMileage,
+        '주행거리(km)': drv.actualMileage,
+        '비고':''
+      }));
+
+      // Convert your selectedUsers data to worksheet
+      const ws = xlsx.utils.json_to_sheet(data);
+
+      // Append the worksheet to the workbook
+      let now = moment().format("YYYY-MM-DD");
+      xlsx.utils.book_append_sheet(wb, ws, "Sheet1_" + now);
+
+      // Write the workbook to a file and trigger a download
+      // You may need to run this in the browser environment to see the download dialog
+      xlsx.writeFile(wb, "차량관리대장.xlsx");
+    }
   },
   mounted() { //페이지로드시 함수 적용
     this.fnGetList()
