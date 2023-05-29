@@ -2,13 +2,13 @@
         <h1 class="text-2xl font-bold text-center">글 작성 페이지</h1>
             <div class="">
                 <label for="title" class="block font-bold text-gray-700 mb-2 text-center">제목</label>
-                <input id="title" v-model="title" type="text" name="title"
+                <input id="title" v-model="documentWrite.title" type="text" name="title"
                        class="block mx-auto shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                        placeholder="제목을 입력하세요" maxlength="30" size="30">
             </div>
 
         <div id="ckeditor">
-            <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+            <ckeditor :editor="editor" v-model="documentWrite.content" :config="editorConfig"></ckeditor>
         </div>
         <div class="mt-4">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submit">
@@ -220,8 +220,11 @@ export default {
     data() {
         return {
             editor: Editor,
-            editorData: '',
-            title: '',
+            documentWrite : {
+              content: '',
+              title: '',
+              employeeId: 'EMP-123456'
+            },
             editorConfig: {
                 language: 'ko',
             },
@@ -229,9 +232,20 @@ export default {
     },
     methods: {
         submit() {
-            console.log(this.editorData);
-            console.log(this.title);
+          this.$axios.post(this.$serverUrl + '/document',this.documentWrite)
+              .then((res) => {
+                // alert('글이 저장되었습니다.')
+                this.$router.replace('document');
+
+              }).catch((err) => {
+            if (err.message.indexOf('Network Error') > -1) {
+              alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+            }
+          })
         },
     },
+  mounted() {
+
+  }
 }
 </script>
