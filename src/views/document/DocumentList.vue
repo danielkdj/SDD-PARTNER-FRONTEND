@@ -83,7 +83,7 @@ export default {
     gotoDetail(id) {
       this.requestBody.id = id
       this.$router.push({
-        path: './NoticeDetail',
+        path: '/documentDetail',
         query: this.requestBody
       })
     },
