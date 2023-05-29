@@ -43,13 +43,13 @@
       </select>
       <button v-on:click="fnUpdate" class="bg-amber-500 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">수정</button>
     </div>
-    <div class="mt-6 flex items-center justify-start gap-x-6">
+    <div class="mt-5 flex items-center justify-end gap-x-6">
         <span>선택된 사원수 : {{checkedComs.length}}</span>
     </div>
       <perfect-scrollbar class="h-4/6 dark:divide-gray-700">
-        <div class="wrapping-table mt-10">
+        <div class="wrapping-table mt-5">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll" >
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400" >
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="uppercase px-6 py-2" >
                 번호
@@ -73,10 +73,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-              v-for="(items,index) in tableTransaction"
-              :key="items.transaction" >
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                v-for="(items,index) in tableTransaction"
+                :key="items.transaction" >
               <td class="px-6 py-2">
                   {{tableTransaction.length - index}}
               </td>
