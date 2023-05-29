@@ -151,7 +151,8 @@ export default {
                     this.createdAt = res.data.createdAt,
                     this.startDate = res.data.startDate,
                     this.endDate = res.data.endDate,
-                    this.approvalStatus = res.data.approvalStatus
+                    this.approvalStatus = res.data.approvalStatus;
+                window.location.href = 'http://localhost:3030';
             }).catch((err) => {
                 console.log("error!")
                 if (err.message.indexOf('Network Error') > -1) {
