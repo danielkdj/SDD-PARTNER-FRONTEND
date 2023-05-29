@@ -1,6 +1,7 @@
 <template>
   <!-- grid wrapper card -->
-  <div class="wrapper-card grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
+    <HomeLink :homeLink="homeLink"/>
+    <div class="wrapper-card grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
     <!-- card  -->
     <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-5 border dark:border-gray-700 flex">
       <div class="p-2 max-w-sm">
@@ -24,10 +25,10 @@
         </div>
       </div>
       <div class="block p-2 w-full">
-        <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
+        <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
             <a v-on:click="fnViewRoomList()">회의실 신청</a>
         </p>{{roomCount}}
-        <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(roomDate) }}</h2>
+        <h3 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(roomDate) }}</h3>
       </div>
     </div>
     <!-- end card -->
@@ -53,10 +54,10 @@
         </div>
       </div>
       <div class="block p-2 w-full">
-          <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
+          <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
               <a v-on:click="fnViewCarList()">차량 신청</a>
           </p>{{carCount}}
-          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(carDate) }}</h2>
+          <h3 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(carDate) }}</h3>
       </div>
     </div>
     <!-- end card -->
@@ -86,65 +87,65 @@
             </div>
         </div>
 
-      <div class="block p-2 w-full">
-          <p class="font-bold text-gray-900 dark:text-gray-200 text-xl">
+      <div class="block p-2 w-1/2">
+          <p class="font-bold text-base text-gray-800 dark:text-gray-200 cursor-pointer">
               <a v-on:click="fnViewEdu()">미이수 인원</a>
           </p>{{eduCount}}
-          <h2 class="font-normal text-gray-400 text-md mt-1">{{ formatDate(eduDate) }}</h2>
+          <div class="mt-6 flex items-center justify-end gap-x-5">
+            <div class="flex min-h-full flex-col">
+                <input type="number" min="1" max="9999" step="1"
+                       class="block py-2.5 px-0 w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                       v-model.number="year" />
+            </div>
+            <div class="flex min-h-full flex-col">
+                <h5 class="font-normal text-gray-400 text-sm mt-1">년</h5>
+            </div>
+            <div class="flex min-h-full flex-col">
+                <input type="number" min="0" max="5" step="1"
+                       class="block py-2.5 px-0 w-12 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+                       v-model.number="quarter"/>
+            </div>
+            <div class="flex min-h-full flex-col">
+              <h3 class="font-normal text-gray-400 text-sm mt-1">분기 </h3>
+            </div>
+          </div>
       </div>
     </div>
       <!-- end card -->
   </div>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
-        <h2 class="font-bold text-gray-900 dark:text-gray-200 text-xl">공지사항</h2>
-        <div class="wrapping-table mt-10">
-            <table
-                    class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-            >
-                <thead
-                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-                >
+        <p class="font-bold text-base text-gray-800 dark:text-gray-200">공지사항</p>
+        <div class="wrapping-table mt-4">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-2"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         번호
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
-                        제목
+                    <th scope="col" class="uppercase px-6 py-2">
+                    제목
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         작성자
                     </th>
-                    <th
-                            scope="col"
-                            class="uppercase px-6 py-3"
-                    >
+                    <th scope="col" class="uppercase px-6 py-2">
                         작성일시
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                        v-for="items in noticeTable"
-                        :key="items.transaction"
-                >
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                    v-for="(items, index) in noticeTable"
+                    :key="items.index"
+                    v-on:click="fnViewNotice(`${items.noticeNo}`)">
                     <td class="px-6 py-2">
-                        {{ items.noticeNo }}
+                        {{ noticeTable.length - index }}
                     </td>
                     <td class="px-6 py-4">
-                        <a v-on:click="fnViewNotice(`${items.noticeNo}`)">{{ items.title }}</a>
+                        {{ items.title }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ items.writer }}
+                        {{ items.deptName }} {{ items.name }}
                     </td>
                     <td class="px-6 py-4">
                         {{ items.createdAt }}
@@ -155,88 +156,50 @@
         </div>
     </div>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
-      <h2 class="font-bold text-gray-900 dark:text-gray-200 text-xl">신청내역</h2>
-      <div class="wrapping-table mt-10">
-        <table
-                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
-        >
-            <thead
-                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-            >
+      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">신청내역</h2>
+      <div class="wrapping-table mt-4">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-2"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     번호
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     항목구분
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     제목
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     신청자
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
-                    소속부서
-                </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     작성일시
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     사용일시
                 </th>
-                <th
-                        scope="col"
-                        class="uppercase px-6 py-3"
-                >
+                <th scope="col" class="uppercase px-6 py-2">
                     상태
                 </th>
             </tr>
             </thead>
             <tbody>
-            <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                    v-for="items in roomAndCarTable"
-                    :key="items.transaction"
-            >
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                v-for="(items,index) in roomAndCarTable"
+                :key="index"
+                v-on:click="fnViewApprove(`${items.documentNo}`, `${items.categoryId}`)">
                 <td class="px-6 py-2">
-                    {{ items.docNo }}
+                    {{ roomAndCarTable.length - index }}
                 </td>
                 <td class="px-6 py-4">
                     {{ items.subCategory }}
                 </td>
                 <td class="px-6 py-4">
-                    <a v-if="items.sub_category === '회의실'"
-                    v-on:click="fnViewRoom(`${items.docNo}`)">{{ items.title }}</a>
-                    <a v-else
-                    v-on:click="fnViewCar(`${items.docNo}`)">{{ items.title }}</a>
+                    {{ items.title }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ items.writer }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ items.deptName }}
+                    {{ items.deptName }} {{ items.name }}
                 </td>
                 <td class="px-6 py-4">
                     {{ items.createdAt }}
@@ -246,16 +209,16 @@
                 </td>
                 <td class="px-6 py-4">
                   <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-                          v-if="items.status === 1" >
+                          v-if="items.approvalStatus === 1" >
                     처리 전
                   </span>
                   <span class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                          v-else-if="items.status === 2" >
-                    반려
+                          v-else-if="items.approvalStatus === 2" >
+                    승인
                   </span>
                   <span class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
                           v-else >
-                  승인
+                    반려
                   </span>
                 </td>
             </tr>
@@ -266,62 +229,115 @@
 </template>
 
 <script>
+import {ref} from "vue";
+import HomeLink from "@/components/HomeLink.vue";
 import moment from 'moment';
 export default {
     name: "Affairs",
+    components: {HomeLink},
     data(){
         return{
+          //link 변수
+          homeLink:{
+            name1:"Affair",
+            link1:"/Affairs",
+            link2:"#",
+            link3:"#",
+          },
             requestBody: this.$route.query,
             roomCount: 3,
             roomDate: '2023-05-06 23:24:00',
             carCount: 4,
             carDate: '2023-05-01 23:24:00',
-            eduCount: 35,
-            eduDate: '2023-05-04 23:24:00',
-
-            noticeTable: [
-                {
-                    noticeNo: 1,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },
-                {
-                    noticeNo: 2,
-                    title: '제목',
-                    writer: '작성자',
-                    contents: '내용',
-                    createdAt: '작성일시',
-                },
-            ],
-            roomAndCarTable: [
-                {
-                    docNo: 1,
-                    subCategory: '차량',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt:'2023-05-04 23:24:00',
-                    startDate:'2023-05-05 23:24:00',
-                    endDate:'2023-05-05 23:24:00',
-                    status: 1
-                },
-                {
-                    docNo: 2,
-                    subCategory: '회의실',
-                    title: '제목',
-                    writer: '작성자',
-                    deptName: '소속부서',
-                    createdAt: '2023-05-03 23:24:00',
-                    startDate: '2023-05-03 23:24:00',
-                    endDate: '2023-05-03 23:24:00',
-                    status: 2
-                },
-            ]
+            eduCount: '',
+            year: '',
+            quarter: '',
+            nowQuarter: ref(),
+            noticeTable: ref([
+              {
+                noticeNo: '',
+                title: '',
+                name: '',
+                deptName: '',
+                content: '',
+                createdAt: ''
+              }
+            ]),
+            roomAndCarTable : ref([{
+              documentNo : '',
+              title: '',
+              content: '',
+              startDate : '',
+              endDate : '',
+              createdAt : '',
+              approvalStatus : '',
+              categoryId : '',
+              category : '',
+              subCategory : '',
+              empId : '',
+              name: '',
+              deptNo: '',
+              deptName: ''
+            }]),
         }
     },
+  watch:{
+      year : function (newVal){
+        this.fnGetEduCount(newVal, this.quarter)
+      },
+      quarter : function (newVal){
+        this.fnGetEduCount(this.year, newVal)
+      }
+  },
     methods: {
+      fnGetEduCount(year, quarter){
+        // let years = moment.year()
+        // let quarters = moment.quarter()
+        let url = this.$serverUrl + "/com/count/0/N/"+this.year+"/"+this.quarter
+        if(year && quarter){
+          url = this.$serverUrl + "/com/count/0/N/"+year+"/"+quarter
+        }
+        this.$axios.get(url, {
+        }).then((res) => {
+
+          this.eduCount = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+        }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      },
+        fnGetUses(){
+            let url = this.$serverUrl + "/use/main"
+            this.$axios.get(url, {
+              params: this.requestBody,
+              headers: {}
+            }).then((res) => {
+
+              this.roomAndCarTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+            }).catch((err) => {
+              if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+              }
+            })
+          },
+      fnGetNotice(){
+            let url = this.$serverUrl + "/notice/main"
+            this.$axios.get(url, {
+              params: this.requestBody,
+              headers: {}
+            }).then((res) => {
+
+              this.noticeTable = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+
+            }).catch((err) => {
+              if (err.message.indexOf('Network Error') > -1) {
+                alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+              }
+            })
+          },
         formatDate(date) {
             const now = moment();
             const dateObj = moment(date, 'YYYY-MM-DD HH:mm:ss');
@@ -345,19 +361,25 @@ export default {
                 query: this.requestBody
             })
         },
-        fnViewRoom(docNo){
-            this.requestBody.docNo = docNo
+        fnViewRoom(documentNo){
+            this.requestBody.documentNo = documentNo
             this.$router.push({
                 path: './RoomApprove',
                 query: this.requestBody
             })
         },
-        fnViewCar(docNo){
-            this.requestBody.docNo = docNo
+        fnViewCar(documentNo){
+            this.requestBody.documentNo = documentNo
             this.$router.push({
                 path: './CarApprove',
                 query: this.requestBody
             })
+        },
+        fnViewApprove(documentNo, categoryId){
+        if(categoryId===12|13){
+          this.fnViewRoom(documentNo);
+        }
+          this.fnViewCar(documentNo);
         },
         fnViewCarList(){
             this.$router.push({
@@ -377,7 +399,15 @@ export default {
                 query: this.requestBody
             })
         }
-    }
+    },
+  mounted() {
+      this.year = moment().year();
+      this.quarter = moment().quarter();
+
+      this.fnGetUses();
+      this.fnGetNotice();
+      this.fnGetEduCount();
+  }
 }
 </script>
 
