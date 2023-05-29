@@ -203,7 +203,7 @@
                 </td>
                 <th class="py-2 border bg-gray-100">입사일</th>
                 <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="e.hireDate"/>
+                  <input class="cursor-pointer" type="date" v-model="e.hireDate"/>
                 </td>
                 <th class="py-2 border bg-gray-100">결혼여부</th>
                 <td class="py-2 border">
@@ -254,7 +254,7 @@
                 </td>
                 <th class="py-2 border bg-gray-100">퇴사일자</th>
                 <td class="py-2 border">
-                  <input class="text-center cursor-pointer" type="text" v-model="e.leaveDate"/>
+                  <input class="cursor-pointer" type="date" v-model="e.leaveDate"/>
                 </td>
                 <th class="py-2 border bg-gray-100">퇴사사유</th>
                 <td class="py-2 border">
@@ -487,7 +487,7 @@
 <script>
 import { Icon } from "@iconify/vue";
 import { ref } from "vue";
-import Button from "@/views/components/button.vue";
+import { Button } from "@/views/components/button.vue";
 
 export default {
   data() {
@@ -678,6 +678,7 @@ export default {
       this.selectedEmployee[0].password = this.selectedEmployee[0].empId;
 
       const formData = new FormData();
+      console.log(JSON.stringify(this.selectedEmployee[0]));
       formData.append('emp', JSON.stringify(this.selectedEmployee[0]));
 
       let fileInput = this.$refs.fileInput;
@@ -693,9 +694,14 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         });
-        alert(`새로 등록된 사원의 번호로 사번, 초기비밀번호가 전송되었습니다.`);
+        if (response.data.success) {
+          alert(`새로 등록된 사원의 번호로 사번, 초기비밀번호가 전송되었습니다.`);
+        } else {
+          alert('사원 등록에 실패하였습니다.');
+        }
+
       } catch (error) {
-        if(e.empID === e.newEmpId) {
+        if(error.response && error.response.data.empID === error.response.data.newEmpId) {
           alert('이미 등록된 사원입니다.');
         } else {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
