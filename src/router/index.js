@@ -47,6 +47,7 @@ import DrvList from "../views/affair/DrvList.vue";
 import DrvDetail from "../views/affair/DrvDetail.vue";
 import CompletionList from "../views/affair/CompletionList.vue";
 import CompletionAdd from "../views/affair/CompletionAdd.vue";
+import TeamCalendarDetail from "@/views/teamCalendar/TeamCalendarDetail.vue";
 
 
 var appname = " - SDD Partner";
@@ -298,6 +299,11 @@ const routes = [
     path: "/teamCalendar",
     name: "teamCalendar",
     component: TeamCalendar
+  },
+  {
+    path: "/teamCalendarDetail/:id",
+    name: "teamCalendarDetail",
+    component: TeamCalendarDetail
   },
   {
     path: "/documentWrite",
