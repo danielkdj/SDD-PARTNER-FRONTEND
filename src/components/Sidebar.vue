@@ -156,36 +156,7 @@
                     </div>
 
                     <!-- 오늘은 요기까지 -->
-                    <div class="item mt-3">
-                        <menu-accordion>
-
-                            <template v-slot:icon>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-
-                            </template>
-
-                            <template v-slot:title> 근태관리</template>
-
-                            <template v-slot:content>
-                                <router-link
-                                  to="/component/alert"
-                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    근태 내역 조회
-                                </router-link>
-                                <router-link
-                                  to="/component/accordion"
-                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    휴가 사용현황 조회
-                                </router-link>
-
-                            </template>
-                        </menu-accordion>
-                    </div>
+                   
                     <div class="item mt-3">
                         <menu-accordion>
 
