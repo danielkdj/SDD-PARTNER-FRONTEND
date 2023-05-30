@@ -209,7 +209,7 @@
                                     차량 사용일정 조회
                                 </router-link>
                                 <router-link
-                                    to="/component/badge"
+                                    to="/teamCalendar"
                                     class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                                 >
                                     팀 일정 조회
@@ -222,7 +222,7 @@
                         <div class="item">
 
                             <router-link
-                                to="/component/badge"
+                                to="/document"
                                 exact
                                 class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
@@ -233,7 +233,7 @@
                                     </svg>
 
                                 </span>
-                                <span class="w-full"> 공지사항 </span>
+                                <span class="w-full"> 문서함 </span>
                             </router-link>
                         </div>
                     </div>
