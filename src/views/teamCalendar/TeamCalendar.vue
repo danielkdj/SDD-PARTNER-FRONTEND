@@ -1,14 +1,21 @@
 <template>
   <FullCalendar :options="calendarOptions" id="calendar" />
+
+<button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      @click="moveTo">작성</button>
+
 </template>
 
 <script>
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import Button from "@/views/components/button.vue";
 
 export default {
   components: {
+    Button,
     FullCalendar
   },
   data() {
@@ -26,6 +33,9 @@ export default {
     }
   },
   methods: {
+    moveTo() {
+      this.$router.push('teamCalendarWrite');
+    },
     handleEventClick(arg) {
       // Handle event click and redirect to a page
       // Example: Redirect to a specific URL
