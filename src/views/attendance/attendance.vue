@@ -221,37 +221,37 @@
                   scope="col"
                   class="uppercase px-6 py-2"
               >
-                번호
+                사번
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                항목구분
+                출근시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                제목
+                퇴근시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                신청자
+                연장시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                소속부서
+                근무시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                사용일시
+                근무일
               </th>
               <th
                   scope="col"
