@@ -76,18 +76,13 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
               </button>
-              <button
-                  class="bg-cyan-700 text-white hover:bg-cyan-500 dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
-                  @click="createEmployee()">
+              <button class="bg-cyan-700 text-white hover:bg-cyan-500 border rounded py-3 px-5" @click="createEmployee()">
                 등록
               </button>
-              <button
-                  class="bg-cyan-700 text-white hover:bg-cyan-500 dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
-                  @click="editEmployee()">
+              <button class="bg-cyan-700 text-white hover:bg-cyan-500 border rounded py-3 px-5" @click="editEmployee()">
                 수정
               </button>
-              <button class="bg-red-700 text-white hover:bg-red-500 border rounded py-3 px-5"
-                      @click="deleteEmployee()">
+              <button class="bg-red-700 text-white hover:bg-red-500 border rounded py-3 px-5" @click="deleteEmployee()">
                 삭제
               </button>
               <!-- end crud 버튼 -->
@@ -310,7 +305,7 @@
       <!-- 전체 사원 리스트 -->
       <div class="mt-2 bg-white dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
         <div class="mt-2 w-full">
-          <div class="lg:flex sh grid-cols-1 lg:space-y-0 space-y-2 gap-5 justify-between">
+          <div class="lg:flex grid-cols-1 lg:space-y-0 space-y-2 gap-5 justify-between">
 
             <div>
               <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">
@@ -401,87 +396,78 @@
                             현재 결재 대기중인 작업 목록
                         </p>
                     </div>
-                    <div class="flex gap-2">
-                        <button class="bg-cyan-700 border flex gap-2 text-white hover:bg-cyan-900 dark:border-gray-700 rounded py-3 px-3">
-                            승인하기
-                        </button>
-                        <button class="bg-cyan-700 border flex gap-2 text-white hover:bg-cyan-900 dark:border-gray-700 rounded py-3 px-3">
-                            <span class="text">반려하기</span>
-                        </button>
-                    </div>
                 </div>
             </div>
 
-            <div class="wrapping-table mt-10">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
-                        <thead class="text-sm text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                신청내역
-                            </th>
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                신청일자
-                            </th>
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                소속부서
-                            </th>
+          <div class="wrapping-table mt-10">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+              <thead class="text-sm text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3 w-1/6">신청내역</th>
+                <th scope="col" class="px-6 py-3 w-1/6">신청일자</th>
+                <th scope="col" class="px-6 py-3 w-1/6">소속부서</th>
+                <th scope="col" class="px-6 py-3 w-1/6">신청자</th>
+                <th scope="col" class="px-6 py-3 w-1/6">승인여부</th>
+                <th scope="col" class="px-6 py-3 w-1/6">확인</th>
+              </tr>
+              </thead>
+            </table>
+            <perfect-scrollbar class="mt-5 h-80 border-gray-100">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+                <colgroup>
+                  <col class="w-1/6">
+                  <col class="w-1/6">
+                  <col class="w-1/6">
+                  <col class="w-1/6">
+                  <col class="w-1/6">
+                  <col class="w-1/6">
+                </colgroup>
+                <tbody class="text-sm text-gray-400 uppercase dark:bg-gray-700 dark:text-gray-400 odd:bg-gray-100 even:border-t bg-white" v-for="ea in eaList" :key="ea.documentNo">
+                <tr class="border w-full text-gray-500 dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50">
+                  <td class="px-6 py-3">{{ ea.title }}</td>
+                  <td class="px-6 py-3">{{ ea.createdAt }}</td>
+                  <td class="px-6 py-3">{{ ea.deptNo }}</td>
+                  <td class="px-6 py-3">{{ ea.name }}</td>
+                  <td class="px-6 py-3">
+                <span class="px-3 py-1 rounded-md"
+                    v-if="ea.approvalStatus == 1" :class="{ 'text-purple-800 bg-purple-300 hover:bg-purple-500': ea.approvalStatus == 1 }">
+                    {{ getApprovalStatus(ea.approvalStatus) }}
+                </span>
 
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                신청자
-                            </th>
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                승인여부
-                            </th>
-                            <th scope="col" class="px-6 py-3 w-1/6">
-                                확인
-                            </th>
-                        </tr>
-                        </thead>
-                        <perfect-scrollbar class="divide-y mt-5">
-                        <tbody>
-                        <tr class="border text-gray-500 dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50" v-for="items in eaStatus" :key="items.eaStatus">
-                            <td class="px-6 py-3">
-                                {{ items.category }}
-                            </td>
-                            <td class="px-6 py-3">
-                                {{ items.datetime }}
-                            </td>
-                            <td class="px-6 py-3">
-                                {{ items.dept }}
-                            </td>
-                            <td class="px-6 py-3">
-                                {{ items.name }}
-                            </td>
-                            <td class="px-6 py-3">
-                            <span class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-                                  v-if="items.confirmStatus == 'completed'">
-                                {{ items.confirmStatus }}
-                            </span>
-                                <span class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                                      v-else-if="items.confirmStatus == 'progress'">
-                                {{ items.confirmStatus }}
-                            </span>
-                                <span class="text-red-800 bg-red-300 px-3 py-1 rounded-md" v-else>
-                                {{ items.confirmStatus }}
-                            </span>
-                            </td>
-
-                            <!-- 체크박스 -->
-                            <td class="px-6 py-3">
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" v-model="items.checked"/>
-                            </td>
-                        </tr>
-                        </tbody>
-                        </perfect-scrollbar>
-                    </table>
-                <div class="p-2 flex justify-end">
-                    <button class="bg-cyan-700 border mt-4 text-white hover:bg-cyan-900 dark:border-gray-700 rounded py-3 px-3" @click="toggleAll">
-                        전체선택
-                    </button>
-                </div>
-            </div>
+                <span class="px-3 py-1 rounded-md"
+                    v-else-if="ea.approvalStatus == 2" :class="{ 'text-green-300 bg-green-300 hover:bg-green-500': ea.approvalStatus == 2 }">
+                    {{ getApprovalStatus(ea.approvalStatus) }}
+                </span>
+                <span class="px-3 py-1 rounded-md"
+                    v-else :class="{ 'text-red-800 bg-red-300 hover:bg-red-500': ea.approvalStatus == 3 }">
+                    {{ getApprovalStatus(ea.approvalStatus) }}
+                </span>
+                  </td>
+                  <td class="px-6 py-3">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" v-model="ea.checked"/>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </perfect-scrollbar>
+          </div>
+              <div class="p-2 flex justify-end">
+                <button class="bg-cyan-700 border mt-4 text-white hover:bg-cyan-500 dark:border-gray-700 rounded py-3 px-3"
+                        @click="toggleAll">
+                  전체선택
+                </button>
+                <button class="bg-green-700 border mt-4 text-white hover:bg-green-500 dark:border-gray-700 rounded py-3 px-3 ml-2"
+                        @click="approveSelectedEA">
+                  선택 승인
+                </button>
+                <button class="bg-red-700 border mt-4 text-white hover:bg-red-500 dark:border-gray-700 rounded py-3 px-3 ml-2"
+                        @click="rejectSelectedEA">
+                  선택 반려
+                </button>
+              </div>
+            <!-- 전자결재 리스트 end -->
         </div>
-    <!-- 전자결재 리스트 end -->
+
 </template>
 
 <script>
@@ -494,6 +480,7 @@ export default {
     return {
       empList: ref([]),
       searchEmpList: ref([]),
+      eaList: [],
       selectedEmployee: [{
         empId: "",
         name: "",
@@ -631,6 +618,20 @@ export default {
         }
       }
     },
+    getApprovalStatus() {
+      return (status) => {
+      switch (status) {
+        case 1:
+          return '대기';
+        case 2:
+          return '승인';
+        case 3:
+          return '반려';
+        default:
+          return '알 수 없음';
+      }
+     }
+    },
   },
   methods: {
     fetchEmployees(search) {
@@ -701,7 +702,7 @@ export default {
         }
 
       } catch (error) {
-        if(error.response && error.response.data.empID === error.response.data.newEmpId) {
+        if (error.response && error.response.data.empID === error.response.data.newEmpId) {
           alert('이미 등록된 사원입니다.');
         } else {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -730,38 +731,44 @@ export default {
           });
     },
     editEmployee() {
-      let fileInput = this.$refs.fileInput;
-      if (Array.isArray(fileInput)) {
-        fileInput = fileInput[0];
+      if (confirm('사원 정보를 수정하시겠습니까?')) {
+        let fileInput = this.$refs.fileInput;
+        if (Array.isArray(fileInput)) {
+          fileInput = fileInput[0];
+        }
+        const file = fileInput.files[0];
+        this.updateEmployee(this.selectedEmployee[0].empId, this.selectedEmployee[0], file);
       }
-      const file = fileInput.files[0];
-      this.updateEmployee(this.selectedEmployee[0].empId, this.selectedEmployee[0], file);
     },
     deleteEmployee() {
-      this.$axios.delete(this.$serverUrl + `/employee/ep/delete/${this.selectedEmployee[0].empId}`)
-          .then((res) => {
-            if (res.status === 204) {
-              alert('사원 삭제 성공하였습니다.');
-              window.location.reload();
-            }
-          }).catch((err) => {
-        if (err.message.indexOf('Network Error') > -1) {
-          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-        }
-      })
+      if (confirm('사원 정보를 삭제하시겠습니까?')) {
+        this.$axios.delete(this.$serverUrl + `/employee/ep/delete/${this.selectedEmployee[0].empId}`)
+            .then((res) => {
+              if (res.status === 204) {
+                alert('사원 삭제 성공하였습니다.');
+                window.location.reload();
+              }
+            }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      }
     },
     getRelativePath(path) {
       const fileSystemBasePath = 'C:/SDD/public/img/';
       const serverBasePath = 'http://localhost:3030/img/';
 
       if (path && typeof path === 'string') {
+
+        if (path.startsWith(serverBasePath)) {
+          return path;
+        }
         if (path.startsWith(fileSystemBasePath)) {
-          const newPath = serverBasePath + path.substring(fileSystemBasePath.length);
-          console.log("변환된 경로:", newPath);
+          const newPath = serverBasePath + encodeURI(path.substring(fileSystemBasePath.length));
           return newPath;
         }
       }
-      console.log("경로 읽기 실패:", path);
       return path;
     },
     handleFileUpload(event) {
@@ -789,22 +796,85 @@ export default {
         }
       }).open();
     },
-    toggleAll() {
-      this.isAllChecked = !this.isAllChecked;  // 전체 선택 상태 토글
-      this.eaStatus.forEach(item => item.checked = this.isAllChecked);  // 모든 항목의 체크 상태를 전체 선택 상태와 동기화
+    fetchEaList() {
+      let url = this.$serverUrl + "/ea/eaHRList";
+
+      this.$axios.get(url, {
+        params: this.requestBody,  // 필요한 파라미터가 있다면 여기에 추가
+        headers: {}  // 필요한 헤더가 있다면 여기에 추가
+      }).then((res) => {
+        if (res.data.length > 0) {
+          this.eaList = res.data;
+        } else {
+          this.eaList = [];  // 데이터가 없을 경우의 기본값을 설정합니다.
+        }
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+        this.eaList = [];  // 오류 발생 시 기본값을 설정합니다.
+      })
+    },
+    async approveSelectedEA() {
+      const selectedEaList = this.eaList.filter(e => e.checked);
+      for (const ea of selectedEaList) {
+        await this.approveEA(ea.documentNo);
+      }
+    },
+    async rejectSelectedEA() {
+      const selectedEaList = this.eaList.filter(e => e.checked);
+      for (const ea of selectedEaList) {
+        await this.rejectEA(ea.documentNo);
+      }
+    },
+    async approveEA() {
+      try {
+        const response = await this.$axios.put(`${this.$serverUrl}/ea/eaApprovalStatus/${this.documentNo}`);
+
+        // 응답 데이터를 직접 사용하거나 필요한 처리를 수행
+        this.documentNo = response.data.documentNo;
+        this.title = response.data.title;
+        this.content = response.data.content;
+        this.createdAt = response.data.createdAt;
+        this.startDate = response.data.startDate;
+        this.endDate = response.data.endDate;
+        this.approvalStatus = response.data.approvalStatus;
+      } catch (error) {
+        console.error(error);
+        if (error.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
+        }
+      }
+    },
+    async rejectEA(documentNo) {
+      try {
+        const ea = this.eaList.find(e => e.documentNo === documentNo);
+        const response = await this.$axios.put(`/ea/eaRejectStatus/${documentNo}`, ea);
+        if (response.status === 200) {
+          const index = this.eaList.findIndex(e => e.documentNo === documentNo);
+          this.eaList[index] = {...response.data, checked: false};
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async toggleAll() {
+      this.allChecked = !this.allChecked;
+      this.eaList = this.eaList.map(e => ({...e, checked: this.allChecked}));
     },
   },
-  mounted() {
-    this.fetchEmployees();
+    mounted() {
+      this.fetchEmployees();
+      this.fetchEaList();
 
-    let script = document.createElement('script');
-    script.src = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-    script.async = true;
-    document.body.appendChild(script);
-  },
-  components: {
-    Button,
-    Icon,
-  },
-};
+      let script = document.createElement('script');
+      script.src = "https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+      script.async = true;
+      document.body.appendChild(script);
+    },
+    components: {
+      Button,
+      Icon,
+    },
+  };
 </script>
