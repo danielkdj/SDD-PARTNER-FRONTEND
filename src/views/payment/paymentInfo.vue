@@ -5,70 +5,88 @@
       <div class="bg-gray-200 mx-auto h-full">
         <div class="grid grid-cols-2 h-1/2">
           <div class="p-4 h-full">
-            <div class="bg-white p-6 rounded-lg h-full">
-              <header class="text-center text-3xl font-bold bg-gray-200">사원 검색</header>
-              <hr>
-              <div class="flex items-center justify-center space-x-2 mb-4">
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-                <i class="fas fa-star text-yellow-400"></i>
-              </div>
-              <div class="mb-4 flex justify-center">
-                <dropdown placement="left">
-                  <template v-slot:button>
-                    <button class="flex px-5 py-3 rounded-md bg-blue-100 text-gray-400">
-                      선택
-                      <span class="ml-5 mt-1"
-                      ><Icon icon="ant-design:caret-down-filled"
-                      /></span>
-                    </button>
-                  </template>
-                  <template v-slot:content>
-                    <div class="">
-                      <!-- 검색 유형 옵션 추가 -->
-                      <button @click="searchType = 'empId'">직원 ID</button>
-                      <button @click="searchType = 'salaryDate'">급여 날짜</button>
-                    </div>
-                  </template>
-                </dropdown>
-                <input type="text" placeholder="검색" v-model="search" @input="fnGetList" class="w-1/3 bg-blue-100 border-0.4 rounded-lg py-2 px-3 ml-2">
-              </div>
-              <perfect-scrollbar class="divide-y max-h-72 mt-5 dark:divide-gray-700">
+            <!-- 전체 사원 리스트 -->
+            <div class="mt-2 bg-white dark:bg-gray-800 p-4 w-full rounded-md box-border border dark:border-gray-700">
+              <div class="mt-2 w-full">
+                <div class="lg:flex sh grid-cols-1 lg:space-y-0 space-y-2 gap-5 justify-between">
 
-                <div
-                    v-for="att in list"
-                    :key="list.id"
-                    class="p-3 w-full"
-                >
-                  <div class="flex gap-5 place-content-between">
-                    <div>
-                      <img
-                          class="w-14 rounded-md"
-                          :src="list.salaryDate"
-                          alt=""
+                  <div>
+                    <h2 class="font-bold text-base text-gray-800 dark:text-gray-200">
+                      사원 리스트
+
+                    </h2>
+                    <p class="text-gray-400 text-base font-roboto font-regular">
+                      이름으로 사원 조회 지원
+                    </p>
+                  </div>
+
+                  <div class="flex gap-2">
+                    <!-- search bar -->
+                    <div
+                        class="input-box border dark:bg-gray-900 lg:ml-0 ml-5 dark:border-gray-700 rounded-md hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700">
+                        <span class="text-3xl p-2 text-gray-400">
+                        <Icon icon="ei:search"/></span>
+                      <input
+                          type="text"
+                          v-model="search"
+                          placeholder="검색할 사원명을 입력하세요."
+                          class="p-3 w-full bg-white dark:bg-gray-900 dark:text-gray-400 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
                       />
                     </div>
-                    <div class="mt-1">
-                      <h2 class="dark:text-gray-200">{{ att.salaryDate }}</h2>
-                      <p class="text-sm dark:text-gray-500 text-gray-400">
-                        {{ currency(att.payment) }}원
-                      </p>
-                    </div>
-                    <div class="self-center">
-                      {{att.extraTime}}
-                    </div>
-                    <div>
-                      <button
-                          @click="selectUser(att)"
-                          class="bg-sky-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                      >
-                        >
-                      </button>
-                    </div>
+                    <!-- end search bar -->
+
+                    <!-- 목록 버튼 -->
+                    <button
+                        class="bg-cyan-700 hover:bg-cyan-500 text-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-3 px-5"
+                        @click="returnEmpList()">
+                      목록
+                    </button>
+                    <!-- end 목록 버튼 -->
                   </div>
                 </div>
-              </perfect-scrollbar>
+              </div>
+              <div class="wrapping-table mt-10">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+                  <thead class="text-xs text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3 w-1/12">순번</th>
+                    <th scope="col" class="px-6 py-3 w-1/12">사원사진</th>
+                    <th scope="col" class="px-6 py-3 w-1/6">사원번호</th>
+                    <th scope="col" class="px-6 py-3 w-1/6">사원명</th>
+                    <th scope="col" class="px-6 py-3 w-1/6">소속부서</th>
+                    <th scope="col" class="px-6 py-3 w-1/6">직위</th>
+                  </tr>
+                  </thead>
+                </table>
+                <perfect-scrollbar class="mt-5 h-80 border-gray-100">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll">
+                    <colgroup>
+                      <col class="w-1/12">
+                      <col class="w-1/12">
+                      <col class="w-1/6">
+                      <col class="w-1/6">
+                      <col class="w-1/6">
+                      <col class="w-1/6">
+                    </colgroup>
+                    <tbody class="text-sm text-gray-400 uppercase dark:bg-gray-700 dark:text-gray-400 odd:bg-gray-100 even:border-t bg-white" v-for="(items, index) in empList">
+                    <tr class="cursor-pointer text-gray-500 border-b dark:bg-gray-800 dark:border-gray-700"
+                        :key="items.empId" @click="selectUser(`${items.empId}`)">
+
+
+                      <td class="px-6 py-3">{{ empList.length - index }}</td>
+                      <td class="px-6 py-3">
+                        <img :src="items.empImg" alt="사원사진" class="w-14 h-14 rounded-2xl">
+                      </td>
+                      <td class="px-6 py-3">{{ items.empId }}</td>
+                      <td class="px-6 py-3">{{ items.name }}</td>
+                      <td class="px-6 py-3">{{ getDeptName(items.deptNo) }}</td>
+                      <td class="px-6 py-3">{{ getEmpSpot(items.empSpot) }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </perfect-scrollbar>
             </div>
+          </div>
           </div>
           <div class="p-4"><div class="bg-white p-6 rounded-lg box-border border h-full mx-h-auto w-full">
             <div class="text-center text-3xl font-bold bg-gray-200">
@@ -80,7 +98,7 @@
             <perfect-scrollbar class="divide-y mt-5 dark:divide-gray-700 max-h-72">
               <div
                   v-for="user in selectedUsers"
-                  :key="list.id"
+                  :key="user.empId"
                   class="p-3 w-full"
               >
                 <div class="flex gap-5 place-content-between">
@@ -93,13 +111,16 @@
                   </div>
 
                   <div class="mt-1">
-                    <h2 class="dark:text-gray-200">{{ user.salaryDate }}</h2>
+                    <h2 class="dark:text-gray-200">{{ user.employeeName }}</h2>
                     <p class="text-sm dark:text-gray-500 text-gray-400">
-                      {{ user.bonus }}
+                      {{ getDeptName(user.deptNo) }} 팀
                     </p>
                   </div>
                   <div class="self-center">
-                    {{user.empRank}}
+                    {{user.salaryDate}}
+                  </div>
+                  <div class="self-center">
+                    {{user.payment}}
                   </div>
 
                   <div>
@@ -142,12 +163,13 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr v-for="(user, index) in previewData" :key="index">
                           <td class="border px-4 py-2">{{ today() }}</td>
-                          <td class="border px-4 py-2">{{ user.empId }}</td>
-                          <td class="border px-4 py-2">{{ user.empRank }}</td>
-                          <td class="border px-4 py-2">(주)SSD파트너</td>
                           <td class="border px-4 py-2">급여</td>
+                          <td class="border px-4 py-2">{{ user.payment }}</td>
+                          <td class="border px-4 py-2">(주)SSD파트너</td>
+                          <td class="border px-4 py-2">{{ user.employeeName }}</td>
                           <td class="border px-4 py-2">{{ user.empRank }}</td>
                         </tr>
                         </tbody>
@@ -174,6 +196,7 @@ import * as xlsx from 'xlsx'
 import { Icon } from "@iconify/vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Default from "@fullcalendar/vue3";
+import {ref} from "vue";
 
 
 
@@ -188,22 +211,65 @@ export default {
 
   data() {
     return {
-      search: '',
+
       searchType: 'empId',
       selectedItems: [],
       previewData: [],
       list: [],
-      requestBody: {},
       selectedUsers: [],
-      users: [] // Add this to store the fetched users
+      users: [], // Add this to store the fetched users
+      requestBody: {},
+      search: "",
+      empList: ref([]),
+      searchEmpList: ref([]),
+      selectedEmployee: [],
+      defaultEmployee: {},
+      defaultEmpCard: [{}],
+
     };
   },
+  watch: {
+    search: function(newVal) {
+      this.fetchEmployees(newVal);
+    }
+  },
   mounted() {
-    this.fnGetList()
+    this.fnGetList(),
+        this.fetchEmployees();
   },
   //function
   methods: {
+    selectUser(empId) {
+      this.$axios
+          .get(this.$serverUrl + "/salary/id/"+empId,
+              {
+                params: this.requestBody,
+                headers: {},
+              })
+          .then((res
+          ) => {
 
+            this.selectedUsers.push(res.data);
+            // Update this line
+
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+    },
+    removeUser(index) {
+      this.selectedUsers.splice(index, 1);
+    },
+    previewXlsx() {
+      this.previewData = [...this.selectedUsers];
+    },
+    today() {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // JavaScript counts months from 0 to 11. January is 0. December is 11.
+      const formattedMonth = month < 10 ? '0' + month : month; // to make sure that single digit months are prefixed with a '0'
+      return year + '-' + formattedMonth;
+    },
     fnGetList() {
       //스프링 부트에서 전송받은 데이터를 출력 처리
 
@@ -224,6 +290,92 @@ export default {
             console.error(err);
           });
     },
+
+    fetchEmployees(search) {
+      let url = this.$serverUrl + "/employee/ep";
+      if (search) {
+        url += "/name/" + search;
+      }
+
+      this.$axios.get(url, {
+        params: this.requestBody,
+        headers: {}
+      }).then((res) => {
+        if (res.data.length > 0) {
+
+          this.empList = res.data.map(emp => ({
+            ...emp,
+            empImgDisplay: this.getRelativePath(emp.empImg)
+          }));
+        } else {
+          this.empList = this.defaultEmpCard;
+        }
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+        this.empList = this.selectedEmployee;
+      })
+    },
+    returnEmpList() {
+      this.search = '';
+      this.fetchEmployees();
+    },
+    getRelativePath(path) {
+      const fileSystemBasePath = 'C:/SDD/public/img/';
+      const serverBasePath = 'http://localhost:3030/img/';
+
+      if (path && typeof path === 'string') {
+        if (path.startsWith(fileSystemBasePath)) {
+          const newPath = serverBasePath + path.substring(fileSystemBasePath.length);
+          console.log("Converted path:", newPath);
+          return newPath;
+        }
+      }
+      console.log("Unchanged path:", path);
+      return path;
+    },
+  },
+  computed: {
+    getDeptName() {
+      return (deptNo) => {
+        switch (deptNo) {
+          case 1:
+            return '개발';
+          case 2:
+            return '인사';
+          case 3:
+            return '급여';
+          case 4:
+            return '총무';
+          default:
+            return '알 수 없음'; // deptNo가 예상 범위 외의 값을 가질 때
+        }
+      }
+    },
+    getEmpSpot() {
+      return (empSpot) => {
+        switch (empSpot) {
+          case '11':
+            return '사장';
+          case '12':
+            return '이사';
+          case '13':
+            return '부장';
+          case '14':
+            return '과장';
+          case '15':
+            return '대리';
+          case '16':
+            return '주임';
+          case '17':
+            return '사원';
+          default:
+            return '알 수 없음'; // empSpot가 예상 범위 외의 값을 가질 때
+        }
+      }
+    },
+
     makeExcelFile5() {
       // Create a new workbook
       const wb = xlsx.utils.book_new();
@@ -231,10 +383,10 @@ export default {
       // Map your selectedUsers data to only include the properties you want
       const data = this.selectedUsers.map(user => ({
         청구년월: this.today(),
-        청구항목: user.empId,
-        청구금액: user.empRank,
+        청구항목: "급여",
+        청구금액: user.payment,
         납부자명: "(주)SSD파트너",
-        납부자구분: "급여",
+        납부자구분: user.name,
         납부전용계좌: user.empRank
       }));
 
@@ -248,27 +400,10 @@ export default {
       // You may need to run this in the browser environment to see the download dialog
       xlsx.writeFile(wb, "급여이체내역서.xlsx");
     },
-    selectUser(user) {
-
-      this.selectedUsers.push(user);
-    },
-    removeUser(index) {
-      this.selectedUsers.splice(index, 1);
-    },
-    previewXlsx(selectedUsers) {
-      this.previewData = [...this.selectedUsers];
-
-    },
     currency(value) {
       return new Intl.NumberFormat().format(value);
     },
-    today() {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1; // JavaScript counts months from 0 to 11. January is 0. December is 11.
-      const formattedMonth = month < 10 ? '0' + month : month; // to make sure that single digit months are prefixed with a '0'
-      return year + '-' + formattedMonth;
-    },
+
 
 
   }
