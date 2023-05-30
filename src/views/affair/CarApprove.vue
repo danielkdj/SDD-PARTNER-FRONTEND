@@ -69,11 +69,11 @@
     </div>
     <div class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700" >
       <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">전자결재  &nbsp
-        <span class="text-base text-green-800 bg-green-300 px-3 py-1 rounded-md"
+        <span class="text-base text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
                 v-if="approvalStatus === 1">
                 처리 전
         </span>
-        <span class="text-base text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
+        <span class="text-base text-green-800 bg-green-300 px-3 py-1 rounded-md"
                 v-else-if="approvalStatus === 2">
                 승인
         </span>
