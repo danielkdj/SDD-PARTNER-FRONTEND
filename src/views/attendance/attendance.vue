@@ -77,7 +77,7 @@
 
         </div>
         <div class="w-full self-center text-center">
-          <h2 class="text-xl">5명</h2>
+          <h2 class="text-xl">{{ employeeCount }}명</h2>
         </div>
       </div>
 
@@ -191,22 +191,7 @@
       <!-- end card -->
     </div>
 
-    <!-- 사원 상세정보 츨력 카드 -->
-    <div class="mt-2 w-full bg-gray-100 dark:bg-gray-800 p-7 w-full rounded-md box-border border dark:border-gray-700">
 
-      <!-- card  -->
-      <div class="card bg-white dark:bg-gray-800 w-full rounded-md p-2 border dark:border-gray-700">
-        <div class="p-4 w-full text-xl text-center bg-gray-300">
-          상세보기
-        </div>
-        <div>
-          상세내역
-        </div>
-        <div class="wrapper-card w-full grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-2 mt-5">
-
-        </div>
-      </div>
-    </div>
 
     <!-- end wrapper card -->
 
@@ -236,37 +221,37 @@
                   scope="col"
                   class="uppercase px-6 py-2"
               >
-                번호
+                사번
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                항목구분
+                출근시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                제목
+                퇴근시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                신청자
+                연장시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                소속부서
+                근무시간
               </th>
               <th
                   scope="col"
                   class="uppercase px-6 py-3"
               >
-                사용일시
+                근무일
               </th>
               <th
                   scope="col"
@@ -279,46 +264,31 @@
             <tbody>
             <tr
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50"
-                v-for="items in tableTransaction"
-                :key="items.transaction"
+                v-for="items in list"
+                :key="items.id"
             >
               <td class="px-6 py-2">
-                {{ items.docNo }}
+                {{ items.empId }}
               </td>
               <td class="px-6 py-4">
-                {{ items.subCategory }}
+                {{ items.startTime }}
               </td>
               <td class="px-6 py-4">
-                {{ items.title }}
+                {{ items.endTime }}
               </td>
               <td class="px-6 py-4">
-                {{ items.writer }}
+                {{ items.extraTime }}
               </td>
               <td class="px-6 py-4">
-                {{ items.deptName }}
+                {{ items.workingHour }}
               </td>
               <td class="px-6 py-4">
-                {{ items.startDate }} ~ {{ items.endDate }}
+                {{ items.startDate }}
               </td>
-              <td class="px-6 py-4">
-                                <span
-                                    class="text-green-800 bg-green-300 px-3 py-1 rounded-md"
-                                    v-if="items.status === '사용완료'"
-                                >
-                                  {{ items.status }}
-                                </span>
-                <span
-                    class="text-purple-800 bg-purple-300 px-3 py-1 rounded-md"
-                    v-else-if="items.status === '사용중'"
-                >
-                                  {{ items.status }}
-                                </span>
-                <span
-                    class="text-red-800 bg-red-300 px-3 py-1 rounded-md"
-                    v-else
-                >
-                                  {{ items.status }}
-                                </span>
+              <td class="px-6 py-4 flex text-green-700">
+                근무중
+<!--                <button class="bg-cyan-700 border flex gap-2 text-white hover:bg-cyan-900 dark:border-gray-700 rounded py-3 px-3 mr-3"> 승인하기 </button>
+                <button class="bg-red-500 border flex gap-2 text-white hover:bg-red-700 dark:border-gray-700 rounded py-3 px-3"> 반려하기 </button>-->
               </td>
             </tr>
             </tbody>
@@ -341,7 +311,12 @@ import axios from "axios";
 export default {
   name: "Employee",
   data() {
-    return {};
+    return {
+      employeeCount: {},
+      list: [],
+      counts: []
+
+    };
     // end chart data line
   },
   components: {
@@ -350,14 +325,35 @@ export default {
   },
   mounted() {
     this.fnGetList()
+    this.countsList()
+    this.getEmployeeCount();
+    this.getWorkingEmployeeCount();
+    this.getVacationEmployeeCount();
+    this.getOvertimeEmployeeCount();
   },
   methods: {
+    async getWorkingEmployeeCount() {
+      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/1");
+      this.employeeCount.working = response.data;
+    },
+    async getVacationEmployeeCount() {
+      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/3");
+      this.employeeCount.vacation = response.data;
+    },
 
+    async getOvertimeEmployeeCount() {
+      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/4");
+      this.employeeCount.overtime = response.data;
+    },
+    async getEmployeeCount() {
+      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count");
+      this.employeeCount = response.data;
+    },
     fnGetList() {
       //스프링 부트에서 전송받은 데이터를 출력 처리
 
       this.$axios
-          .get(this.$serverUrl + "/salary/list",
+          .get(this.$serverUrl + "/attendance/list",
               {
                 params: this.requestBody,
                 headers: {},
@@ -373,9 +369,28 @@ export default {
             console.error(err);
           });
     },
+    countsList() {
+    this.$axios
+        .get(this.$serverUrl + "/salary/list",
+            {
+              params: this.requestBody,
+              headers: {},
+            })
+        .then((res
+        ) => {
+
+          this.counts = res.data;
+          // Update this line
+
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+  },
+
     fetchAllEmp() {
       this.$axios
-          .get(this.$serverUrl + "/employee/list",
+          .get(this.$serverUrl + "/attendance/list",
               {
                 params: this.requestBody,
                 headers: {},
@@ -393,7 +408,7 @@ export default {
     },
     fetchExtraEmp() {
       this.$axios
-          .get(this.$serverUrl + "/employee/extra/list",
+          .get(this.$serverUrl + "/ea/eaAttendanceList",
               {
                 params: this.requestBody,
                 headers: {},
@@ -411,7 +426,7 @@ export default {
     },
     fetchDayOffEmp() {
       this.$axios
-          .get(this.$serverUrl + "/employee/dayoff/list",
+          .get(this.$serverUrl + "/ea//eaVacationList",
               {
                 params: this.requestBody,
                 headers: {},
