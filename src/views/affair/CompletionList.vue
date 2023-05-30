@@ -11,7 +11,7 @@
       </div>
       <div class="flex min-h-full flex-col lg:px-3">
           <input
-              type="number" min="0" max="5" step="1"
+              type="number" min="0" max="4" step="1"
               class="block py-2.5 px-0 w-20 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
               placeholder="  -분기-"
               v-model.number="quarter"/>
@@ -119,16 +119,17 @@ export default {
       //link 변수
       homeLink: {
         name1: "Affair",
-        name2: "CompletionList",
+        name2: "CompletionAdd",
+        name3: "CompletionList",
         link1: "/Affairs",
-        link2: "/CompletionList",
-        link3: "#",
+        link2: "/CompletionAdd",
+        link3: "/CompletionList",
       },
       requestBody: this.$route.query,
       //검색용 변수
       year: '',
       quarter: '',
-      eduId: 0,
+      eduId: '0',
       completion : 'A',
       deptNo : 0,
       //이수여부 변수
@@ -227,8 +228,9 @@ export default {
         }
     },
   mounted() {
-    this.fnGetList()
     this.year = moment().year()
+
+    this.fnGetList()
   }
 }
 </script>
