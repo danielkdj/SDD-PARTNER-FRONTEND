@@ -47,22 +47,27 @@ export default {
             end: "",
             backgroundColor: "",
             description: "",
-            url: ""
+            url: "",
+          allDay:"",
+          departmentNumber:""
         };
     },
     methods: {
+
         submit() {
-            const data = {
+            const datas = {
                 title: this.title,
                 content: this.content,
                 start: this.start,
                 end: this.end,
                 backgroundColor: this.backgroundColor,
                 description: this.description,
-                url: this.url
+                url: this.url,
+              allDay:"1",
+              departmentNumber:"1"
             };
-
-          this.$axios.post(this.$serverUrl + '/document',this.data)
+            console.log(datas);
+          this.$axios.post(this.$serverUrl + '/employee/teamCalendar/',datas)
               .then((res) => {
                 // alert('글이 저장되었습니다.')
                 this.$router.replace('teamCalendar');
@@ -72,8 +77,6 @@ export default {
               alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
             }
           })
-
-            console.log(data);
         },
     },
 };
