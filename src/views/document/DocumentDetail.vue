@@ -10,12 +10,19 @@
         <div v-html="documentDetail.content"></div>
       </div>
     </div>
+
   </div>
+  <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      @click="deleteDetail">delete</button>
 </template>
 
 <script>
+import Button from "@/views/components/button.vue";
+
 export default {
   name: "DetailPage",
+  components: {Button},
   data() {
     return {
       requestBody: {},
@@ -37,6 +44,20 @@ export default {
         headers: {}
       }).then((res) => {
         this.documentDetail = res.data;
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    },
+
+    deleteDetail() {
+      let url = this.$serverUrl + "/document/" + this.$route.params.id
+      this.$axios.delete(url, {
+        params: this.requestBody,
+        headers: {}
+      }).then((res) => {
+        this.$router.replace('/document');
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
