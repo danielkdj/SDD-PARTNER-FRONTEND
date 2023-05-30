@@ -30,7 +30,7 @@
                                 작성자
                             </td>
                             <td class="px-6 py-4 ">
-                                   {{ name }} ( {{ empId }} )
+                                   {{ employee.name }} ( {{ employee.empId }} )
                             </td>
                         </tr>
 
@@ -43,7 +43,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <select class="cursor-pointer flex px-5 py-3 rounded-md bg-blue-100 text-gray-400"
-                                        v-model="categoryId">
+                                        v-model="categoryItem.categoryId">
                                     <option value="1">근태 : 연장근무</option>
                                     <option value="2">휴가 : 연차</option>
                                     <option value="3">휴가 : 공가</option>
@@ -58,8 +58,8 @@
                                     <option value="12">회의실 : 회의실 B</option>
                                     <option value="13">차량 : 차량 A</option>
                                     <option value="14">차량 : 차량 B</option>
-                                    <option value="15">차량 : 경력증명서</option>
-                                    <option value="16">차량 : 재직증명서</option>
+                                    <option value="15">문서 : 경력증명서</option>
+                                    <option value="16">문서 : 재직증명서</option>
                                 </select>
                             </td>
                         </tr>
@@ -119,14 +119,15 @@
                     <div class="button-container">
                         <button
                                 type="button"
-                                class="text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 border dark:border-gray-700-lg border dark:border-gray-700-red-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded"
                                 @click="createEa"
                         >
                             신청
                         </button>
+                        &nbsp; &nbsp;
                         <button
                                 type="button"
-                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 border dark:border-gray-700-lg border dark:border-gray-700-red-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded"
                                 @click="clearForm"
                         >
                             취소
@@ -150,9 +151,13 @@ export default {
         return {
             requestBody: this.$route.query,
 
-            empId: "EMP-123456",
-            name: "류준열씨?",
-            categoryId: "",
+            employee:{
+                empId: "EMP-123456",
+                name: "류준열씨?",
+            },
+            categoryItem:{
+                categoryId: "",
+            },
             title: "",
             startDate: '',
             endDate: '',
@@ -171,14 +176,19 @@ export default {
                 startDate: moment(this.startDate).format("yyyy-MM-DD HH:mm"),
                 endDate: moment(this.endDate).format("yyyy-MM-DD HH:mm"),
                 content: this.content,
-                categoryId: this.categoryId,
-                empId: "EMP-123456",
-                name: this.name
+                approvalStatus: 1,
+                categoryItem:{
+                    categoryId: this.categoryItem.categoryId,
+                },
+                employee:{
+                    empId: "EMP-123456",
+                    name: this.name
+                },
             };
             this.$axios.post(this.$serverUrl + '/ea/createEa', this.ea)
                 .then((res) => {
                     alert('전자결재 신청 완료')
-                    // window.location.href = 'http://localhost:3030';
+                    window.location.href = 'http://localhost:3030';
                 }).catch((err) => {
                 if (err.message.indexOf('Network Error') > -1) {
                     alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

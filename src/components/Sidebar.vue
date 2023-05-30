@@ -80,9 +80,11 @@
 
                                 <router-link
 
+
                                   to="/mypage/requestCounsel"
 
                                   class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
 
                                 >
 
@@ -199,6 +201,7 @@
                                 <router-link
                                   to="/teamCalendar"
                                   class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
                                     팀 일정 조회
                                 </router-link>
@@ -210,9 +213,10 @@
                         <div class="item">
 
                             <router-link
-                              to="/document"
-                              exact
-                              class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                                to="/document"
+                                exact
+                                class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
                                 <span class="mr-3 text-xl">
 
@@ -266,8 +270,8 @@
                               class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
                                 급여 이체 신청
-                            </router-link>
 
+                            </router-link>
                         </template>
                     </menu-accordion>
                 </div>
@@ -357,6 +361,7 @@
                                 이수관리
                             </router-link>
                         </template>
+
                     </menu-accordion>
                 </div>
 
