@@ -700,12 +700,11 @@ export default {
         } else {
           alert('사원 등록에 실패하였습니다.');
         }
-
       } catch (error) {
         if (error.response && error.response.data.empID === error.response.data.newEmpId) {
           alert('이미 등록된 사원입니다.');
         } else {
-          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
         }
       }
     },
