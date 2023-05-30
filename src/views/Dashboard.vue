@@ -46,13 +46,13 @@
                     </p>
 
                     <br>
-                    <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 border dark:border-gray-700-lg border dark:border-gray-700-blue-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    <button class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded"
                             type="button"
                             @click="handleGoToWorkClick">
                         출근
                     </button>
-
-                    <button class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 border dark:border-gray-700-lg border dark:border-gray-700-pink-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    &nbsp;&nbsp;
+                    <button class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded"
                             type="button"
                             @click="handleOffToWorkClick">
                         퇴근
@@ -61,11 +61,11 @@
                     <p class="description">
                         <!-- {{ user.title }}-->
                         근무상태<!--/부서--> : <span v-if="tableTransaction3.empStatus === 1"
-                                             class="px-3 py-1 rounded-md bg-green-500">
+                                             class="text-base text-green-800 bg-green-300 px-3 py-1 rounded-md">
                                           출근 중
                                 </span>
                         <span v-if="tableTransaction3.empStatus === 2"
-                              class="px-3 py-1 rounded-md bg-red-500">
+                              class="text-base text-red-800 bg-red-300 px-3 py-1 rounded-md">
                                          퇴근 중
                                 </span>
                     </p>

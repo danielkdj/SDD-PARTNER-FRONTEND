@@ -119,14 +119,15 @@
                     <div class="button-container">
                         <button
                                 type="button"
-                                class="text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 border dark:border-gray-700-lg border dark:border-gray-700-red-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                class="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded"
                                 @click="createEa"
                         >
                             신청
                         </button>
+                        &nbsp; &nbsp;
                         <button
                                 type="button"
-                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 border dark:border-gray-700-lg border dark:border-gray-700-red-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                class="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded"
                                 @click="clearForm"
                         >
                             취소
