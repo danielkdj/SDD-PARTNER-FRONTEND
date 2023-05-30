@@ -33,7 +33,7 @@ import DocumentWrite from "@/views/document/DocumentWrite.vue";
 import attendance from "@/views/attendance/attendance.vue";
 import searchemplyoee from "@/views/attendance/searchemplyoee.vue";
 import Salary from "@/views/salary/salary.vue";
-//import dayoff from "@/views/dayoff/dayoff.vue";
+import paymentInfo from "@/views/payment/paymentInfo.vue";
 import Affairs from "../views/affair/Affairs.vue";
 import NoticeList from "../views/affair/NoticeList.vue";
 import NoticeDetail from "../views/affair/NoticeDetail.vue";
@@ -268,12 +268,12 @@ const routes = [
       title: "EaApprovalList" + appname,
     },
   },
-  // {
-  //   path: "/dayoff",
-  //   name: "dayoff",
-  //   component: dayoff,
-  //
-  // },
+  {
+    path: "/payment",
+    name: "paymentInfo",
+    component: paymentInfo,
+
+  },
   {
     path: "/salary",
     name: "Salary",
