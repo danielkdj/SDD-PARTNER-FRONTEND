@@ -33,7 +33,6 @@ import DocumentWrite from "@/views/document/DocumentWrite.vue";
 import attendance from "@/views/attendance/attendance.vue";
 import searchemplyoee from "@/views/attendance/searchemplyoee.vue";
 import Salary from "@/views/salary/salary.vue";
-//import dayoff from "@/views/dayoff/dayoff.vue";
 import Affairs from "../views/affair/Affairs.vue";
 import NoticeList from "../views/affair/NoticeList.vue";
 import NoticeDetail from "../views/affair/NoticeDetail.vue";
@@ -46,11 +45,9 @@ import CarApprove from "../views/affair/CarApprove.vue";
 import CarSchedule from "../views/affair/CarSchedule.vue";
 import DrvList from "../views/affair/DrvList.vue";
 import DrvDetail from "../views/affair/DrvDetail.vue";
-// import EduList from "../views/affair/EduList.vue";
-// import EduDetail from "../views/affair/EduDetail.vue";
-// import EduWrite from "../views/affair/EduWrite.vue";
 import CompletionList from "../views/affair/CompletionList.vue";
 import CompletionAdd from "../views/affair/CompletionAdd.vue";
+
 
 var appname = " - SDD Partner";
 
@@ -268,12 +265,6 @@ const routes = [
       title: "EaApprovalList" + appname,
     },
   },
-  // {
-  //   path: "/dayoff",
-  //   name: "dayoff",
-  //   component: dayoff,
-  //
-  // },
   {
     path: "/salary",
     name: "Salary",
@@ -388,6 +379,7 @@ const routes = [
     name: "DrvDetail",
     component: DrvDetail,
     meta: { title: "DrvDetail " + appname },
+
   },
   // {
   //   path: "/EduList",
@@ -417,6 +409,7 @@ const routes = [
     component: CompletionAdd,
     meta: { title: "CompletionAdd " + appname },
   }
+
 ];
 
 const router = createRouter({
