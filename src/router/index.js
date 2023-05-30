@@ -50,6 +50,7 @@ import DrvDetail from "../views/affair/DrvDetail.vue";
 // import EduDetail from "../views/affair/EduDetail.vue";
 // import EduWrite from "../views/affair/EduWrite.vue";
 import CompletionList from "../views/affair/CompletionList.vue";
+import CompletionAdd from "../views/affair/CompletionAdd.vue";
 
 var appname = " - SDD Partner";
 
@@ -409,6 +410,12 @@ const routes = [
     name: "CompletionList",
     component: CompletionList,
     meta: { title: "CompletionList " + appname },
+  },
+  {
+    path: "/CompletionAdd",
+    name: "CompletionAdd",
+    component: CompletionAdd,
+    meta: { title: "CompletionAdd " + appname },
   }
 ];
 
