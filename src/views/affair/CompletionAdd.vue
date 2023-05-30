@@ -193,7 +193,7 @@ export default {
         link2: "/CompletionAdd",
         link3: "/#",
       },
-      eduId : '',
+      eduId : '0',
       year : '',
       quarter : '',
       completion : 'A',
