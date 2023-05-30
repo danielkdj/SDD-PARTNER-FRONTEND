@@ -4,43 +4,43 @@
         <!-- sidebar head -->
         <div class="sidebar-head p-4">
             <router-link
-                to="/"
-                exact
-                class="flex"
+              to="/"
+              exact
+              class="flex"
             >
                 <img
-                    class="w-8 mt-1"
-                    src="@/assets/logo.png"
-                    alt="logo SSD"
+                  class="w-8 mt-1"
+                  src="@/assets/logo.png"
+                  alt="logo SSD"
                 />
                 <h2
-                    class="text-2xl font-normal ml-3 mt-2 text-gray-800 dark:text-gray-200"
-                    translate="no"
+                  class="text-2xl font-normal ml-3 mt-2 text-gray-800 dark:text-gray-200"
+                  translate="no"
                 >
                     SDD
                 </h2>
             </router-link>
             <div
-                class="bg-gray-700 absolute mt-3 dark:block hidden rounded-md py-1 px-2 text-xs text-gray-200"
+              class="bg-gray-700 absolute mt-3 dark:block hidden rounded-md py-1 px-2 text-xs text-gray-200"
             >
                 Dark mode
             </div>
             <button
-                class="lg:hidden block dark:text-gray-400 float-right -mt-7"
-                @click="$emit('sidebarToggle')"
+              class="lg:hidden block dark:text-gray-400 float-right -mt-7"
+              @click="$emit('sidebarToggle')"
             >
                 <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    role="img"
-                    width="25px"
-                    height="25px"
-                    preserveAspectRatio="xMidYMid meet"
-                    viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="25px"
+                  height="25px"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 32 32"
                 >
                     <path
-                        fill="currentColor"
-                        d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"
+                      fill="currentColor"
+                      d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"
                     />
                 </svg>
             </button>
@@ -68,9 +68,9 @@
 
                                 <router-link
 
-                                    to="/mypage/myInfo"
+                                  to="/mypage/myInfo"
 
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
 
                                 >
 
@@ -80,9 +80,11 @@
 
                                 <router-link
 
-                                    to="/mypage/requestCounsel"
 
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  to="/mypage/requestCounsel"
+
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
 
                                 >
 
@@ -113,9 +115,9 @@
 
                                 <router-link
 
-                                    to="/ea/eaRequest"
+                                  to="/ea/eaRequest"
 
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
 
                                 >
 
@@ -125,9 +127,9 @@
 
                                 <router-link
 
-                                    to="/ea/eaRequestList"
+                                  to="/ea/eaRequestList"
 
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
 
                                 >
 
@@ -137,9 +139,9 @@
 
                                 <router-link
 
-                                    to="/ea/eaApprovalList"
+                                  to="/ea/eaApprovalList"
 
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
 
                                 >
 
@@ -154,36 +156,7 @@
                     </div>
 
                     <!-- 오늘은 요기까지 -->
-                    <div class="item mt-3">
-                        <menu-accordion>
-
-                            <template v-slot:icon>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-
-                            </template>
-
-                            <template v-slot:title> 근태관리</template>
-
-                            <template v-slot:content>
-                                <router-link
-                                    to="/component/alert"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    근태 내역 조회
-                                </router-link>
-                                <router-link
-                                    to="/component/accordion"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    휴가 사용현황 조회
-                                </router-link>
-
-                            </template>
-                        </menu-accordion>
-                    </div>
+                   
                     <div class="item mt-3">
                         <menu-accordion>
 
@@ -197,20 +170,9 @@
                             <template v-slot:title> 일정관리</template>
                             <template v-slot:content>
                                 <router-link
-                                    to="/component/alert"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    회의실 사용일정 조회
-                                </router-link>
-                                <router-link
-                                    to="/component/accordion"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                >
-                                    차량 사용일정 조회
-                                </router-link>
-                                <router-link
-                                    to="/teamCalendar"
-                                    class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  to="/teamCalendar"
+                                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+
                                 >
                                     팀 일정 조회
                                 </router-link>
@@ -222,6 +184,7 @@
                         <div class="item">
 
                             <router-link
+
                                 to="/document"
                                 exact
                                 class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -256,28 +219,29 @@
                         <template v-slot:title> 급여 & 근태</template>
                         <template v-slot:content>
                             <router-link
-                                to="/component/badge"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                              to="/attendance"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                              근태조회 등록
+                                근태조회 등록
                             </router-link>
                             <router-link
-                                to="/component/accordion"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                              to="/salary"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                              급여목록 조회
+                                급여목록 조회
                             </router-link>
                             <router-link
-                                to="/component/badge"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                              to="/searchemplyoee"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                              근태등록 조회
+                                근태등록 조회
                             </router-link>
                             <router-link
-                                to="/component/breadcumb"
-                                class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                              to="/payment"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
-                              급여 이체 신청
+                                급여 이체 신청
+
                             </router-link>
                         </template>
                     </menu-accordion>
@@ -317,57 +281,58 @@
                             </svg>
 
                         </template>
-                      <template v-slot:title> 총무</template>
-                      <template v-slot:content>
-                        <router-link
-                            to="/Affairs"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          총무과 메인
-                        </router-link>
-                        <router-link
-                            to="/NoticeList"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          공지사항
-                        </router-link>
-                        <router-link
-                            to="/RoomList"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          회의실 신청내역
-                        </router-link>
-                        <router-link
-                            to="/RoomSchedule"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          회의실 사용일정
-                        </router-link>
-                        <router-link
-                            to="/CarList"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          차량 신청내역
-                        </router-link>
-                        <router-link
-                            to="/CarSchedule"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          차량 사용일정
-                        </router-link>
-                        <router-link
-                            to="/DrvList"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          차량 관리대장
-                        </router-link>
-                        <router-link
-                            to="/CompletionList"
-                            class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        >
-                          이수관리
-                        </router-link>
-                      </template>
+                        <template v-slot:title> 총무</template>
+                        <template v-slot:content>
+                            <router-link
+                              to="/Affairs"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                총무과 메인
+                            </router-link>
+                            <router-link
+                              to="/NoticeList"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                공지사항
+                            </router-link>
+                            <router-link
+                              to="/RoomList"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                회의실 신청내역
+                            </router-link>
+                            <router-link
+                              to="/RoomSchedule"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                회의실 사용일정
+                            </router-link>
+                            <router-link
+                              to="/CarList"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                차량 신청내역
+                            </router-link>
+                            <router-link
+                              to="/CarSchedule"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                차량 사용일정
+                            </router-link>
+                            <router-link
+                              to="/DrvList"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                차량 관리대장
+                            </router-link>
+                            <router-link
+                              to="/CompletionList"
+                              class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                이수관리
+                            </router-link>
+                        </template>
+
                     </menu-accordion>
                 </div>
 
