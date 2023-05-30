@@ -24,3 +24,5 @@ pnpm-debug.log*
 node_modules
 sidebar.vue
 index.js
+package.json
+*.json

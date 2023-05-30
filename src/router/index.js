@@ -33,7 +33,6 @@ import DocumentWrite from "@/views/document/DocumentWrite.vue";
 import attendance from "@/views/attendance/attendance.vue";
 import searchemplyoee from "@/views/attendance/searchemplyoee.vue";
 import Salary from "@/views/salary/salary.vue";
-import dayoff from "@/views/dayoff/dayoff.vue";
 import Affairs from "../views/affair/Affairs.vue";
 import NoticeList from "../views/affair/NoticeList.vue";
 import NoticeDetail from "../views/affair/NoticeDetail.vue";
@@ -46,10 +45,10 @@ import CarApprove from "../views/affair/CarApprove.vue";
 import CarSchedule from "../views/affair/CarSchedule.vue";
 import DrvList from "../views/affair/DrvList.vue";
 import DrvDetail from "../views/affair/DrvDetail.vue";
-import EduList from "../views/affair/EduList.vue";
-import EduDetail from "../views/affair/EduDetail.vue";
-import EduWrite from "../views/affair/EduWrite.vue";
-import EduCompletion from "../views/affair/EduCompletion.vue";
+import CompletionList from "../views/affair/CompletionList.vue";
+import CompletionAdd from "../views/affair/CompletionAdd.vue";
+import TeamCalendarDetail from "@/views/teamCalendar/TeamCalendarDetail.vue";
+
 
 var appname = " - SDD Partner";
 
@@ -268,13 +267,6 @@ const routes = [
     },
   },
   {
-    path: "/dayoff",
-    name: "dayoff",
-    component: dayoff,
-
-
-  },
-  {
     path: "/salary",
     name: "Salary",
     component: Salary,
@@ -307,6 +299,11 @@ const routes = [
     path: "/teamCalendar",
     name: "teamCalendar",
     component: TeamCalendar
+  },
+  {
+    path: "/teamCalendarDetail/:id",
+    name: "teamCalendarDetail",
+    component: TeamCalendarDetail
   },
   {
     path: "/documentWrite",
@@ -388,27 +385,37 @@ const routes = [
     name: "DrvDetail",
     component: DrvDetail,
     meta: { title: "DrvDetail " + appname },
-  },  {
-    path: "/EduList",
-    name: "EduList",
-    component: EduList,
-    meta: { title: "EduList " + appname },
-  },  {
-    path: "/EduDetail",
-    name: "EduDetail",
-    component: EduDetail,
-    meta: { title: "EduDetail " + appname },
-  },  {
-    path: "/EduWrite",
-    name: "EduWrite",
-    component: EduWrite,
-    meta: { title: "EduWrite " + appname },
-  },  {
-    path: "/EduCompletion",
-    name: "EduCompletion",
-    component: EduCompletion,
-    meta: { title: "EduCompletion " + appname },
+
+  },
+  // {
+  //   path: "/EduList",
+  //   name: "EduList",
+  //   component: EduList,
+  //   meta: { title: "EduList " + appname },
+  // },  {
+  //   path: "/EduDetail",
+  //   name: "EduDetail",
+  //   component: EduDetail,
+  //   meta: { title: "EduDetail " + appname },
+  // },  {
+  //   path: "/EduWrite",
+  //   name: "EduWrite",
+  //   component: EduWrite,
+  //   meta: { title: "EduWrite " + appname },
+  // },
+  {
+    path: "/CompletionList",
+    name: "CompletionList",
+    component: CompletionList,
+    meta: { title: "CompletionList " + appname },
+  },
+  {
+    path: "/CompletionAdd",
+    name: "CompletionAdd",
+    component: CompletionAdd,
+    meta: { title: "CompletionAdd " + appname },
   }
+
 ];
 
 const router = createRouter({
