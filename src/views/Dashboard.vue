@@ -13,8 +13,7 @@
                         <br>
                         <h5 class="title">사원명 : {{ tableTransaction3.name }}<!--{{ user.fullName }}--></h5>
                     </a>
-                    <br>
-                    <p class="description">
+                    <br><p class="description">
                         <!-- {{ user.title }}-->
                         직급<!--/부서--> : <span v-if="tableTransaction3.empSpot === 11"
                                              class="px-3 py-1 rounded-md">
@@ -45,16 +44,17 @@
                                        사원
                                 </span><!--/ {{ tableTransaction3.department.deptName }}-->
                     </p>
+
                     <br>
                     <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 border dark:border-gray-700-lg border dark:border-gray-700-blue-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                             type="button"
-                            @click="fnGoToWork">
+                            @click="handleGoToWorkClick">
                         출근
                     </button>
 
                     <button class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 border dark:border-gray-700-lg border dark:border-gray-700-pink-500/50 dark:border dark:border-gray-700-lg dark:border dark:border-gray-700-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                             type="button"
-                            @click="fnOffToWork">
+                            @click="handleOffToWorkClick">
                         퇴근
                     </button>
                     <br><br>
@@ -354,7 +354,7 @@ export default {
         fnView(noticeNo) {
             this.noticeNo = noticeNo
             this.$router.push({
-                path: './notice/NoticeDetail',
+                path: '/notice/NoticeDetail',
                 query: this.requestBody
             })
         },
@@ -383,9 +383,14 @@ export default {
                 }
             });
         },
+        handleGoToWorkClick(){
+            this.fnGoToWork();
+
+            this.fnSaveToWork();
+        },
         fnGoToWork() {
             this.$axios.patch(this.$serverUrl + '/employee/workStatus/' + "EMP-123456", {
-                empId: this.empId,
+                empId: "EMP-123456",
                 empStatus: 1
             }).then((res) => {
                 console.log(res.data);
@@ -397,10 +402,44 @@ export default {
                 }
             })
         },
+        fnSaveToWork() {
+            this.$axios.post(this.$serverUrl + '/attendance/createAtt', {
+                empId: "EMP-123456",
+                startTime: this.startTime,
+                endTime: this.endTime
+            }).then((res) => {
+                console.log(res.data);
+            }).catch((err) => {
+                console.log("error!")
+                if (err.message.indexOf('Network Error') > -1) {
+                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                }
+            })
+        },
+        handleOffToWorkClick(){
+            this.fnOffToWork();
+
+            this.fnSaveOffToWork();
+        },
         fnOffToWork() {
             this.$axios.patch(this.$serverUrl + '/employee/workStatus/' + "EMP-123456", {
-                empId: this.empId,
+                empId: "EMP-123456",
                 empStatus: 2
+            }).then((res) => {
+                console.log(res.data);
+                window.location.href = 'http://localhost:3030';
+            }).catch((err) => {
+                console.log("error!")
+                if (err.message.indexOf('Network Error') > -1) {
+                    alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+                }
+            })
+        },
+        fnSaveOffToWork() {
+            this.$axios.post(this.$serverUrl + '/attendance/createAtt', {
+                empId: "EMP-123456",
+                startTime: this.startTime,
+                endTime: this.endTime
             }).then((res) => {
                 console.log(res.data);
                 window.location.href = 'http://localhost:3030';
