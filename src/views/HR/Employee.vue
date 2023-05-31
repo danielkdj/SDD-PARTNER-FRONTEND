@@ -473,7 +473,6 @@
 <script>
 import { Icon } from "@iconify/vue";
 import { ref } from "vue";
-import { Button } from "@/views/components/button.vue";
 
 export default {
   data() {
@@ -873,7 +872,6 @@ export default {
       document.body.appendChild(script);
     },
     components: {
-      Button,
       Icon,
     },
   };

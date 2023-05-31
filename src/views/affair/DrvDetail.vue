@@ -145,9 +145,11 @@
           actualMileage: '',
       }
     },
-    computed: { //연산
+    computed: {
       actualMileage() {
-          if(this.afterMileage>0 && this.beforeMileage>0 && this.afterMileage > this.beforeMileage)
+          if(this.afterMileage>0
+            && this.beforeMileage>0
+            && this.afterMileage > this.beforeMileage)
         return this.afterMileage - this.beforeMileage;
           return '';
       },
@@ -186,6 +188,10 @@
         })
       },
       fnUpdate() {
+        // if (this.actualMileage == '') {//입력값 없을때
+        //   alert('주행거리를 올바르게 입력하세요')
+        //   return
+        // }
         if (!confirm("수정하시겠습니까?")) return //취소 클릭시
 
         this.$axios.patch(this.$serverUrl + '/drv/' +this.drvNo, {

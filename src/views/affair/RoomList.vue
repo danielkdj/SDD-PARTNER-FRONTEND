@@ -143,12 +143,13 @@ export default {
       let url = this.$serverUrl + "/use/category/" + this.category
 
       if(search){
-      url = this.$serverUrl + "/use/search/" + this.category + "/" + this.status
+        url = this.$serverUrl + "/use/search/"
+          + this.category + "/" + this.status
       }
+
       this.$axios.get(url, {
       }).then((res) => {
-
-        this.tableTransaction = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+        this.tableTransaction = res.data
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {

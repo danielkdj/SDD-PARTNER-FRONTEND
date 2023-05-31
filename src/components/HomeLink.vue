@@ -47,11 +47,9 @@
 
 <script>
 import "./HomeLink.vue";
-import Button from "@/views/components/button.vue";
 
 export default {
     name: "HomeLink",
-    components: {Button},
     props: {
         homeLink: {
             type: Object,

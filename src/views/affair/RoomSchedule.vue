@@ -126,7 +126,7 @@ export default {
         return '사용중';
       }
     },
-    fnGetList(search) { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+    fnGetList(search) {
       let url = this.$serverUrl + "/use/schedule/" + 1
       if(search){
         url = this.$serverUrl + "/use/schedule/" + search

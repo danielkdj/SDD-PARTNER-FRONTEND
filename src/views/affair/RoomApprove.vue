@@ -2,7 +2,8 @@
   <HomeLink :homeLink="homeLink"/>
   <div class="h-screen">
     <div class="h-1/2 mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700">
-      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">{{ subCategory }} 사용일정</h2>
+      <h2 class="font-bold text-base text-gray-800 dark:text-gray-200" id="title">
+          {{ subCategory }} 사용일정</h2>
       <perfect-scrollbar class="dark:divide-gray-700">
         <div class="wrapping-table mt-10">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-1/2 lg:overflow-auto overflow-y-scroll">
@@ -240,7 +241,7 @@ export default {
       if (!confirm("승인하시겠습니까?")) return //취소 클릭시
 
       this.$axios.patch(this.$serverUrl + '/use/' + this.documentNo + '/2') //확인 클릭시
-        .then((res) => {
+        .then(() => {
 
           alert('승인되었습니다.')
 
@@ -253,19 +254,21 @@ export default {
       if (!confirm("반려하시겠습니까?")) return //취소 클릭시
 
       this.$axios.patch(this.$serverUrl + '/use/' + this.documentNo + '/3') //확인 클릭시
-        .then((res) => {
+        .then(() => {
+
           alert('반려되었습니다.')
+
           this.fnGetView();
         }).catch((err) => {
         console.log(err);
       })
     },
-    fnGetList() { //스프링 부트통해 DB에서 전송받은 list 출력 처리
+    fnGetList() {
       let url = this.$serverUrl + "/use/schedule/" + this.categoryId
       this.$axios.get(url, {
       }).then((res) => {
 
-        this.tableTransaction = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+        this.tableTransaction = res.data
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {

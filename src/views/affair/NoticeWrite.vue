@@ -65,7 +65,8 @@
           </label>
           <div class="col-span-10">
               <div id="ckeditor" class="w-4/5">
-                  <ckeditor :editor="editor" v-model="content" :config="editorConfig"></ckeditor>
+                  <ckeditor :editor="editor" v-model="content" :config="editorConfig">
+                  </ckeditor>
               </div>
           </div>
         </div>
@@ -159,8 +160,10 @@
           })
         }else{
           //UPDATE
-          this.$axios.patch(this.$serverUrl + '/notice/' + this.noticeNo, {title: this.title, content: this.content})
-            .then((res) => {
+          this.$axios.patch(this.$serverUrl + '/notice/' + this.noticeNo, {
+            title: this.title,
+            content: this.content
+            }).then((res) => {
                 alert('글이 수정되었습니다.')
               this.fnView(res.data.noticeNo)
             }).catch((err) => {

@@ -68,7 +68,6 @@
               <td class="px-6 py-4">
                   {{ items.createdAt }}
               </td>
-
             </tr>
           </tbody>
         </table>

@@ -113,7 +113,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 cursor-pointer"
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700
+                odd:bg-white even:bg-gray-50 cursor-pointer"
                     v-for="(items, index) in noticeTable"
                     :key="items.index"
                     v-on:click="fnViewNotice(`${items.noticeNo}`)">
@@ -260,14 +261,14 @@ export default {
             }]),
         }
     },
-    watch:{
-        year : function (newVal){
-          this.fnGetEduCount(newVal, this.quarter)
-        },
-        quarter : function (newVal){
-          this.fnGetEduCount(this.year, newVal)
-        }
-    },
+    // watch:{
+    //     year : function (newVal){
+    //       this.fnGetEduCount(newVal, this.quarter)
+    //     },
+    //     quarter : function (newVal){
+    //       this.fnGetEduCount(this.year, newVal)
+    //     }
+    // },
     methods: {
       fnGetUseCount(){
         let url = this.$serverUrl + "/use/mainCount"
@@ -351,18 +352,9 @@ export default {
             const now = moment();
             const dateObj = moment(date, 'YYYY-MM-DD');
             const diffInDays = now.diff(dateObj, 'days');
-            // const diffInHours = now.diff(dateObj, 'hours');
-
-            // if (diffInDays === 0) {
-            //     return `${diffInHours} hours`;
-            // } else
-
-            if (diffInDays === 1) {
-                return 'yesterday';
-            } else if (diffInDays < 30){
-                return `${diffInDays} days`;
-            } else {
-                return `months`;
+            if (diffInDays === 1) { return 'yesterday';
+            } else if (diffInDays < 30){ return `${diffInDays} days`;
+            } else { return `months`;
             }
         },
         fnViewNotice(noticeNo){
@@ -387,10 +379,9 @@ export default {
             })
         },
         fnViewApprove(documentNo, categoryId){
-        if(categoryId===12||13){
-          this.fnViewRoom(documentNo);
-        }
-          this.fnViewCar(documentNo);
+          if(categoryId===12||13){
+            this.fnViewRoom(documentNo);
+          } this.fnViewCar(documentNo);
         },
         fnViewCarList(){
             this.$router.push({

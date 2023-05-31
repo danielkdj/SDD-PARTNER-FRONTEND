@@ -327,24 +327,24 @@ export default {
     this.fnGetList()
     this.countsList()
     this.getEmployeeCount();
-    this.getWorkingEmployeeCount();
-    this.getVacationEmployeeCount();
-    this.getOvertimeEmployeeCount();
+    // this.getWorkingEmployeeCount();
+    // this.getVacationEmployeeCount();
+    // this.getOvertimeEmployeeCount();
   },
   methods: {
-    async getWorkingEmployeeCount() {
-      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/1");
-      this.employeeCount.working = response.data;
-    },
-    async getVacationEmployeeCount() {
-      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/3");
-      this.employeeCount.vacation = response.data;
-    },
-
-    async getOvertimeEmployeeCount() {
-      const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/4");
-      this.employeeCount.overtime = response.data;
-    },
+    // async getWorkingEmployeeCount() {
+    //   const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/1");
+    //   this.employeeCount.working = response.data;
+    // },
+    // async getVacationEmployeeCount() {
+    //   const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/3");
+    //   this.employeeCount.vacation = response.data;
+    // },
+    //
+    // async getOvertimeEmployeeCount() {
+    //   const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count/4");
+    //   this.employeeCount.overtime = response.data;
+    // },
     async getEmployeeCount() {
       const response = await this.$axios.get(this.$serverUrl + "/employee/ep/count");
       this.employeeCount = response.data;
@@ -426,7 +426,7 @@ export default {
     },
     fetchDayOffEmp() {
       this.$axios
-          .get(this.$serverUrl + "/ea//eaVacationList",
+          .get(this.$serverUrl + "/ea/eaVacationList",
               {
                 params: this.requestBody,
                 headers: {},

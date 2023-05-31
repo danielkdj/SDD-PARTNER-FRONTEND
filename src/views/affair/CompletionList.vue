@@ -95,7 +95,9 @@
               </td>
               <td class="px-6 py-4">
                   <label>{{ items.completion }} &nbsp
-                  <input type="checkbox" name="comBox" v-model="checkedComs" :value="items.comNo" :id="items.transaction">
+                  <input type="checkbox" name="comBox"
+                         v-model="checkedComs"
+                         :value="items.comNo" :id="items.transaction">
                   </label>
               </td>
             </tr>
@@ -206,11 +208,12 @@ export default {
             });
         },
         fnUpdate(){
-            if(confirm('총 ' + this.checkedComs.length + ' 건을 수정하시겠습니까?\n' + this.checkedComs.toString())){
+            if(confirm('총 ' + this.checkedComs.length + ' 건을 수정하시겠습니까?\n')){
                 console.log('수정');
 
               for(let no in this.checkedComs){
-                this.$axios.patch(this.$serverUrl + "/com/" + this.checkedComs[no], {
+                this.$axios.patch(this.$serverUrl + "/com/"
+                                                  + this.checkedComs[no], {
                   params: this. requestBody,
                   headers: {}
                 }).then((res)=>{

@@ -221,7 +221,8 @@ export default {
         return fn
       },
         fnGetCount(){
-          this.$axios.get(this.$serverUrl + "/com/countAll/" + this.year + "/" + this.quarter
+          this.$axios.get(this.$serverUrl + "/com/countAll/"
+            + this.year + "/" + this.quarter
           ).then((res)=>{
               this.countE1Q1 = res.data[0]
               this.countE1Q2 = res.data[1]
@@ -232,14 +233,14 @@ export default {
               this.countE4Q0 = res.data[6]
               this.countE5Q0 = res.data[7]
 
-            this.noneE1Q1 = res.data[8]
-            this.noneE1Q2 = res.data[9]
-            this.noneE1Q3 = res.data[10]
-            this.noneE1Q4 = res.data[11]
-            this.noneE2Q0 = res.data[12]
-            this.noneE3Q0 = res.data[13]
-            this.noneE4Q0 = res.data[14]
-            this.noneE5Q0 = res.data[15]
+              this.noneE1Q1 = res.data[8]
+              this.noneE1Q2 = res.data[9]
+              this.noneE1Q3 = res.data[10]
+              this.noneE1Q4 = res.data[11]
+              this.noneE2Q0 = res.data[12]
+              this.noneE3Q0 = res.data[13]
+              this.noneE4Q0 = res.data[14]
+              this.noneE5Q0 = res.data[15]
           }).catch((err) => {
             if (err.message.indexOf('Network Error') > -1) {
               alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -249,7 +250,8 @@ export default {
         fnAdd(){
             if (!confirm("등록하시겠습니까?")) return //취소 클릭시
 
-            this.$axios.post(this.$serverUrl + "/com/"+this.eduId+"/"+this.year+"/" + this.quarter
+            this.$axios.post(this.$serverUrl + "/com/" + this.eduId
+                                + "/" + this.year + "/" + this.quarter
             ).then((res)=>{
                 this.addList = res.data
 
@@ -268,21 +270,6 @@ export default {
             query: this.requestBody
           })
         }
-        // fnNewAdd(){
-        //     if(confirm('신입사원을 목록에 추가하시겠습니까?')){
-        //         console.log('수정');
-        //       this.$axios.get(this.$serverUrl + "/com/newAdd",{
-        //         params: this. requestBody,
-        //         headers: {}
-        //       }).then((res)=>{
-        //         this.list = res.data.data
-        //       }).catch((err) => {
-        //         if (err.message.indexOf('Network Error') > -1) {
-        //           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-        //         }
-        //       })
-        //     }
-        // }
     },
   mounted() {
     this.year = moment().year();

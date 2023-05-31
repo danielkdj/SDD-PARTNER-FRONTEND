@@ -222,9 +222,7 @@
 <script>
 import { Icon } from "@iconify/vue";
 import { ref } from "vue";
-import { Button } from "@/views/components/button.vue";
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
-import axios from "axios";
 
 export default {
   name: "EaRequest",
@@ -353,7 +351,6 @@ export default {
     this.fetchCounseling();
   },
   components: {
-    Button,
     Icon,
   },
 };
